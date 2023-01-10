@@ -1,0 +1,39 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+  <div class="content">
+    <div class="image">
+      <img src="assets/images/phoneimage.png" alt="">
+    </div>
+
+    <div class="secaind">
+      <label for="">
+        Entrez votre numero de telephone
+      </label>
+
+      <form action="" method="post" #f2="ngForm">
+        <div class="input_number" style="display: flex;">
+            <ion-select value="brown" okText="Okay" cancelText="Dismiss" style="cursor: pointer;
+            width: 40%;
+            padding-left: 5px;
+            font-size: small;
+            font-family: bold;
+            "
+              (ionChange)="countryCodeChange($event)" [value]="CountryCode">
+
+              <ion-select-option *ngFor="let country of CountryJson" value={{country.dialling_code}}>
+                {{country.dialling_code + ' ' + country.code + ' ' + country.name}}</ion-select-option>
+
+          </ion-select>
+            <ion-input  [(ngModel)]="PhoneNo" name="numero_telephone"  id="numero" type="tel" inputmode="tel" placeholder="Telephone" ngModel required autocomplete="tel-local" enterkeyhint="send" ></ion-input>
+        </div>
+        <ion-button type="submit" class="continues"  [disabled]="f2.form.invalid" (click)="signinWithPhoneNumber($event)">Vérifier</ion-button>
+        <!--test() signinWithPhoneNumber($event) -->
+      </form>
+    </div>
+  </div>
+</ion-content>

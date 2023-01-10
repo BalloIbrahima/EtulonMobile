@@ -15,6 +15,10 @@ const routes: Routes = [
     loadChildren: () => import('./home2/home2.module').then( m => m.Home2PageModule)
   },
   {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
     path: '',
     redirectTo:'home1',
     pathMatch:'full'
@@ -24,7 +28,8 @@ const routes: Routes = [
     redirectTo:'home1',
     pathMatch:'full'
 
-  }
+  },
+
 ];
 @NgModule({
   imports: [
