@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { ActionSheetController, AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
+import { OtpComponent } from '../otp/otp.component';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,12 @@ export class LoginPage implements OnInit {
   OTP: string = '';
   Code: any;
   PhoneNo: any;
-  constructor(private loadingController: LoadingController) { }
+
+  //error
+  Iserror!: Boolean;
+  erreur!: String;
+  //
+  constructor(private loadingController: LoadingController,private modalCtrl: ModalController,public actionSheetController: ActionSheetController,private alertController: AlertController) { }
 
   ngOnInit() {
   }
@@ -29,7 +35,9 @@ export class LoginPage implements OnInit {
 
   //login with phone number
   async signinWithPhoneNumber($event:any) {
-    this.presentLoadingWithOptions()
+    //this.presentLoadingWithOptions()
+    this.afficherModal()
+
   }
 
 
@@ -41,7 +49,7 @@ export class LoginPage implements OnInit {
     const loading = await this.loadingController.create({
       id:"loader",
       spinner: "bubbles",
-      // duration: 5000,
+
       message: 'Veuillez patientez...',
       translucent: true,
       cssClass: 'custom-class custom-loading'
@@ -57,4 +65,29 @@ export class LoginPage implements OnInit {
   async dismiss_loader() {
     return await this.loadingController.dismiss();
   }
+
+  //afficher le modal otp
+  async afficherModal(){
+    const modal = await this.modalCtrl.create({
+      component: OtpComponent,
+      componentProps: {
+        'data': this.CountryCode+' '+this.PhoneNo,
+
+      },
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      // this.boiteConfirmation();
+      //this.message = `Hello, ${data}!`;
+    }
+  }
+
+  //
+  canDismiss = false;
+
+  presentingElement = null;
+
 }

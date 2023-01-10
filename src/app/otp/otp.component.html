@@ -1,0 +1,33 @@
+
+
+<ion-content >
+  <ion-header collapse="condense">
+    <ion-toolbar>
+
+    </ion-toolbar>
+    <div class="exitbtn" (click)="close()">
+      <i class="fa-sharp fa-solid fa-circle-xmark"></i>
+    </div>
+  </ion-header>
+
+  <div class="content">
+
+    <div class="imgpart">
+      <img src="assets/images/phone2.png" alt="">
+    </div>
+
+    <div class="secaindpart">
+      <label for="" id="text">
+        Un code de verification a ete envoyer au numero de telephone :
+      </label>
+
+      <label for="" id="numero">( {{data}} )</label>
+
+      <div class="inputotp">
+        <ng-otp-input  (onInputChange)="onOtpChange($event)"   [config]="{length:5}"></ng-otp-input>
+      </div>
+      <ion-button type="submit" [disabled]="!otpIsValid"  class="continues"  (click)="sendCode($event)">Envoyer</ion-button>
+
+    </div>
+  </div>
+</ion-content>

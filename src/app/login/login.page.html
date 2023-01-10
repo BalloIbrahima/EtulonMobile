@@ -31,9 +31,9 @@
           </ion-select>
             <ion-input  [(ngModel)]="PhoneNo" name="numero_telephone"  id="numero" type="tel" inputmode="tel" placeholder="Telephone" ngModel required autocomplete="tel-local" enterkeyhint="send" ></ion-input>
         </div>
-        <ion-button type="submit" class="continues"  [disabled]="f2.form.invalid" (click)="signinWithPhoneNumber($event)">Vérifier</ion-button>
-        <!--test() signinWithPhoneNumber($event) -->
+        <ion-button type="submit"  class="continues"  [disabled]="f2.form.invalid" (click)="signinWithPhoneNumber($event)">Vérifier</ion-button>
+        <!--test() signinWithPhoneNumber($event) id="open-modal" expand="block"-->
       </form>
     </div>
   </div>
-</ion-content>
+

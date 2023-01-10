@@ -1,0 +1,72 @@
+ion-content {
+  display: grid;
+  background-color: white;
+  height: 100%;
+  padding: 5%;
+  color: black;
+}
+ion-header{
+  display: flex;
+  width: 80%;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 15%;
+}
+.imgpart{
+  margin-top: 5%;
+}
+.exitbtn{
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+.secaindpart{
+  width: 90%;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 5%;
+}
+.secaindpart > #text{
+  font-size: 15px;
+  font-family : 'Itim', cursif !important;
+
+}
+
+.secaindpart > #numero{
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  font-family : 'Itim', cursif !important;
+
+}
+
+.exitbtn >i{
+  color: #F24E1E;
+  font-size: 30px;
+}
+
+.inputotp{
+  margin: auto;
+  margin-top: 5%;
+}
+
+.continues{
+  margin-top: 10%;
+    color: white;
+    width: 100%;
+    --background: #008000;
+}
+
+#erreur{
+
+  color: white;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  background-color: #F24E1E;
+  border-radius: 5px;
+  text-align: center;
+  margin-bottom: 1%;
+}
