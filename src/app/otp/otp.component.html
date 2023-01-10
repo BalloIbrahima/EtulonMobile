@@ -26,7 +26,10 @@
       <div class="inputotp">
         <ng-otp-input  (onInputChange)="onOtpChange($event)"   [config]="{length:5}"></ng-otp-input>
       </div>
-      <ion-button type="submit" [disabled]="!otpIsValid"  class="continues"  (click)="sendCode($event)">Envoyer</ion-button>
+
+      <label id="erreur" *ngIf="Iserror">{{erreur}}</label>
+
+      <ion-button type="submit" [disabled]="!otpIsValid"  class="continues"  (click)="sendCode()">Envoyer</ion-button>
 
     </div>
   </div>

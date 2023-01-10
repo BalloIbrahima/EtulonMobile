@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
+    path: 'inscription',
+    loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
+  },
+  {
     path: '',
     redirectTo:'home1',
     pathMatch:'full'
@@ -29,6 +33,7 @@ const routes: Routes = [
     pathMatch:'full'
 
   },
+
 
 ];
 @NgModule({

@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
   Iserror!: Boolean;
   erreur!: String;
   //
-  constructor(private loadingController: LoadingController,private modalCtrl: ModalController,public actionSheetController: ActionSheetController,private alertController: AlertController) { }
+  constructor(private loadingController: LoadingController,private modalCtrl: ModalController,public actionSheetController: ActionSheetController) { }
 
   ngOnInit() {
   }

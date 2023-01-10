@@ -1,0 +1,42 @@
+.content{
+  display: grid;
+  background-color: white;
+  height: 100%;
+  padding: 5%;
+  grid-template-rows: 50% 50%;
+  color: black;
+}
+
+.firstPart{
+  margin-top: 25%;
+}
+.firstPart > #text{
+  font-size: 13px;
+  font-family : 'Itim', cursif !important;
+
+}
+
+.firstPart > #titre{
+  display: flex;
+  justify-content: left;
+  font-size: 30px;
+  font-family : 'Itim', cursif !important;
+}
+
+.imgPart{
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: 55% 45%;
+}
+
+.imgPart > .rounded >img{
+  border: 2px solid green;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+#textChose{
+  display: flex;
+    margin-top: 20px;
+}

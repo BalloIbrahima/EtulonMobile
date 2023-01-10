@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 
 @Component({
@@ -19,7 +20,7 @@ export class OtpComponent implements OnInit {
 
   //donnee venant de la page parante
   data:any
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController,private router:Router) { }
 
   ngOnInit() {}
 
@@ -39,7 +40,8 @@ export class OtpComponent implements OnInit {
   }
 
 
-  sendCode($event:any){
-
+  sendCode(){
+    this.close()
+    this.router.navigate(['/inscription'])
   }
 }

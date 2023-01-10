@@ -1,0 +1,32 @@
+<!--<ion-header>
+  <ion-toolbar>
+    <ion-title>inscription</ion-title>
+  </ion-toolbar>
+</ion-header>-->
+
+<ion-content>
+
+  <div class="content">
+    <div class="firstPart" (click)="clickFile()">
+      <label for="" id="titre">Inscription</label>
+      <label for="" id="text">Creer un compte en remplissant le formulaire ci-dessous</label>
+
+      <div class="imgPart">
+        <div class="rounded">
+          <img [src]="imgChosed" alt="">
+        </div>
+
+        <div>
+          <label for="" id="textChose">Choisir une
+            photo de profil</label>
+        </div>
+
+        <input class="fileselect d-none"  type="file" (change)="changeFile($event)">
+      </div>
+    </div>
+
+    <div class="secaindPart">
+
+    </div>
+  </div>
+</ion-content>
