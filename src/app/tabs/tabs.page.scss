@@ -1,1 +1,26 @@
+ion-tab-bar{
 
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.46);
+  /* justify-content: center; */
+  border-radius: 5px;
+  display: grid;
+  grid-template-columns: 24% 24% 24% 24%;
+}
+
+ion-tab-button{
+  background-color:rgb(255 255 255 / 46%);
+}
+
+ion-tab-button i{
+
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}
+
+.tab-selected{
+  color:#008000;
+}

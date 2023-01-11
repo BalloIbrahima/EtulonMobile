@@ -58,5 +58,8 @@ export class InscriptionPage implements OnInit {
   ///creation de compte
   singup($event:any){
 
+
+    this.router.navigate(['/tabs'])
+
   }
 }
