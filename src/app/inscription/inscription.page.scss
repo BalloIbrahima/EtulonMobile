@@ -40,3 +40,33 @@
   display: flex;
     margin-top: 20px;
 }
+
+.input{
+  margin-top: 5%;
+  display: grid;
+  border: 2px solid #D9D9D9;
+  border-radius: 5px;
+  grid-template-columns: 20% 80%;
+}
+
+ion-input{
+  --padding-top: 5px !important;
+  --padding-bottom: 5px !important;
+}
+
+.input >i{
+  margin: auto;
+  font-size: 20px;
+}
+.continues{
+  // border: 2px solid #008000;
+  border-radius: 5px;
+  margin-top: 5%;
+  color: rgb(255, 255, 255) ;
+  width: 100%;
+  --background:#008000;
+}
+
+.continues :hover{
+  --background:none;
+}

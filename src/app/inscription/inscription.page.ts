@@ -8,6 +8,12 @@ import { Router } from '@angular/router';
 })
 export class InscriptionPage implements OnInit {
 
+  //user infos
+  nomComplet:any;
+  username:any;
+  email:any;
+
+  ///
   message:any
   erreur:any
   fichier:any
@@ -47,5 +53,10 @@ export class InscriptionPage implements OnInit {
         this.fichier=e.target['files'][0];
       }
     }
+  }
+
+  ///creation de compte
+  singup($event:any){
+
   }
 }

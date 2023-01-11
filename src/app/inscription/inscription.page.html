@@ -17,7 +17,7 @@
         </div>
 
         <div>
-          <label for="" id="textChose">Choisir une
+          <label for="" id="textChose">Cliquez ici pour choisir une
             photo de profil</label>
         </div>
 
@@ -27,6 +27,25 @@
 
     <div class="secaindPart">
 
+      <form action="" method="post" #f2="ngForm">
+        <div class="input">
+          <i class="fa-solid fa-user"></i>
+          <ion-input  [(ngModel)]="nomComplet" name="nomComplet"  id="nomComplet" type="text"  placeholder="Nom complet" ngModel required  ></ion-input>
+        </div>
+
+        <div class="input">
+          <i class="fa-regular fa-user-pen"></i>
+          <ion-input  [(ngModel)]="username" name="username"  id="username" type="text"  placeholder="Username" ngModel required  ></ion-input>
+        </div>
+
+        <div class="input">
+          <i class="fa-solid fa-envelope"></i>
+          <ion-input  [(ngModel)]="email" name="email"  id="email" type="email"  placeholder="Email" ngModel ></ion-input>
+        </div>
+
+        <ion-button type="submit"  class="continues"  [disabled]="f2.form.invalid" (click)="singup($event)">Continuer</ion-button>
+
+      </form>
     </div>
   </div>
 </ion-content>
