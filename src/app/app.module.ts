@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { LottieModule } from 'ngx-lottie';
 // import { AngularFireModule } from "@angular/fire/compat";
 // import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 // import { AngularFireStorageModule } from '@angular/fire/compat/storage';
@@ -14,10 +15,16 @@ import { AppComponent } from './app.component';
 // import { environment } from '../environments/environment';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
 // import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+//import player from 'lottie-web';
+
+export function playerFactory() {
+  return import('lottie-web');
+}
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
+    LottieModule.forRoot({player:playerFactory}),
     //AngularFireModule.initializeApp(environment.firebaseConfig),
   //   AngularFireAuthModule,
   //   AngularFireStorageModule,
