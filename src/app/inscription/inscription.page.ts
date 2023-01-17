@@ -12,6 +12,7 @@ export class InscriptionPage implements OnInit {
   nomComplet:any;
   username:any;
   email:any;
+  dateNaissance:any;
 
   ///
   message:any

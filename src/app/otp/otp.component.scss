@@ -70,3 +70,6 @@ ion-header{
   text-align: center;
   margin-bottom: 1%;
 }
+.header-md::after {
+  background-image: none;
+}
