@@ -24,9 +24,9 @@ export function playerFactory() {
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
-    LottieModule.forRoot({player:playerFactory}),
     //AngularFireModule.initializeApp(environment.firebaseConfig),
   //   AngularFireAuthModule,
+  LottieModule.forRoot({player:playerFactory}),
   //   AngularFireStorageModule,
   //   AngularFireDatabaseModule,
   //  AngularFirestoreModule,

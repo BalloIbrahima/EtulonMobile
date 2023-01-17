@@ -7,11 +7,12 @@
 <ion-content>
   <div class="containt">
     <div class="first">
-      <img src="/assets/images/logohome1.png" alt="">
+      <ng-lottie [options]="options"></ng-lottie>
+      <!--<img src="/assets/images/logohome1.png" alt="">-->
     </div>
 
     <div class="secaind">
-      <label for="">Bienvenue !</label>
+      <label for="">Bienvenue sur E-Tulon!</label>
       <label for="">Apprener en s'amusant .</label>
       <div class="points">
         <p>
@@ -29,7 +30,7 @@
     </div>
 
     <div class="last">
-      <ion-button shape="round" (click)="goToNextPage()" >
+      <ion-button  (click)="goToNextPage()" >
         Continuer
       </ion-button>
     </div>
