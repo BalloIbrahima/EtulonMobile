@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { error } from 'console';
+import { ProblematiqueService } from '../services/problematique/problematique.service';
 
 @Component({
   selector: 'app-home2',
@@ -8,9 +10,16 @@ import { Router } from '@angular/router';
 })
 export class Home2Page implements OnInit {
 
-  constructor(private router:Router) { }
+  problematiques:any=[];
+  constructor(private router:Router,private problematiqueService:ProblematiqueService) {}
 
   ngOnInit() {
+    this.problematiqueService.getAll().subscribe(res=>{
+      this.problematiques=res.data;
+      console.log(this.problematiques)
+    },error=>{
+      console.log(error)
+    })
   }
 
   check(numero:any){

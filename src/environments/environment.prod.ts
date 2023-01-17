@@ -9,6 +9,7 @@ export const environment = {
     measurementId: 'G-P9QJL1V537',
   },
   production: true,
+  api:"http://localhost:8080",
 
   CountryJson:
   [

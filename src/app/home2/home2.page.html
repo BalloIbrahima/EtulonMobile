@@ -17,32 +17,20 @@
       <div class="listInterets">
 
 
-        <ion-card (click)="check(1)" class="card1">
+        <ion-card (click)="check(i)" class="card{{i}}" *ngFor="let prob of problematiques ;let i =index;">
           <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+            <ion-card-subtitle>{{prob.libelle}}</ion-card-subtitle>
           </ion-card-header>
 
 
 
           <ion-item class="d-none">
-            <ion-checkbox id="card1" slot="start"></ion-checkbox>
+            <ion-checkbox id="card{{i}}" slot="start"></ion-checkbox>
           </ion-item>
         </ion-card>
 
 
-        <ion-card (click)="check(1)" class="card1">
-          <ion-card-header>
-            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-          </ion-card-header>
-
-
-
-          <ion-item class="d-none">
-            <ion-checkbox id="card1" slot="start"></ion-checkbox>
-          </ion-item>
-        </ion-card>
-
-        <ion-card (click)="check(1)" class="card1">
+        <!-- <ion-card (click)="check(1)" class="card1">
           <ion-card-header>
             <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
           </ion-card-header>
@@ -125,6 +113,18 @@
             <ion-checkbox id="card1" slot="start"></ion-checkbox>
           </ion-item>
         </ion-card>
+
+        <ion-card (click)="check(1)" class="card1">
+          <ion-card-header>
+            <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
+          </ion-card-header>
+
+
+
+          <ion-item class="d-none">
+            <ion-checkbox id="card1" slot="start"></ion-checkbox>
+          </ion-item>
+        </ion-card> -->
 
       </div>
 
@@ -142,7 +142,7 @@
         </p>
       </div>
 
-      <ion-button class="continues" (click)="goToNextPage()" shape="round"  >
+      <ion-button class="continues" (click)="goToNextPage()"  >
         Continuer
       </ion-button>
     </div>

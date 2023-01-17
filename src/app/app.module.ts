@@ -11,6 +11,8 @@ import { LottieModule } from 'ngx-lottie';
 // import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule } from '@angular/common/http';
+
 // import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 // import { environment } from '../environments/environment';
 // import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -26,13 +28,14 @@ export function playerFactory() {
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule,
     //AngularFireModule.initializeApp(environment.firebaseConfig),
   //   AngularFireAuthModule,
-  LottieModule.forRoot({player:playerFactory}),
   //   AngularFireStorageModule,
   //   AngularFireDatabaseModule,
   //  AngularFirestoreModule,
   //  provideFirebaseApp(() => initializeApp(environment.firebase)),
   //  provideAuth(() => getAuth()),
   //  provideFirestore(() => getFirestore()),
+  LottieModule.forRoot({player:playerFactory}),
+  HttpClientModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
