@@ -44,7 +44,26 @@
             <div class="listNews">
 
               <div class="new">
+                <img src="assets/images/moi.jpg" alt="">
+                <div class="desc">
+                  <label for="" id="titleJeu">Game Nom</label>
+                  <label for="" id="descJeu">
+                    lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululorem i
+                    <div id="likePlay">
+                      <button class="liked">
+                        2500
+                        <i class="fa-solid fa-thumbs-up"></i>
+                      </button>
 
+                      <button class="played">
+                        500
+                        <i class="fa-sharp fa-solid fa-circle-play"></i>
+                      </button>
+                    </div>
+                  </label>
+
+
+                </div>
               </div>
 
               <div class="new">
@@ -64,6 +83,8 @@
 
         </div>
         <div class="secainddiv">
+
+
           <div class="avecbg">
 
           </div>
@@ -76,6 +97,188 @@
       </div>
 
       <div class="secaindpart">
+        <div class="listinteret">
+          <label for="" id="bibli">Bibliotheque des jeux</label>
+
+          <div class="listinte">
+            <div class="elemt select" (click)="change('all')" [ngStyle]="{'background-color':'#BB7676'}" >
+              <label for=""  ><i style="color: aliceblue;" class="fa-solid fa-shop"></i></label>
+            </div>
+
+            <div class="elemt"  *ngFor="let p of problematiques" [ngStyle]="{'background-color':p.couleur}" (click)="change(p.libelle)">
+              <label for=""  >{{p.libelle}}</label>
+            </div>
+
+
+          </div>
+        </div>
+
+        <div class="listjeux">
+          <div class="jeu">
+            <div>
+            </div>
+
+            <div class="secaind">
+              <img src="assets/images/moi.jpg" alt="">
+
+              <div class="infos">
+                <div>
+                  <label for="" id="NomJeu">
+                    NomJeu
+                  </label>
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+
+                  <button class="play"  >
+                    Jouer
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="jeu">
+            <div>
+            </div>
+
+            <div class="secaind">
+              <img src="assets/images/moi.jpg" alt="">
+
+              <div class="infos">
+                <div>
+                  <label for="" id="NomJeu">
+                    NomJeu
+                  </label>
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+
+                  <button class="play"  >
+                    Jouer
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="jeu">
+            <div>
+            </div>
+
+            <div class="secaind">
+              <img src="assets/images/moi.jpg" alt="">
+
+              <div class="infos">
+                <div>
+                  <label for="" id="NomJeu">
+                    NomJeu
+                  </label>
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+
+                  <button class="play"  >
+                    Jouer
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="jeu">
+            <div>
+            </div>
+
+            <div class="secaind">
+              <img src="assets/images/moi.jpg" alt="">
+
+              <div class="infos">
+                <div>
+                  <label for="" id="NomJeu">
+                    NomJeu
+                  </label>
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+
+                  <button class="play"  >
+                    Jouer
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="jeu">
+            <div>
+            </div>
+
+            <div class="secaind">
+              <img src="assets/images/moi.jpg" alt="">
+
+              <div class="infos">
+                <div>
+                  <label for="" id="NomJeu">
+                    NomJeu
+                  </label>
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+
+                  <button class="play"  >
+                    Jouer
+                  </button>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
 
       </div>
 
@@ -83,4 +286,4 @@
   </ion-content>
 
 
-\</ion-content>
+</ion-content>

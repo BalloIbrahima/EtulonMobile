@@ -3,7 +3,7 @@
   height: 100%;
   padding: 5%;
   background-color: #ffffff;
-  grid-template-rows: 50 50%;
+  grid-template-rows: 50% 50%;
   color: black;
   font-family : 'Itim', cursif !important;
 }
@@ -111,16 +111,158 @@
 
 ///list des nouveautes
 .listNews{
+  flex-wrap: nowrap;
   display: -webkit-inline-box;
-  overflow-y: hidden;
+  overflow-y: unset;
   overflow-x:scroll;
   scroll-behavior: smooth;
 }
 
 .new{
-  width: 120px;
-  height: 100%;
-  background-color: aquamarine;
+  width: 200px;
+  height: 70%;
+  background-color: rgb(255, 255, 255);
   margin: 2% 5%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border-radius: 10px;
+}
+
+.new img{
+  border-radius: 15px;
+  padding: 5px;
+  object-fit: cover;
+  height: 80%;
+  width: 100%;
+}
+
+.new >.desc{
+  display: grid;
+  padding: 5px;
+  grid-template-rows: 20% 60% 20%;
+}
+
+.desc >#titleJeu{
+  font-size: 14px;
+  justify-content: left;
+}
+
+.desc >#descJeu{
+  font-size: 9px;
+  color: #0000005b;
+  display: flex;
+  flex-direction: column;
+}
+#likePlay{
+  display: grid;
+  grid-template-columns: 45% 45%;
+  column-gap: 10%;
+}
+
+#likePlay >button{
+  font-size: 9px;
+  padding: 5%;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+#likePlay  >.liked{
+  border:1px solid#3779FF ;
+}
+#likePlay  >.liked> i{
+  color: #3779FF;
+}
+#likePlay  >.played{
+  border:1px solid#BB7676 ;
+}
+#likePlay  >.played> i{
+  color: #BB7676;
+}
+/////
+#bibli{
+  display: flex;
+  justify-content: center;
+}
+
+///////
+///////secaindpart
+.secaindpart{
+  margin-top: 2%;
+  display: grid;
+  width: 100%;
+  grid-template-rows: 20% 80%;
+}
+.listinteret{
+  display: grid;
+}
+.listinte{
+  display: -webkit-inline-box;
+  overflow-y: unset;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.listinte >.elemt{
+  border-radius: 20px;
+  width: auto;
+  margin-left: 5px;
+}
+.select > label{
+  background-color: #0080007a;
+}
+.listinte >.elemt >label{
+  padding: 5px;
+  border-radius: 20px;
+
+}
+///liste jeu
+.listjeux{
+  margin-top: 10px;
+  display: -webkit-inline-box;
+  overflow-y: unset;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.listjeux >.jeu{
+  display: grid;
+  grid-template-rows: 20% 80%;
+  width: 110px;
+  margin-left: 10px;
+}
+
+.secaind{
+  display: grid;
+  grid-template-rows: 20% 80%;
+  background-color: #D9D9D9;
+  padding: 5px;
+  border-radius: 10px;
+}
+.secaind >img{
+  height: 80px;
+  width: 90px;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: -35px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+.infos >div{
+  margin-top: 15%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#NomJeu{
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+}
+
+.play{
+  color: white ;
+  background:#008000;
+  margin: 5px 5px;
   border-radius: 5px;
 }
+
