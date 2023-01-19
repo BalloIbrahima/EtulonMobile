@@ -1,9 +1,36 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>game2</ion-title>
+    <!--<ion-title>game2</ion-title>-->
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div class="containt">
+    <div class="first">
+      <img src="assets/images/moi.jpg" alt="">
+
+      <label for="" id="nomJeu">Game Name</label>
+
+      <label for="" id="libelleNiveau">Niveau 1</label>
+
+      <div class="desc">
+        <label for="" id="descJeu">
+          lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululorem i
+          ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululor
+        </label>
+      </div>
+
+      <ion-button type="submit"  class="continues"   (click)="Play()">Commencer</ion-button>
+
+    </div>
+
+
+
+
+  </div>
 
 </ion-content>

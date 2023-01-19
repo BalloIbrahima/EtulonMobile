@@ -1,9 +1,9 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <!--<ion-title>game1</ion-title> -->
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-back-button></ion-back-button>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -25,11 +25,14 @@
       <label for="">Liste des niveaux</label>
 
       <div class="listNiveau">
-        <div class="niveau">
+        <div class="niveau" (click)="goToNextPage()">
           <img src="assets/images/moi.jpg" alt="">
-          <div class="desc">
-            <label for="" id="text"></label>
-            <label for="" id="libelleNiveau"></label>
+          <div class="descniveau">
+            <div></div>
+            <label for="" id="text">
+              lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem
+            </label>
+            <label for="" id="libelleNiveau">Niveau 1</label>
           </div>
         </div>
 

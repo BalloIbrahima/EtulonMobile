@@ -1,0 +1,54 @@
+.containt{
+  height: 100%;
+  padding: 2%;
+  display: grid;
+  font-family : 'Itim', cursif !important;
+  background-color: #ffffff;
+  color: #000;
+}
+
+.first{
+  display: flex;
+  flex-direction: column;
+}
+
+.first >label{
+  display: flex;
+  justify-content: center;
+}
+
+.first>#nomJeu{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.first >img{
+  border-radius: 10px;
+  height: 60%;
+  display: flex;
+  width: 100%;
+  object-fit: cover;
+}
+
+#descJeu{
+  font-size: 12px;
+  color: #0000005b;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.continues{
+  // border: 2px solid #008000;
+  border-radius: 5px;
+  margin-top: 5%;
+  color: rgb(255, 255, 255) ;
+  width: 100%;
+  --background:#3779FF;
+}
+
+.continues :hover{
+  --background:none;
+}
+
+

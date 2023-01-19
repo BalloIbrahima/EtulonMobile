@@ -65,14 +65,19 @@
   border-radius: 50%;
 }
 
-.desc >#text{
+.descniveau{
+  display: grid;
+  grid-template-rows:15% 45% 35%;
+}
+
+.descniveau >#text{
   font-size: 9px;
   color: #00000091;
   display: flex;
   flex-direction: column;
 }
 
-.desc >#libelleNiveau{
+.descniveau >#libelleNiveau{
   font-size: 15xpx;
 
 }
