@@ -38,6 +38,10 @@ const routes: Routes = [
     path: 'play',
     loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
   },
+  {
+    path: 'compte',
+    loadChildren: () => import('./compte/compte.module').then( m => m.ComptePageModule)
+  },
   // {
   //   path: '',
   //   redirectTo:'home1',

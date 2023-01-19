@@ -1,0 +1,225 @@
+.containt{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  height: max-content;
+  width: 100%;
+  color: rgb(0, 0, 0);
+  font-family : 'Itim', cursif !important;
+}
+
+.bg{
+  background-color: #D9D9D9;
+  height: 200px;
+}
+
+.infosProfil{
+  margin-top: -65px;
+  display: grid;
+  grid-template-columns: 30% 40% 30%;
+}
+.infosProfil >.cloche, .infosProfil>.edit{
+
+  display: flex;
+  justify-content: center;
+  margin: auto;
+}
+
+.infosProfil >div >i{
+  height: 30px;
+  width: 30px;
+  border:1px solid black ;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 5px;
+  color: #000;
+  background-color: #fff;
+}
+.tofName{
+  margin: auto;
+  display: grid;
+  grid-template-rows: 70% 30%;
+}
+
+.tofName >.photo >img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.username{
+  margin-top: 5px;
+}
+
+.username >label{
+  display: flex;
+  justify-content: center;
+}
+#nomComplet{
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+}
+#username{
+  margin: 0;
+  font-size: 10px;
+  color: rgba(0, 0, 0, 0.582);
+}
+/////dexieme partie
+.infosCompte{
+  margin-left: 2%;
+  margin-right: 2%;
+  display: grid;
+  grid-template-rows: 46% 46%;
+  row-gap: 8%;
+  color: #fff;
+}
+
+.infosCompte>  .ptConseil{
+  display: grid;
+  grid-template-columns: 58% 40%;
+  column-gap: 2%;
+}
+
+.ptConseil >div, .nmbre >div{
+  border-radius: 30px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  padding-top: 5px;
+
+}
+
+
+.ptConseil >div >#nombre,.nmbre>div >#nombre{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+}
+
+.ptConseil >div >#nombre>#number,.nmbre>div >#nombre>#number{
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.ptConseil >div >#nombre>#name,.nmbre>div >#nombre>#name{
+  font-size: 9px;
+  margin: 0;
+}
+
+.ptConseil >div >#imgpt,.nmbre>div >#imgpt{
+
+}
+
+
+
+.infosCompte>  .nmbre{
+  display: grid;
+  grid-template-columns: 49% 49%;
+  column-gap: 2%;
+}
+
+.tulonPoint{
+  background-color: #3779FF;
+}
+
+.conseil{
+  background-color: #BB7676;
+}
+
+.gamePlayed{
+  background-color: #FF981F;
+
+}
+
+.timePlayed{
+  background-color: #F75555;
+}
+////hr
+hr{
+  color: #000;
+  height: 2px;
+  margin: 10px 0px 0px 5px;
+}
+#labelLast{
+
+  display: flex;
+  justify-content: center;
+}
+
+.listLastGame{
+  height: 190px;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x:hidden ;
+  margin-bottom: 50px;
+  scroll-behavior: smooth;
+}
+
+.game{
+  height: 70px;
+  border-radius: 10px;
+  margin: 5px 1%;
+  background-color: #D9D9D9;
+  width: 98%;
+  display: grid;
+  grid-template-columns: 29% 40% 29%;
+}
+.imageGame{
+  margin: auto;
+}
+
+.game >.imageGame >img{
+  border-radius: 20px;
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+}
+
+.infosPlay{
+  display: grid;
+  grid-auto-flow: 20% 40% 40%;
+}
+
+#likePlay >button{
+  font-size: 9px;
+  padding: 5%;
+  margin: 2px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+#likePlay  >.liked{
+  border:1px solid#3779FF ;
+}
+#likePlay  >.liked> i{
+  color: #3779FF;
+}
+#likePlay  >.played{
+  border:1px solid#BB7676 ;
+}
+#likePlay  >.played> i{
+  color: #BB7676;
+}
+/////
+///
+.btnPlay{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+#goPlay{
+  display: flex;
+  align-items: end;
+  background-color: #008000;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 30px;
+  padding: 15px;
+  color: #fff;
+  align-items: center;
+}
+
