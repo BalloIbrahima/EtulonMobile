@@ -34,6 +34,10 @@ const routes: Routes = [
     path: 'game2',
     loadChildren: () => import('./game2/game2.module').then( m => m.Game2PageModule)
   },
+  {
+    path: 'play',
+    loadChildren: () => import('./play/play.module').then( m => m.PlayPageModule)
+  },
   // {
   //   path: '',
   //   redirectTo:'home1',

@@ -1,0 +1,31 @@
+.header{
+  --background: #3779FF;
+  color: #fff;
+}
+
+.containt{
+  display: flex;
+  flex-direction: column;
+  background-color: #3779FF;
+  height: 100%;
+  padding: 5%;
+  color: rgb(255, 255, 255);
+  font-family : 'Itim', cursif !important;
+}
+
+ion-progress-bar{
+  --background:#ffffff;
+  height: 8px;
+  border-radius: 2px;
+  --progress-background:#FF0000;
+}
+
+.containt >label{
+  display: flex;
+  justify-content: center;
+}
+#titreQuestion{
+  margin-top: 5px;
+  font-size: 20px;
+  font-weight: bold;
+}

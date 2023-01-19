@@ -16,7 +16,7 @@ export class Game2Page implements OnInit {
    //
    Play(){
     //console.log('gooooo')
-    this.router.navigate(['/game2'])
+    this.router.navigate(['/play'])
   }
 
 }
