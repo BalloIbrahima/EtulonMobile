@@ -18,4 +18,10 @@ export class ProfilPage implements OnInit {
     this.router.navigate(['/compte'])
 
   }
+
+  //
+  Play(){
+    console.log('dfgh')
+    this.router.navigate(['../game1'])
+  }
 }

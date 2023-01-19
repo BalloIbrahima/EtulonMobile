@@ -36,7 +36,7 @@ export class AcceuilPage implements OnInit {
 
   //
   goPlay(){
-    console.log('dfgh')
+    //console.log('dfgh')
     this.router.navigate(['../game1'])
   }
 
