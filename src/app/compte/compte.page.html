@@ -1,9 +1,80 @@
-<ion-header>
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>Compte</ion-title>
+    <ion-title>Modification</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
 
+  <div class="content">
+    <div class="firstPart" (click)="clickFile()">
+      <!--<label for="" id="titre">Modification</label>-->
+      <label for="" id="text">Vous pouvez modifier le formulaire ci-dessous</label>
+
+      <div class="imgPart">
+        <div class="rounded">
+          <img [src]="imgChosed" alt="">
+        </div>
+
+        <div>
+          <label for="" id="textChose">Cliquez ici pour changer la
+            photo de profil</label>
+        </div>
+
+        <input class="fileselect d-none"  type="file" (change)="changeFile($event)">
+      </div>
+    </div>
+
+    <div class="secaindPart">
+
+      <form action="" method="post" #f2="ngForm">
+        <div class="input">
+          <i class="fa-solid fa-user"></i>
+          <ion-input  [(ngModel)]="nomComplet" name="nomComplet"  id="nomComplet" type="text"  placeholder="Nom complet" ngModel required  ></ion-input>
+        </div>
+
+        <div class="input">
+          <i class="fa-regular fa-pen-to-square"></i>
+          <ion-input  [(ngModel)]="username" name="username"  id="username" type="text"  placeholder="Username" ngModel required  ></ion-input>
+        </div>
+
+        <div class="input">
+          <i class="fa-solid fa-envelope"></i>
+          <ion-input  [(ngModel)]="email" name="email"  id="email" type="email"  placeholder="Email" ngModel ></ion-input>
+        </div>
+
+        <div class="input">
+          <i class="fa-solid fa-calendar-days"></i>
+          <ion-input  [(ngModel)]="dateNaissance" name="dateNaissance"  id="date" type="date"  placeholder="date Naissance" ngModel ></ion-input>
+        </div>
+
+        <div class="input select">
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Pays">
+                <ion-select-option value="apples">Mali</ion-select-option>
+                <ion-select-option value="oranges">Senegal</ion-select-option>
+                <ion-select-option value="bananas">Guinnee</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+
+          <ion-list>
+            <ion-item>
+              <ion-select placeholder="Ville">
+                <ion-select-option value="apples">Bamako</ion-select-option>
+                <ion-select-option value="oranges">Segou</ion-select-option>
+                <ion-select-option value="bananas">Kaye</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div>
+
+        <ion-button type="submit"  class="continues"  [disabled]="f2.form.invalid" (click)="singup($event)">Continuer</ion-button>
+
+      </form>
+    </div>
+  </div>
 </ion-content>

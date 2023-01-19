@@ -1,0 +1,78 @@
+.content{
+  display: grid;
+    background-color: white;
+    padding: 5%;
+    color: black;
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.firstPart{
+  //margin-top: 25%;
+}
+.firstPart > #text{
+  font-size: 13px;
+  font-family : 'Itim', cursif !important;
+
+}
+
+.firstPart > #titre{
+  display: flex;
+  justify-content: left;
+  font-size: 30px;
+  font-family : 'Itim', cursif !important;
+}
+
+.imgPart{
+  margin-top: 5%;
+  display: grid;
+  grid-template-columns: 55% 45%;
+}
+
+.imgPart > .rounded >img{
+  border: 2px solid green;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+#textChose{
+  display: flex;
+    margin-top: 20px;
+}
+
+.input{
+  margin-top: 5%;
+  display: grid;
+  border: 2px solid #D9D9D9;
+  border-radius: 5px;
+  grid-template-columns: 20% 80%;
+}
+
+ion-input{
+  --padding-top: 5px !important;
+  --padding-bottom: 5px !important;
+}
+
+.input >i{
+  margin: auto;
+  font-size: 20px;
+}
+.continues{
+  // border: 2px solid #008000;
+  border-radius: 5px;
+  margin-top: 5%;
+  color: rgb(255, 255, 255) ;
+  width: 100%;
+  --background:#008000;
+}
+
+.continues :hover{
+  --background:none;
+}
+
+.select{
+  display: grid;
+  grid-template-columns: 50% 50%;
+  border: none !important;
+}
