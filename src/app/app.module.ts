@@ -17,6 +17,7 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import player from 'lottie-web';
+import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -29,14 +30,14 @@ export function playerFactory() {
     AngularFireAuthModule,
     AngularFireStorageModule,
     AngularFireDatabaseModule,
-   AngularFirestoreModule,
-   provideFirebaseApp(() => initializeApp(environment.firebase)),
-   provideAuth(() => getAuth()),
-   provideFirestore(() => getFirestore()),
-  LottieModule.forRoot({player:playerFactory}),
-  HttpClientModule
+    AngularFirestoreModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    LottieModule.forRoot({player:playerFactory}),
+    HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActionSheetController, AlertController, LoadingController, ModalController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { OtpComponent } from '../otp/otp.component';
+import { Network } from '@capacitor/network';
+import { LoginService } from '../services/login/login.service';
+import * as firebase from 'firebase/compat/app';
 
 @Component({
   selector: 'app-login',
@@ -15,15 +18,21 @@ export class LoginPage implements OnInit {
   OTP: string = '';
   Code: any;
   PhoneNo: any;
+  recaptchaVerifier: firebase.default.auth.RecaptchaVerifier;
+
+
+  isConnected=false;
 
   //error
   Iserror!: Boolean;
   erreur!: String;
   //
-  constructor(private loadingController: LoadingController,private modalCtrl: ModalController,public actionSheetController: ActionSheetController) { }
+  constructor(private loadingController: LoadingController,private modalCtrl: ModalController,public actionSheetController: ActionSheetController, private loginService:LoginService) { }
 
   ngOnInit() {
+    this.Verification_Internet()
   }
+
 
 
   //changement du code pays
@@ -36,7 +45,25 @@ export class LoginPage implements OnInit {
   //login with phone number
   async signinWithPhoneNumber($event:any) {
     //this.presentLoadingWithOptions()
-    this.afficherModal()
+
+    this.presentLoadingWithOptions()
+
+    try {
+      if (this.PhoneNo && this.CountryCode) {
+        console.log(this.CountryCode,  this.PhoneNo)
+        this.loginService.signInWithPhoneNumber(this.recaptchaVerifier, this.CountryCode + this.PhoneNo).then(
+         async success => {
+          console.log('successss')
+           await this.dismiss_loader()
+           this.afficherModal();
+
+         }
+       );
+
+     }
+    } catch (error) {
+      this.dismiss_loader()
+    }
 
   }
 
@@ -89,5 +116,35 @@ export class LoginPage implements OnInit {
   canDismiss = false;
 
   presentingElement = null;
+
+  //verifie network connection
+  async Verification_Internet(){
+    let status = await Network.getStatus();
+    this.isConnected=status.connected
+    return this.isConnected
+  }
+
+
+  async ionViewDidEnter() {
+    this.recaptchaVerifier = new firebase.default.auth.RecaptchaVerifier('sign-in-button', {
+      size: 'invisible',
+      callback: (response:any) => {
+
+      },
+      'expired-callback': () => {
+      }
+    });
+  }
+  ionViewDidLoad() {
+    this.recaptchaVerifier = new firebase.default.auth.RecaptchaVerifier('sign-in-button', {
+      size: 'invisible',
+      callback: (response:any) => {
+
+      },
+      'expired-callback': () => {
+      }
+    });
+  }
+
 
 }
