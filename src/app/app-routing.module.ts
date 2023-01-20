@@ -42,6 +42,10 @@ const routes: Routes = [
     path: 'compte',
     loadChildren: () => import('./compte/compte.module').then( m => m.ComptePageModule)
   },
+  {
+    path: 'new-conseil',
+    loadChildren: () => import('./new-conseil/new-conseil.module').then( m => m.NewConseilPageModule)
+  },
   // {
   //   path: '',
   //   redirectTo:'home1',
