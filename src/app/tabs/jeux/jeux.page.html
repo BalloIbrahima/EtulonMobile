@@ -43,13 +43,151 @@
 
     <div class="listPreference">
 
+      <ion-slides [options]="options">
+
+        <ion-slide class="slidee">
+          <div class="preference">
+            <div class="imageEntete">
+              <img src="assets/images/moi.jpg" alt="">
+            </div>
+
+            <div class="foot">
+
+              <div class="game" (click)="Play()">
+                <div class="imageGame">
+                  <img src="assets/images/moi.jpg" alt="">
+                </div>
+
+                <div class="infosPlay">
+                  <div></div>
+
+                  <div class="nomGame">
+                    <label for="">Game Name</label>
+
+                  </div>
+
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="btnPlay">
+                  <button id="goPlay">
+                    Jouer
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="preference">
+            <div class="imageEntete">
+              <img src="assets/images/moi.jpg" alt="">
+            </div>
+
+            <div class="foot">
+
+              <div class="game" (click)="Play()">
+                <div class="imageGame">
+                  <img src="assets/images/moi.jpg" alt="">
+                </div>
+
+                <div class="infosPlay">
+                  <div></div>
+
+                  <div class="nomGame">
+                    <label for="">Game Name</label>
+
+                  </div>
+
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="btnPlay">
+                  <button id="goPlay">
+                    Jouer
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ion-slide>
+
+        <ion-slide>
+          <div class="preference">
+            <div class="imageEntete">
+              <img src="assets/images/moi.jpg" alt="">
+            </div>
+
+            <div class="foot">
+
+              <div class="game" (click)="Play()">
+                <div class="imageGame">
+                  <img src="assets/images/moi.jpg" alt="">
+                </div>
+
+                <div class="infosPlay">
+                  <div></div>
+
+                  <div class="nomGame">
+                    <label for="">Game Name</label>
+
+                  </div>
+
+                  <div id="likePlay">
+                    <button class="liked">
+                      2500
+                      <i class="fa-solid fa-thumbs-up"></i>
+                    </button>
+
+                    <button class="played">
+                      500
+                      <i class="fa-sharp fa-solid fa-circle-play"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="btnPlay">
+                  <button id="goPlay">
+                    Jouer
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </ion-slide>
+      </ion-slides>
+
     </div>
 
     <div class="list">
       <label for="" id="labelListPreference1">Les + Populaires</label>
 
       <div class="listjeux">
-        <div class="jeu">
+        <div class="jeu animated">
           <div>
           </div>
 
@@ -82,7 +220,7 @@
           </div>
         </div>
 
-        <div class="jeu">
+        <div class="jeu animated">
           <div>
           </div>
 
@@ -115,7 +253,7 @@
           </div>
         </div>
 
-        <div class="jeu">
+        <div class="jeu animated">
           <div>
           </div>
 
@@ -148,7 +286,7 @@
           </div>
         </div>
 
-        <div class="jeu">
+        <div class="jeu animated">
           <div>
           </div>
 
@@ -181,7 +319,7 @@
           </div>
         </div>
 
-        <div class="jeu">
+        <div class="jeu animated">
           <div>
           </div>
 
@@ -220,3 +358,63 @@
   </div>
 
 </ion-content>
+
+<script>
+  var x;
+var $listjeux = $(".jeu");
+var $style = $(".hover");
+
+$listjeux
+  .on("mousemove touchmove", function(e) {
+    // normalise touch/mouse
+    var pos = [e.offsetX,e.offsetY];
+    e.preventDefault();
+    if ( e.type === "touchmove" ) {
+      pos = [ e.touches[0].clientX, e.touches[0].clientY ];
+    }
+    var $jeu = $(this);
+    // math for mouse position
+    var l = pos[0];
+    var t = pos[1];
+    var h = $jeu.height();
+    var w = $jeu.width();
+    var px = Math.abs(Math.floor(100 / w * l)-100);
+    var py = Math.abs(Math.floor(100 / h * t)-100);
+    var pa = (50-px)+(50-py);
+    // math for gradient / background positions
+    var lp = (50+(px - 50)/1.5);
+    var tp = (50+(py - 50)/1.5);
+    var px_spark = (50+(px - 50)/7);
+    var py_spark = (50+(py - 50)/7);
+    var p_opc = 20+(Math.abs(pa)*1.5);
+    var ty = ((tp - 50)/2) * -1;
+    var tx = ((lp - 50)/1.5) * .5;
+    // css to apply for active jeu
+    var grad_pos = `background-position: ${lp}% ${tp}%;`
+    var sprk_pos = `background-position: ${px_spark}% ${py_spark}%;`
+    var opc = `opacity: ${p_opc/100};`
+    var tf = `transform: rotateX(${ty}deg) rotateY(${tx}deg)`
+    // need to use a <style> tag for psuedo elements
+    var style = `
+      .jeu:hover:before { ${grad_pos} }  /* gradient */
+      .jeu:hover:after { ${sprk_pos} ${opc} }   /* sparkles */
+    `
+    // set / apply css class and style
+    $listjeux.removeClass("active");
+    $jeu.removeClass("animated");
+    $jeu.attr( "style", tf );
+    $style.html(style);
+    if ( e.type === "touchmove" ) {
+      return false;
+    }
+    clearTimeout(x);
+  }).on("mouseout touchend touchcancel", function() {
+    // remove css, apply custom animation on end
+    var $jeu = $(this);
+    $style.html("");
+    $jeu.removeAttr("style");
+    x = setTimeout(function() {
+      $jeu.addClass("animated");
+    },2500);
+  });
+</script>

@@ -12,6 +12,7 @@
   position: fixed;
   width: 100%;
   display: grid;
+  z-index: 1000;
   grid-template-columns: 60% 40%;
 }
 
@@ -103,10 +104,10 @@
 .listPreference{
   height: 200px;
   margin-top: 5px;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  overflow-x:hidden ;
+  //display: flex;
+  //flex-direction: column;
+  //overflow-y: scroll;
+  //overflow-x:hidden ;
   // background-color: #fff;
   scroll-behavior: smooth;
 }
@@ -125,10 +126,11 @@
 
 ///liste jeu
 .listjeux{
-  height: 385px;
+  height: 300px;
   margin-top: 10px;
-  width: 100%;
-  justify-content: center;
+  width: 90%;
+  //justify-content: center;
+  margin: auto;
   flex-wrap: wrap;
   display: flex;
   overflow-y: scroll;
@@ -203,5 +205,458 @@
   color: #BB7676;
 }
 ///
+///
+/// Partie preference
+.preference{
+  display: grid;
+  grid-template-rows: 70% 30%;
+  background-color: #fff;
+  height: 190px;
+  padding: 15px;
+  border-radius: 20px;
+  width: 250px;
+}
+
+.imageEntete >img{
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+//////partie game
+.game{
+  height: 55px;
+  border-radius: 10px;
+  margin: 5px 1%;
+  width: 98%;
+  display: grid;
+  grid-template-columns: 29% 40% 29%;
+}
+.imageGame{
+  margin: auto;
+}
+
+.game >.imageGame >img{
+  border-radius: 20px;
+  height: 50px;
+  width: 65px;
+  object-fit: cover;
+}
+
+.infosPlay{
+  display: grid;
+  grid-auto-flow: 20% 40% 40%;
+}
+
+#likePlay >button{
+  font-size: 10px;
+  padding: 1%;
+  margin: 1px;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+#likePlay  >.liked{
+  color: #000;
+
+  border:1px solid#3779FF ;
+}
+#likePlay  >.liked> i{
+  color: #3779FF;
+}
+#likePlay  >.played{
+  color: #000;
+  border:1px solid#BB7676 ;
+}
+#likePlay  >.played> i{
+  color: #BB7676;
+}
+
+.nomGame >label{
+  font-size: 15px;
+  margin: 0;
+}
+/////
+///
+.btnPlay{
+  display: flex;
+  justify-content: center;
+  align-items: end;
+}
+#goPlay{
+  display: flex;
+  align-items: end;
+  background-color: #D9D9D9;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  height: 15px;
+  padding: 5px;
+  color: #fff;
+  align-items: center;
+}
+////
+
+////animation
+
+.jeu {
 
 
+    // width: clamp(200px, 61vh, 18vw);
+    // height: clamp(280px, 85vh, 25.2vw);
+  @media screen and (min-width: 600px) {
+    // width: 61vh;
+    // height: 85vh;
+    // max-width: 500px;
+    // max-height: 700px;
+    width: clamp(12.9vw, 61vh, 18vw);
+    height: clamp(18vw, 85vh, 25.2vw);
+  }
+
+  //position: relative;
+  overflow: hidden;
+  //margin: 20px;
+  overflow: hidden;
+  z-index: 10;
+  touch-action: none;
+
+  border-radius: 5% / 3.5%;
+  box-shadow:
+    -5px -5px 5px -5px var(--color1),
+    5px 5px 5px -5px var(--color2),
+    -7px -7px 10px -5px transparent,
+    7px 7px 10px -5px transparent,
+    0 0 5px 0px rgba(255,255,255,0),
+    0 55px 35px -20px rgba(0, 0, 0, 0.5);
+
+  transition: transform 0.5s ease, box-shadow 0.2s ease;
+  will-change: transform, filter;
+
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  transform-origin: center;
+
+}
+
+.jeu:hover {
+  box-shadow:
+    -20px -20px 30px -25px var(--color1),
+    20px 20px 30px -25px var(--color2),
+    -7px -7px 10px -5px var(--color1),
+    7px 7px 10px -5px var(--color2),
+    0 0 13px 4px rgba(255,255,255,0.3),
+    0 55px 35px -20px rgba(0, 0, 0, 0.5);
+}
+
+.jeu.charizard {
+  --color1: var(--charizard1);
+  --color2: var(--charizard2);
+  --front: var(--charizardfront);
+}
+.jeu.pika {
+  --color1: var(--pika1);
+  --color2: var(--pika2);
+  --front: var(--pikafront);
+}
+.jeu.mewtwo {
+  --color1: var(--mewtwo1);
+  --color2: var(--mewtwo2);
+  --front: var(--mewtwofront);
+}
+.jeu.eevee {
+  --color1: #ec9bb6;
+  --color2: #ccac6f;
+  --color3: #69e4a5;
+  --color4: #8ec5d6;
+  --color5: #b98cce;
+  --front: var(--eeveefront);
+}
+
+.jeu:before,
+.jeu:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  opacity: .5;
+  mix-blend-mode: color-dodge;
+  transition: all .33s ease;
+}
+
+.jeu:before {
+  background-position: 50% 50%;
+  background-size: 300% 300%;
+
+  opacity: .5;
+  filter: brightness(.5) contrast(1);
+  z-index: 1;
+}
+
+.jeu:after {
+  opacity: 1;
+
+  background-size: 160%;
+  background-blend-mode: overlay;
+  z-index: 2;
+  filter: brightness(1) contrast(1);
+  transition: all .33s ease;
+  mix-blend-mode: color-dodge;
+  opacity: .75;
+}
+
+.jeu.active:after,
+.jeu:hover:after {
+  filter: brightness(1) contrast(1);;
+  opacity: 1;
+}
+
+.jeu.active,
+.jeu:hover {
+  animation: none;
+  transition: box-shadow 0.1s ease-out;
+}
+
+.jeu.active:before,
+.jeu:hover:before {
+  animation: none;
+
+  background-position: 50% 50%;
+  background-size: 250% 250%;
+  opacity: .88;
+  filter: brightness(.66) contrast(1.33);
+  transition: none;
+}
+
+.jeu.active:before,
+.jeu:hover:before,
+.jeu.active:after,
+.jeu:hover:after {
+  animation: none;
+  transition: none;
+}
+
+.jeu.animated {
+  transition: none;
+  animation: holojeu 12s ease 0s 1;
+  &:before {
+    transition: none;
+    animation: holoGradient 12s ease 0s 1;
+  }
+  &:after {
+    transition: none;
+    animation: holoSparkle 12s ease 0s 1;
+  }
+}
+
+
+
+
+@keyframes holoSparkle {
+  0%, 100% {
+    opacity: .75; background-position: 50% 50%; filter: brightness(1.2) contrast(1.25);
+  }
+  5%, 8% {
+    opacity: 1; background-position: 40% 40%; filter: brightness(.8) contrast(1.2);
+  }
+  13%, 16% {
+    opacity: .5; background-position: 50% 50%; filter: brightness(1.2) contrast(.8);
+  }
+  35%, 38% {
+    opacity: 1; background-position: 60% 60%; filter: brightness(1) contrast(1);
+  }
+  55% {
+    opacity: .33; background-position: 45% 45%; filter: brightness(1.2) contrast(1.25);
+  }
+}
+
+@keyframes holoGradient {
+  0%, 100% {
+    opacity: 0.5;
+    background-position: 50% 50%;
+    filter: brightness(.5) contrast(1);
+  }
+  5%, 9% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(.75) contrast(1.25);
+  }
+  13%, 17% {
+    background-position: 0% 0%;
+    opacity: .88;
+  }
+  35%, 39% {
+    background-position: 100% 100%;
+    opacity: 1;
+    filter: brightness(.5) contrast(1);
+  }
+  55% {
+    background-position: 0% 0%;
+    opacity: 1;
+    filter: brightness(.75) contrast(1.25);
+  }
+}
+
+@keyframes holojeu {
+  0%, 100% {
+    transform: rotateZ(0deg) rotateX(0deg) rotateY(0deg);
+  }
+  5%, 8% {
+    transform: rotateZ(0deg) rotateX(6deg) rotateY(-20deg);
+  }
+  13%, 16% {
+    transform: rotateZ(0deg) rotateX(-9deg) rotateY(32deg);
+  }
+  35%, 38% {
+    transform: rotateZ(3deg) rotateX(12deg) rotateY(20deg);
+  }
+  55% {
+    transform: rotateZ(-3deg) rotateX(-12deg) rotateY(-27deg);
+  }
+}
+
+
+
+.jeu.eevee:hover {
+  box-shadow:
+    0 0 30px -5px white,
+    0 0 10px -2px white,
+    0 55px 35px -20px rgba(0, 0, 0, 0.5);
+}
+.jeu.eevee:hover:before,
+.jeu.eevee.active:before {
+  background-image: linear-gradient(
+    115deg,
+    transparent 20%,
+    var(--color1) 36%,
+    var(--color2) 43%,
+    var(--color3) 50%,
+    var(--color4) 57%,
+    var(--color5) 64%,
+    transparent 80%
+  );
+}
+
+
+
+
+.demo .jeu {
+  background-image: var(--back);
+  font-size: 2vh
+}
+.demo .jeu > span {
+  position: relative;
+  top: 45%;
+}
+
+.demo .jeu:nth-of-type(1),
+.demo .jeu:nth-of-type(2),
+.demo .jeu:nth-of-type(3) {
+  width: 20vh;
+  height: 27.5vh;
+  box-shadow: inset 0 0 0 1px rgba(white,0.4), 0 25px 15px -10px rgba(0, 0, 0, 0.5);
+  animation: none;
+}
+
+.demo .jeu:nth-of-type(1),
+.demo .jeu:nth-of-type(2),
+.demo .jeu:nth-of-type(3) {
+  &:before, &:after {
+    animation: none;
+    // opacity: 1;
+  }
+}
+.demo .jeu:nth-of-type(1) {
+  &:before, &:after { display: none; }
+}
+.demo .jeu:nth-of-type(2) {
+  background: none;
+  &:before { display: none; }
+}
+.demo .jeu:nth-of-type(3) {
+  background: none;
+  &:after { display: none; }
+}
+
+.operator {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 6vh;
+}
+
+
+
+
+
+
+html, body {
+  height: 100%;
+  background-color: #333844;
+  padding: 0;
+  z-index: 1;
+  transform: translate3d(0,0,0.1px);
+}
+body {
+  color: white;
+  background-color: #333844;
+  font-family: "Heebo", sans-serif;
+  text-align: center;
+}
+h1 {
+  display: block;
+  margin: 30px 0;
+}
+p {
+  margin-top: 5px;
+  font-weight: 200;
+}
+#app {
+  position: relative;
+}
+
+.demo,
+.listjeux {
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: space-evenly;
+  //perspective: 2000px;
+  // position: relative;
+  //z-index: 1;
+  transform: translate3d(0.1px, 0.1px, 0.1px )
+}
+.demo {
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media screen and (min-width: 600px) {
+  .listjeux {
+  }
+}
+
+
+
+
+
+
+.listjeux .jeu {
+  &:nth-child(2) {
+    &, &:before, &:after {
+      animation-delay: 0.25s;
+    }
+  }
+  &:nth-child(3) {
+    &, &:before, &:after {
+      animation-delay: 0.5s;
+    }
+  }
+  &:nth-child(4) {
+    &, &:before, &:after {
+      animation-delay: 0.75s;
+    }
+  }
+}
+
+////
