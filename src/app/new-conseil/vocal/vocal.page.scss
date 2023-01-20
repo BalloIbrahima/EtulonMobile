@@ -1,0 +1,41 @@
+.containt{
+  display: grid;
+  background-color: white;
+  height: 100%;
+  padding: 5%;
+  grid-template-rows: 40% 50%;
+  color: black;
+  font-family : 'Itim', cursif !important;
+}
+
+.saver{
+  display: flex;
+  flex-direction: column;
+}
+
+.saver > label{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.iconSaver{
+  display: flex;
+  justify-content: center;
+  height: 70px;
+  width: 70px;
+  border-radius: 50%;
+  margin: auto;
+  border: 2px solid #BB7676;
+}
+.recording{
+  background-color: #BB7676;
+  color: #fff;
+}
+
+
+
+.iconSaver > i{
+  margin: auto;
+  font-size: 50px;
+}

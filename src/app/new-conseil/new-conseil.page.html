@@ -1,6 +1,19 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>newConseil</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+    <ion-title>
+      <ion-list>
+        <ion-item>
+          <ion-select placeholder="Choisir une problematique" interface="action-sheet" mode="ios" cancelText="Annuler" >
+            <ion-select-option value="apples">Mali</ion-select-option>
+            <ion-select-option value="oranges">Senegal</ion-select-option>
+            <ion-select-option value="bananas">Guinnee</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -8,22 +21,22 @@
 
   <ion-tab-bar slot="bottom">
     <ion-tab-button tab="text">
-      <i class="fa-solid fa-input-text"></i>
+      <i class="fa-solid fa-pen-to-square"></i>
       <!--<ion-label>Acceuil</ion-label>-->
     </ion-tab-button>
 
-    <ion-tab-button tab="photo">
-      <i class="fa-solid fa-image"></i>
+    <ion-tab-button (click)="presentPhotoActionSheet()">
+      <i class="fa-solid fa-camera"></i>
       <!--<ion-label>Jeux</ion-label>-->
     </ion-tab-button>
 
-    <ion-tab-button tab="video">
+    <!--<ion-tab-button tab="video">
       <i class="fa-solid fa-video"></i>
-      <!--<ion-label>Conseil</ion-label>-->
-    </ion-tab-button>
+      <!-<ion-label>Conseil</ion-label>->
+    </ion-tab-button>-->
 
     <ion-tab-button tab="vocal">
-      <i class="fa-solid fa-globe-stand"></i>
+      <i class="fa-sharp fa-solid fa-microphone"></i>
       <!--<ion-label>Profil</ion-label>-->
     </ion-tab-button>
 

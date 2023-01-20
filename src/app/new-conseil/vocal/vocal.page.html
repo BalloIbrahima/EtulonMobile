@@ -1,9 +1,39 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>vocal</ion-title>
+
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+  <div class="containt">
 
+    <ion-list>
+      <ion-item *ngFor="let audio of audios" (click)="PlayFile(audio)">
+        {{audio}}
+      </ion-item>
+    </ion-list>
+
+    <div class="saver">
+
+      <label for="" *ngIf="!recording">
+        Veuillez cliquez sur le bouton pour lancer l'enregistrement.
+      </label>
+
+      <label for="" *ngIf="recording">
+        Cliquez sur le bouton pour stoper l'enregistrement.
+      </label>
+
+      <div class="iconSaver " #recordbtn >
+        <i class="fa-sharp fa-solid fa-microphone"></i>
+      </div>
+
+
+      <label *ngIf="!recording" >
+        {{PlayDuration}}
+      </label>
+    </div>
+
+
+
+  </div>
 </ion-content>

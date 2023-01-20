@@ -1,9 +1,31 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>text</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar class="header">
+
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="containt">
 
+    <div class="first">
+
+      <label for="">Contenu ...</label>
+
+      <div class="bdyDesc">
+        <textarea [ngStyle]="{'background-color':colorChosed}" name="description" [(ngModel)]="description" id="" cols="30" rows="10"></textarea>
+      </div>
+
+      <ion-button type="submit" [ngStyle]="{'--background':colorChosed}"  class="continues"   (click)="Publie()">Commencer</ion-button>
+
+
+    </div>
+
+    <div class="secaind">
+      <div class="listColor">
+        <div *ngFor="let color of mesCouleurs" class="color" [ngStyle]="{'background-color':color.couleur}" (click)="changeColor(color.couleur)">
+        </div>
+      </div>
+    </div>
+
+  </div>
 </ion-content>

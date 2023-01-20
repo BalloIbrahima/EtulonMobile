@@ -7,7 +7,12 @@ ion-tab-bar{
   /* justify-content: center; */
   border-radius: 5px;
   display: grid;
-  grid-template-columns: 24% 24% 24% 24%;
+  grid-template-columns: 32% 32% 32%;
+}
+
+ion-title{
+  display: contents;
+  --background: transparent;
 }
 
 ion-tab-button{

@@ -60,7 +60,7 @@ export class InscriptionPage implements OnInit {
   singup($event:any){
 
 
-    this.router.navigate(['/tabs'])
+      this.router.navigate(['/tabs'])
 
   }
 }
