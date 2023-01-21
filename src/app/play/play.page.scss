@@ -109,6 +109,19 @@ ng-container >image{
 
 .answerList >.reponse{
   border-radius: 10px;
+  display: flex;
+  color: #fff;
+}
+
+.answerList >.reponse>label{
+  margin: auto;
+}
+
+.answerList >.reponse>img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 .reponse1{

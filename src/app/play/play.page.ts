@@ -1,5 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Directory, Filesystem } from '@capacitor/filesystem';
+import { NiveauService } from '../services/niveau/niveau.service';
 
 @Component({
   selector: 'app-play',
@@ -14,15 +15,73 @@ export class PlayPage implements OnInit {
   isAudio=true;
   isVideo=false;
 
+
   is4=true;
   is2=false
   //
+
+  point:any=0;
+  counter:any=0
+
+  quizList:any=[
+    {"numero": 0,
+      "contenu": "Qu'est ce qui manque a cette poubelle ?",
+      "timer": 0,
+      "point": 0,
+      "type": "",
+      "lien": null,
+      "reponses": [
+        {
+          "id": 0,
+          "contenu": "",
+          "isOk": false,
+          "type": "",
+          "lien": null
+        }
+      ]
+    }
+  ]
+  currentQuiz:number=0
+
   quizValue:any=0.3;
-  constructor() { }
+  constructor(private niveauService:NiveauService) { }
 
   ngOnInit() {
     this.borderColor=this.mesCouleurs[this.randomIntFromInterval(0,5)].couleur
+    this.getNiveau()
   }
+
+  giveAwnswer(numero:any){
+    numero--
+    var reponse=this.quizList[this.currentQuiz].reponses[numero]
+    //console.log(reponse)
+    if(reponse.isOk==true){
+      this.nextQuestion()
+    }else{
+
+    }
+
+  }
+
+  nextQuestion(){
+    if(this.currentQuiz+1==this.quizList.length){
+
+    }else{
+      this.currentQuiz++
+    }
+
+  }
+
+  getNiveau(){
+    this.niveauService.getNiveau(1).subscribe(res=>{
+      console.log(res.questions);
+      this.quizList=res.questions
+    })
+  }
+
+
+
+
 
   //play audio
   //lecture du fichier enregistre

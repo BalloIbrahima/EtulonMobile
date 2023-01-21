@@ -1,0 +1,192 @@
+{
+  "id": 1,
+  "libelle": "Le Young",
+  "image": "https://www.handinorme.com/8677-thickbox_default/plaque-signaletique-en-drapeau-plexi-niveau-1.jpg",
+  "description": "Commence par apprendre cest qoui la salubrite",
+  "typeDescription": "TEXT",
+  "lienDescription": null,
+  "jeu": {
+    "id": 1,
+    "nom": "GameOfSalubtity",
+    "image": "https://www.revuegestion.ca/media/magefan_blog/Trigone_change_monde.jpg",
+    "date": "2023-01-14T20:38:21.414+00:00",
+    "niveau": "DEBUTANT",
+    "description": "Repondez le plus vite possible et soyez le best de la salubrite",
+    "typeDescription": "TEXT",
+    "lienDescription": "string",
+    "nbreLike": 0,
+    "user": {
+      "id": 2,
+      "nom": "Ballo",
+      "prenom": "Mohamed",
+      "username": "momo",
+      "email": "momo@gmail.com",
+      "telephone": "88888888",
+      "photo": null,
+      "password": "$2a$10$YoxV47KUsrJQNWq5eDrBaeZAhwOTKM.Fz69NOpKIkiKqUZPgbwYSm",
+      "dateSouscription": "2023-01-14T12:42:48.300+00:00",
+      "ville": "Mali",
+      "adresse": "Sebenikoro",
+      "point": 0,
+      "niveau": 0,
+      "roles": [
+        {
+          "id": 1,
+          "name": "ROLE_CITOYEN"
+        }
+      ],
+      "preferences": [
+        {
+          "id": 3,
+          "libelle": "Eaux",
+          "couleur": "#3779FF",
+          "image": null,
+          "user": {
+            "id": 4,
+            "nom": "Ballo",
+            "prenom": "Ibrahima",
+            "username": "Ballo",
+            "email": null,
+            "telephone": null,
+            "photo": null,
+            "password": "$2a$10$RS4RU5qnWCR8bHf0FC1AZ.TrQkkUHbdoVs2w88uohbQGPsu4ZHree",
+            "dateSouscription": null,
+            "ville": null,
+            "adresse": null,
+            "point": 0,
+            "niveau": 0,
+            "roles": [
+              {
+                "id": 3,
+                "name": "ROLE_SUPERADMIN"
+              }
+            ],
+            "preferences": [],
+            "pays": null
+          },
+          "jeux": []
+        }
+      ],
+      "pays": "Mali"
+    }
+  },
+  "questions": [
+    {
+      "id": 2,
+      "numero": 2,
+      "contenu": "Quelle est la poubelle pour le dechets tranchants !",
+      "timer": 6,
+      "point": 30,
+      "type": "TEXT",
+      "lien": null,
+      "reponses": [
+        {
+          "id": 1,
+          "contenu": "Poubelle blanche",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 2,
+          "contenu": "Poubelle noir",
+          "isOk": true,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 7,
+          "contenu": "la tete",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 8,
+          "contenu": "le tron",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "numero": 3,
+      "contenu": "Qu'est ce qui manque a cette poubelle ?",
+      "timer": 3,
+      "point": 5,
+      "type": "TEXT",
+      "lien": null,
+      "reponses": [
+        {
+          "id": 5,
+          "contenu": "la Poubelle",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 6,
+          "contenu": "La fermeture",
+          "isOk": true,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 7,
+          "contenu": "la tete",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 8,
+          "contenu": "le tron",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "numero": 1,
+      "contenu": "Indiquer la poubelle !",
+      "timer": 5,
+      "point": 10,
+      "type": "TEXT",
+      "lien": null,
+      "reponses": [
+        {
+          "id": 1,
+          "contenu": "Poubelle blanche",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 2,
+          "contenu": "Poubelle noir",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 3,
+          "contenu": "Poubelle rouge",
+          "isOk": true,
+          "type": "TEXT",
+          "lien": null
+        },
+        {
+          "id": 4,
+          "contenu": "Poubelle blue",
+          "isOk": false,
+          "type": "TEXT",
+          "lien": null
+        }
+      ]
+    }
+  ]
+}

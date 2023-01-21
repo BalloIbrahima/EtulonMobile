@@ -10,75 +10,96 @@
 <ion-content>
   <div class="containt">
     <div class="entete">
-      <label for="" id="titreQuestion">Question 1/10</label>
+      <label for="" id="titreQuestion">Question {{currentQuiz+1}}/{{quizList.length}}</label>
 
       <ion-progress-bar [value]="quizValue" ></ion-progress-bar>
 
       <div class="question">
         <div class="card" [ngStyle]="{'border':'2px solid '+borderColor}" >
-          <div class="contenu" *ngIf="isText">
+          <div class="contenu" *ngIf="quizList[currentQuiz].type==='TEXT' ">
             <label for="" >
-              lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululorem i
+              {{quizList[currentQuiz].contenu}}
             </label>
 
           </div>
-          <div class="contenu" *ngIf="isPhoto">
-            <img src="assets/images/moi.jpg" alt="">
+          <div class="contenu" *ngIf="quizList[currentQuiz].type==='PHOTO'">
+            <img [src]="quizList[currentQuiz].lien" alt="">
           </div>
 
-          <div class="contenu" *ngIf="isAudio">
+          <audio
+                  #player
+                  [src]="quizList[currentQuiz].lien">
+          </audio>
+
+          <div class="contenu" *ngIf="quizList[currentQuiz].type==='AUDIO'">
+
             <div class="audio" >
 
-              <audio
-                  #player
-                  src="http://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
-              </audio>
+              <ion-range [ngStyle]="{'background-color':borderColor}"
+                  min="0" [pin]="true"
+                  [max]="duration"
+                  [value]="currentTime"
+                  (ionChange)="seek($event)"
+                  color="light">
+                  <ion-label color="light" slot="start">{{ currentTimeText }}</ion-label>
+                  <ion-label color="light" slot="end">{{ durationText }}</ion-label>
+              </ion-range>
 
+              <div class="ion-text-center">
+                <ion-button class="player" (click)="play()" size="large" fill="clear" color="light">
+                    <ng-container *ngIf="isLoading; else loaded">
+                      <img src="assets/images/spinner.svg" alt="">
+                    </ng-container>
 
-            <ion-range [ngStyle]="{'background-color':borderColor}"
-                min="0" [pin]="true"
-                [max]="duration"
-                [value]="currentTime"
-                (ionChange)="seek($event)"
-                color="light">
-                <ion-label color="light" slot="start">{{ currentTimeText }}</ion-label>
-                <ion-label color="light" slot="end">{{ durationText }}</ion-label>
-            </ion-range>
-
-            <div class="ion-text-center">
-              <ion-button class="player" (click)="play()" size="large" fill="clear" color="light">
-                  <ng-container *ngIf="isLoading; else loaded">
-                    <img src="assets/images/spinner.svg" alt="">
-                  </ng-container>
-
-                  <ng-template #loaded>
-                    <i *ngIf="isPlaying" class="fa-solid fa-pause"></i>
-                    <i  *ngIf="!isPlaying" class="fa-solid fa-play"></i>
-                  </ng-template>
-              </ion-button>
-          </div>
+                    <ng-template #loaded>
+                      <i *ngIf="isPlaying" class="fa-solid fa-pause"></i>
+                      <i  *ngIf="!isPlaying" class="fa-solid fa-play"></i>
+                    </ng-template>
+                </ion-button>
+              </div>
 
 
             </div>
           </div>
-          <div class="contenu" *ngIf="isVideo"></div>
+          <div class="contenu" *ngIf="quizList[currentQuiz].type==='VIDEO'"></div>
 
         </div>
       </div>
     </div>
 
-    <div *ngIf="is4" class="answer4 answerList">
-      <div class="reponse reponse1"></div>
-      <div class="reponse reponse2"></div>
-      <div class="reponse reponse3"></div>
-      <div class="reponse reponse4"></div>
-    </div>
-
-    <div *ngIf="is2" class="answer2 answerList">
-      <div class="reponse reponse1">
+    <div *ngIf="quizList[currentQuiz].reponses.length===4" class="answer4 answerList">
+      <div class="reponse reponse1" (click)="giveAwnswer(1)">
+        <label *ngIf="quizList[currentQuiz].reponses[0].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[0].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
+      </div>
+      <div class="reponse reponse2" (click)="giveAwnswer(2)">
+        <label *ngIf="quizList[currentQuiz].reponses[0].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[1].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[1].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
 
       </div>
-      <div class="reponse reponse3"></div>
+      <div class="reponse reponse3" (click)="giveAwnswer(3)">
+        <label *ngIf="quizList[currentQuiz].reponses[2].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[2].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
+
+      </div>
+      <div class="reponse reponse4" (click)="giveAwnswer(4)">
+        <label *ngIf="quizList[currentQuiz].reponses[2].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[3].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
+
+      </div>
+    </div>
+
+    <div *ngIf="quizList[currentQuiz].reponses.length===2" class="answer2 answerList">
+      <div class="reponse reponse1" (click)="giveAwnswer(1)">
+        <label *ngIf="quizList[currentQuiz].reponses[0].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[0].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
+
+      </div>
+      <div class="reponse reponse3" (click)="giveAwnswer(2)">
+        <label *ngIf="quizList[currentQuiz].reponses[1].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[1].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
+
+      </div>
     </div>
 
   </div>
