@@ -1,31 +1,141 @@
 .header{
-  --background: #3779FF;
-  color: #fff;
+  --background: #ffffff;
+  color: rgb(0, 0, 0);
 }
 
 .containt{
-  display: flex;
+  display: grid;
   flex-direction: column;
-  background-color: #3779FF;
+  background-color: #ffffff;
   height: 100%;
   padding: 5%;
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  grid-template-rows: 60% 40%;
   font-family : 'Itim', cursif !important;
 }
 
 ion-progress-bar{
-  --background:#ffffff;
+  --background:#ff000079;
   height: 8px;
   border-radius: 2px;
   --progress-background:#FF0000;
 }
+.entete{
+  display: grid;
+  grid-template-rows: 10% 10% 80%;
+}
 
-.containt >label{
+.entete >label{
   display: flex;
   justify-content: center;
 }
 #titreQuestion{
-  margin-top: 5px;
-  font-size: 20px;
+  // margin-top: 10px;
+  font-size: 17px;
   font-weight: bold;
 }
+
+.question{
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+.question >.card {
+  height: 100%;
+}
+.question >.card >.contenu{
+  height: 100%;
+  display: contents;
+
+}
+
+.question >.card >.contenu >label{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+.question >.card >.contenu >img{
+  object-fit: cover;
+  height: 100%;
+  display: flex;
+  width: 100%;
+  margin: auto;
+}
+
+.question >.card >.contenu >.audio{
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  margin: auto 4px;
+}
+
+ion-range{
+  width: 230px;
+  border-radius: 10px;
+  color: #fff;
+
+
+}
+
+ion-range > ion-label{
+  color: #fff;
+}
+
+ng-container >image{
+  height: 40px;
+
+}
+
+.player{
+  border: 2px solid #000;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+
+  i{
+    font-size: 35px;
+  }
+}
+
+////reponse
+.answer4{
+  display: grid;
+  grid-template-columns: 49% 49%;
+  grid-template-rows: 49% 49%;
+  row-gap: 2%;
+  column-gap: 2%;
+}
+
+.answerList >.reponse{
+  border-radius: 10px;
+}
+
+.reponse1{
+  background-color: #008000;
+}
+
+.reponse2{
+  background-color: #FF0000;
+}
+
+.reponse3{
+  background-color: #FF981F;
+}
+
+.reponse4{
+  background-color: #3779FF;
+}
+
+
+
+.answer2{
+  display: grid;
+  grid-template-rows: 49% 49%;
+  row-gap: 2%;
+}
+
+
+
+
+
