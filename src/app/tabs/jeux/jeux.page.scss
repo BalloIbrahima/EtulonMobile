@@ -127,9 +127,8 @@
 ///liste jeu
 .listjeux{
   height: 300px;
-  margin-top: 10px;
   width: 90%;
-  //justify-content: center;
+  justify-content: center;
   margin: auto;
   flex-wrap: wrap;
   display: flex;
@@ -140,9 +139,11 @@
 .listjeux >.jeu{
   display: grid;
   grid-template-rows: 20% 80%;
-  width: 110px;
-  margin-left: 10px;
-  margin-bottom: 10px;
+  /* width: 110px; */
+  padding: initial;
+  /* margin-left: 10px; */
+  margin: 4%;
+  // margin-bottom: 10px;
 }
 
 .secaind{
@@ -182,28 +183,8 @@
   border-radius: 5px;
 }
 ///
-#likePlay >button{
-  font-size: 9px;
-  padding: 5%;
-  margin: 2px;
-  border-radius: 5px;
-  background-color: #ffffff;
-}
-#likePlay  >.liked{
-  color: #000;
+///
 
-  border:1px solid#3779FF ;
-}
-#likePlay  >.liked> i{
-  color: #3779FF;
-}
-#likePlay  >.played{
-  color: #000;
-  border:1px solid#BB7676 ;
-}
-#likePlay  >.played> i{
-  color: #BB7676;
-}
 ///
 ///
 /// Partie preference
@@ -248,8 +229,14 @@
   grid-auto-flow: 20% 40% 40%;
 }
 
+#likePlay{
+  display: grid;
+  grid-template-columns: 45% 45%;
+  column-gap: 10%;
+}
+
 #likePlay >button{
-  font-size: 10px;
+  font-size: 9px;
   padding: 1%;
   margin: 1px;
   border-radius: 5px;

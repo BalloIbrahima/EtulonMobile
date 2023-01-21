@@ -111,9 +111,9 @@
 
 .conseil{
   display: grid;
-  height: 320px;
+  height: 360px;
   margin: 15px auto;
-  width: 80%;
+  width: 240px;
   background-color: #fff;
   border-radius: 30px;
   grid-template-rows: 12% 76% 12%;
@@ -160,8 +160,8 @@
 
 }
 .profilContenu2 >.image{
-  height: 30px;
-  width: 30px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
   border: 2px solid black;
   margin: auto;
@@ -169,8 +169,8 @@
 
 .profilContenu2 >.image >img{
   margin: auto;
-  height: 25px;
-  width: 25px;
+  height: 30px;
+  width: 30px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #fff;

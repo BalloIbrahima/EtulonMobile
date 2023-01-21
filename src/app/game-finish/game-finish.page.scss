@@ -1,0 +1,63 @@
+.containt{
+  height: 100%;
+  padding: 2%;
+  display: grid;
+  grid-template-rows:  25% 75%;
+  font-family : 'Itim', cursif !important;
+  background-color: #3779FF;
+  color: rgb(255, 255, 255);
+}
+
+.containt >.textContent{
+  margin: auto;
+}
+.containt >.textContent >label{
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: auto;
+}
+
+//
+.secaind{
+  background-color: #FFFFFF;
+  margin: 0 2%;
+  border-radius: 15px;
+  display: grid;
+  grid-template-rows: 30% 45% 25%;
+}
+
+
+//btns parts
+
+.btns{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn1{
+  margin-top: 5%;
+  --background:#008000;
+  color: rgb(255, 255, 255) ;
+
+}
+
+
+.btn2{
+  color: rgb(0, 0, 0) ;
+  --background:#ffffff;
+  border: 2px solid #3779FF;
+
+}
+
+.continues{
+  // border: 2px solid #008000;
+  border-radius: 5px;
+  width: 95%;
+}
+
+.continues :hover{
+  --background:none;
+}

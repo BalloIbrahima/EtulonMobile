@@ -153,7 +153,7 @@
       "id": 1,
       "numero": 1,
       "contenu": "Indiquer la poubelle !",
-      "timer": 5,
+      "timer": 15,
       "point": 10,
       "type": "TEXT",
       "lien": null,

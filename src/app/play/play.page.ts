@@ -89,11 +89,13 @@ export class PlayPage implements OnInit {
     //console.log(reponse)
     if(reponse.isOk==true){
       this.PlayFile('assets/son/ok.wav')
+      this.SeeAnimation('success')
       this.nextQuestion()
 
     }else{
       this.PlayFile('assets/son/false.wav')
       this.nextQuestion()
+      this.SeeAnimation('error')
     }
 
   }
@@ -101,10 +103,11 @@ export class PlayPage implements OnInit {
   nextQuestion(){
     //this.compte(this.quizList[this.currentQuiz].timer)
     if(this.currentQuiz+1==this.quizList.length){
+
       this.router.navigate(['/game-finish'])
     }else{
       this.currentQuiz++
-      this.counter=this.quizList[this.currentQuiz].timer
+      this.counter=this.quizList[this.currentQuiz].timer+1
       this.Promisee()
     }
   }
@@ -253,11 +256,28 @@ export class PlayPage implements OnInit {
       this.counter=this.counter-1;
       //this.quizValue=1 - this.counter/100
 
-      this.quizValue=1 - (this.counter/this.quizList[this.currentQuiz].timer)
+      this.quizValue=1 - (this.counter/(this.quizList[this.currentQuiz].timer+1))
       setTimeout(() => {
         this.Promisee()
       }, 1000);
     }
+  }
+
+
+  SeeAnimation(nom:any){
+    if(nom=='success'){
+      this.showSuccess=true
+      setTimeout(() => {
+        this.showSuccess=false
+      }, 1000);
+    }else{
+      this.showError=true
+      setTimeout(() => {
+        this.showError=false
+      }, 1000);
+    }
+    // var checkbox= <HTMLDivElement>document.querySelector('.'+nomDiv)
+
 
   }
 }
