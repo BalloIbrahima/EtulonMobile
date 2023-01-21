@@ -46,6 +46,10 @@ const routes: Routes = [
     path: 'new-conseil',
     loadChildren: () => import('./new-conseil/new-conseil.module').then( m => m.NewConseilPageModule)
   },
+  {
+    path: 'game-finish',
+    loadChildren: () => import('./game-finish/game-finish.module').then( m => m.GameFinishPageModule)
+  },
   // {
   //   path: '',
   //   redirectTo:'home1',

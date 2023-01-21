@@ -8,6 +8,18 @@
 </ion-header>
 
 <ion-content>
+
+  <!--affichenge apres la reponse-->
+  <div class="success" *ngIf="showSuccess">
+    <label for="">+{{Pointgagne}} points</label>
+    <ng-lottie [options]="success"></ng-lottie>
+  </div>
+
+  <div class="echec" *ngIf="showError">
+    <ng-lottie [options]="echec"></ng-lottie>
+  </div>
+
+
   <div class="containt">
     <div class="entete">
       <label for="" id="titreQuestion">Question {{currentQuiz+1}}/{{quizList.length}}</label>
