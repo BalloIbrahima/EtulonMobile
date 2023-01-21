@@ -24,7 +24,7 @@
       <label for="" id="numero">( {{data}} )</label>
 
       <div class="inputotp">
-        <ng-otp-input  (onInputChange)="onOtpChange($event)"   [config]="{length:5}"></ng-otp-input>
+        <ng-otp-input  (onInputChange)="onOtpChange($event)"   [config]="{length:6}"></ng-otp-input>
       </div>
 
       <label id="erreur" *ngIf="Iserror">{{erreur}}</label>

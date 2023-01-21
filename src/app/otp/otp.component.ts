@@ -38,8 +38,9 @@ export class OtpComponent implements OnInit {
     this.otpIsValid=false
     this.otpValeur=$event;
     console.log(this.otpValeur)
-    if(this.otpValeur.length==5){
-
+    if(this.otpValeur.length==6){
+      console.log(this.otpValeur)
+      this.Verifier(this.otpValeur)
       this.otpIsValid=true
     }
 
@@ -78,27 +79,32 @@ export class OtpComponent implements OnInit {
   Verifier(code:String){
     this.loginService.enterVerificationCode(code).then(
       async userData => {
-        await this.dismiss_loader()
+        //await this.dismiss_loader()
         this.presentAlert();
 
-        this.afAuth.authState.subscribe(auth => {
-          //voir si l'utilisateur n'a pas deja un compte
-          this.fbJoueurService.getTask(auth.uid).subscribe((res)=>{
+        // this.afAuth.authState.subscribe(auth => {
+        //   //voir si l'utilisateur n'a pas deja un compte
+        //   this.fbJoueurService.getTask(auth?.uid).subscribe((res)=>{
 
-            if(res){
-              //console.log(res)
-            }else {
-              this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
-              this.fbJoueurService.create(this.user)
-                .then(() => {
+        //     if(res){
+        //       //console.log(res)
+        //     }else {
 
-                }).catch((err:any) => {
-                  //console.log(err)
-                });
-            }
+        //       var user={
+        //         'id':auth?.uid,
+        //         'numero':auth?.phoneNumber
+        //       }
+        //       //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
+        //       this.fbJoueurService.create(user)
+        //         .then(() => {
 
-          })
-        });
+        //         }).catch((err:any) => {
+        //           //console.log(err)
+        //         });
+        //     }
+
+        //   })
+        // });
 
       }
     ).catch((error) => {
