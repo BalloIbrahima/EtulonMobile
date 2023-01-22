@@ -1,6 +1,6 @@
 .containt{
   display: grid;
-  background-color: #BB7676;
+  background-color: #ffffff;
   height: 100%;
   padding: 5%;
   grid-template-rows: 15% 85%;
@@ -19,6 +19,8 @@
 }
 
 .interets{
+  box-shadow: 0px -5px 10px 0px rgb(0 0 0 / 50%);
+
   display: grid;
   background-color: white;
   border-radius: 10px;
@@ -37,16 +39,41 @@
 
 .interets >.listInterets{
   overflow: scroll;
-  justify-content: center;
+    display: flex;
+    height: fit-content;
+
+    flex-flow: wrap;
+    /* justify-content: center; */
+    align-items: flex-start;
 }
 
 .listInterets >ion-card{
-  width: 45%;
-  display: inline-block;
+  display: flex;
+  flex-direction: row;
   margin: 5px;
-  height: 100px;
-  border: 4px solid white;
+  width: auto;
+  padding: 4%;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.161);
+
+  i{
+    margin: auto;
+  }
+
+  label{
+    margin: auto;
+    font-weight: 500;
+  }
+
+  img{
+    height: 20px;
+    width: 20px;
+    margin: 2px 5px;
+    border-radius: 50%;
+  }
 }
+
+
 // ion-card-header{
 //   // padding-top: 5px;
 //   // padding-bottom: 5px;
@@ -93,3 +120,4 @@ ion-checkbox::part(container) {
   border-radius: 6px;
   border: 2px solid #008000;
 }
+

@@ -18,9 +18,11 @@
 
 
         <ion-card (click)="check(i)" class="card{{i}}" *ngFor="let prob of problematiques ;let i =index;">
-          <ion-card-header>
-            <ion-card-subtitle>{{prob.libelle}}</ion-card-subtitle>
-          </ion-card-header>
+          <i class="fa-solid fa-plus " id="iok{{i}}"></i>
+          <i class="fa-solid fa-check d-none" id="ino{{i}}"></i>
+          <img src="assets/images/moi.jpg" id="img{{i}}" alt="">
+          <label for="">{{prob.libelle}}</label>
+
 
 
 
@@ -28,6 +30,7 @@
             <ion-checkbox id="card{{i}}" slot="start"></ion-checkbox>
           </ion-item>
         </ion-card>
+
 
 
         <!-- <ion-card (click)="check(1)" class="card1">
