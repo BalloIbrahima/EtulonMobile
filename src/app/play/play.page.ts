@@ -1,7 +1,9 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Directory, Filesystem } from '@capacitor/filesystem';
+import { ModalController } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
+import { GameFinishPage } from '../game-finish/game-finish.page';
 import { NiveauService } from '../services/niveau/niveau.service';
 
 @Component({
@@ -56,7 +58,7 @@ export class PlayPage implements OnInit {
   currentQuiz:number=0
 
   quizValue:any=0;
-  constructor(private router:Router, private niveauService:NiveauService) { }
+  constructor(private router:Router, private niveauService:NiveauService,private modalCtrl: ModalController,) { }
 
   ngOnInit() {
     this.borderColor=this.mesCouleurs[this.randomIntFromInterval(0,5)].couleur
@@ -279,5 +281,24 @@ export class PlayPage implements OnInit {
     // var checkbox= <HTMLDivElement>document.querySelector('.'+nomDiv)
 
 
+  }
+
+  //afficher le modal otp
+  async afficherModal(){
+    const modal = await this.modalCtrl.create({
+      component: GameFinishPage,
+      componentProps: {
+        'data': {},
+
+      },
+    });
+    modal.present();
+
+    const { data, role } = await modal.onWillDismiss();
+
+    if (role === 'confirm') {
+      // this.boiteConfirmation();
+      //this.message = `Hello, ${data}!`;
+    }
   }
 }
