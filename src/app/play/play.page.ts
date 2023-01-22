@@ -105,7 +105,11 @@ export class PlayPage implements OnInit {
     //this.compte(this.quizList[this.currentQuiz].timer)
     if(this.currentQuiz+1==this.quizList.length){
       this.counter=null
-      this.afficherModal()
+      setTimeout(() => {
+        this.afficherModal()
+      }, 1000);
+
+
     }else{
       this.changeColor()
       this.currentQuiz++

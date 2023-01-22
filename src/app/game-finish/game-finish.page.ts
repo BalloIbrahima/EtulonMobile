@@ -10,7 +10,7 @@ import { AnimationOptions } from 'ngx-lottie';
 export class GameFinishPage implements OnInit {
 
   url:AnimationOptions={
-    path:'assets/json/bien.json'
+    path:'assets/json/1.json'
   }
 
   PointValue:any=0.5
