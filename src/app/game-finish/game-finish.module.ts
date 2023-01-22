@@ -7,13 +7,18 @@ import { IonicModule } from '@ionic/angular';
 import { GameFinishPageRoutingModule } from './game-finish-routing.module';
 
 import { GameFinishPage } from './game-finish.page';
-
+import { LottieModule } from 'ngx-lottie';
+export function playerFactory() {
+  return import('lottie-web');
+}
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    GameFinishPageRoutingModule
+    GameFinishPageRoutingModule,
+    LottieModule.forRoot({player:playerFactory})
+
   ],
   declarations: [GameFinishPage]
 })

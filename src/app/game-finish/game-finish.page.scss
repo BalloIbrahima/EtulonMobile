@@ -2,7 +2,7 @@
   height: 100%;
   padding: 2%;
   display: grid;
-  grid-template-rows:  25% 75%;
+  grid-template-rows:  20% 80%;
   font-family : 'Itim', cursif !important;
   background-color: #3779FF;
   color: rgb(255, 255, 255);
@@ -25,8 +25,113 @@
   margin: 0 2%;
   border-radius: 15px;
   display: grid;
-  grid-template-rows: 30% 45% 25%;
+  color: #000;
+  grid-template-rows: 28% 49% 23%;
 }
+
+////anim
+.anim{
+  height: 100%;
+  width: 50%;
+  margin: auto;
+  background-color: #fff;
+  margin-top: -8%;
+  border-radius: 15px;
+
+}
+
+.anim >ng-lottie{
+  display: flex;
+  height: 100%;
+  width: auto;
+}
+////point part
+///
+///
+.notes{
+  display: grid;
+  grid-template-rows: 45% 55%;
+}
+
+.pointPart{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.pointPart >ion-progress-bar{
+  width: 90%;
+  --background:#D9D9D9;
+  height: 25px;
+  border-radius: 7px;
+  --progress-background:#BB7676;
+}
+
+.pointPart >#ptrecu{
+  color: #FF981F;
+  font-size: 20px;
+}
+.pointPart >#pttotal{
+
+}
+.pointPart >#percan{
+  color: #BB7676;
+  font-size: 13px;
+
+}
+
+///
+///
+.likePart
+.likePart >#minute{
+  color: #FF0000;
+  font-size: 10px;
+}
+.likePart >#ttTp{
+  font-size: 20px;
+  color: #17660B;
+}
+.likePart >#question{
+  font-size: 9px;
+}
+
+.likeDislike{
+  width: 90%;
+  height: 50px;
+  display: grid;
+  grid-template-columns: 45% 10% 45%;
+
+}
+
+.likeDislike >.dislike{
+  margin: auto;
+  border: 2px solid #FF0000;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.likeDislike >.like{
+  margin: auto;
+  border: 2px solid #17660B;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.likeDislike >div >i{
+  font-size: 30px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+///
 
 
 //btns parts

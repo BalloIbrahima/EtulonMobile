@@ -15,11 +15,36 @@
 
     <div class="secaind">
       <div class="anim">
-
+        <ng-lottie [options]="url"></ng-lottie>
       </div>
 
       <div class="notes">
+        <div class="pointPart">
+          <label for="" id="ptrecu">2000 points gagnes</label>
+          <label for="" id="pttotal">Sur 7000 points</label>
+          <label for="" id="percan">60 %</label>
 
+          <ion-progress-bar [value]="PointValue" ></ion-progress-bar>
+
+        </div>
+
+        <div class="likePart pointPart">
+          <label for="" id="minute">5 minutes</label>
+          <label for="" id="ttTp">+3540 TP</label>
+          <label for="" id="question">Comment etait ce jeu ?</label>
+
+          <div class="likeDislike">
+            <div class="dislike">
+              <i class="fa-solid fa-thumbs-down"></i>
+            </div>
+
+            <div></div>
+
+            <div class="like">
+              <i class="fa-solid fa-thumbs-up"></i>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="btns">

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
   selector: 'app-game-finish',
@@ -7,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GameFinishPage implements OnInit {
 
+  url:AnimationOptions={
+    path:'assets/json/bien.json'
+  }
+
+  PointValue:any=0.5
   constructor() { }
 
   ngOnInit() {
