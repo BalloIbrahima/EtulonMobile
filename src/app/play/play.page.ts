@@ -15,7 +15,7 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
 
   //
   success:AnimationOptions={
-    path:'assets/json/success.json'
+    path:'assets/json/Comp 1.json'
   }
   showSuccess=false
   showError=false

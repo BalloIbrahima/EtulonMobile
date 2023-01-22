@@ -12,7 +12,7 @@ export class Game2Page implements OnInit {
   constructor(private router:Router) { }
 
   compte:AnimationOptions={
-    path:'assets/json/Comp 2.json'
+    path:'assets/json/load.json'
   }
 
   launchCompte=false

@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
@@ -50,11 +50,11 @@ const routes: Routes = [
     path: 'game-finish',
     loadChildren: () => import('./game-finish/game-finish.module').then( m => m.GameFinishPageModule)
   },
-  // {
-  //   path: '',
-  //   redirectTo:'home1',
-  //   pathMatch:'full'
-  // },
+  {
+    path: '',
+    redirectTo:'home1',
+    pathMatch:'full'
+  },
   // {
   //   path: '**',
   //   redirectTo:'home1',
