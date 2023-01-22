@@ -6,6 +6,11 @@
 
 <ion-content>
 
+  <div class="rebours" *ngIf="launchCompte">
+    <ng-lottie [options]="compte"></ng-lottie>
+    <label for="" id="compter">{{compteNumber}}</label>
+    <label for="" id="patience">Veuillez patientez...</label>
+  </div>
   <div class="containt">
     <div class="textContent">
       <label for="">Partie</label>
@@ -34,13 +39,13 @@
           <label for="" id="question">Comment etait ce jeu ?</label>
 
           <div class="likeDislike">
-            <div class="dislike btndislikecliquer">
+            <div class="dislike">
               <i class="fa-solid fa-thumbs-down"></i>
             </div>
 
             <div></div>
 
-            <div class="like btnlikecliquer">
+            <div class="like">
               <i class="fa-solid fa-thumbs-up"></i>
             </div>
           </div>
@@ -49,8 +54,8 @@
 
       <div class="btns">
 
-        <ion-button type="submit"  class="continues btn1" >Rejouer</ion-button>
-        <ion-button type="submit"  class="continues btn2" >Terminer</ion-button>
+        <ion-button type="submit"  class="continues btn1" (click)="replay()" >Rejouer</ion-button>
+        <ion-button type="submit"  class="continues btn2" (click)="finish()" >Terminer</ion-button>
 
 
       </div>

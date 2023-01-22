@@ -1,13 +1,19 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <!--<ion-title>game2</ion-title>-->
-    <ion-buttons slot="start">
+    <ion-buttons slot="start" >
       <ion-back-button></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+
+  <div class="rebours" *ngIf="launchCompte">
+    <ng-lottie [options]="compte"></ng-lottie>
+    <label for="" id="compter">{{compteNumber}}</label>
+    <label for="" id="patience">Veuillez patientez...</label>
+  </div>
 
   <div class="containt">
     <div class="first">

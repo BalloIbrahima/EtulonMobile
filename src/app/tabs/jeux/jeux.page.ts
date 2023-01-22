@@ -24,7 +24,7 @@ export class JeuxPage implements OnInit {
 
   //
   Play(){
-    console.log('dfgh')
+    //console.log('dfgh')
     this.router.navigate(['../game1'])
   }
 }

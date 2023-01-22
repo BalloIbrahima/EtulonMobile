@@ -191,3 +191,35 @@
   --background:none;
   border-radius: 5px;
 }
+
+///compte a rebour
+///compte a rebour
+.rebours{
+  top: 35%;
+  position: absolute;
+  margin: auto 20%;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px -5px 10px 0px rgb(0 0 0 / 50%);
+  z-index: 100;
+
+}
+
+.rebours >label{
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.rebours> #compter{
+  font-size: 50px;
+}
+
+.rebours> #patience{
+  font-size: 10px;
+}
+

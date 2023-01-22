@@ -1,7 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Directory, Filesystem } from '@capacitor/filesystem';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ViewDidLeave, ViewWillEnter, ViewWillLeave } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
 import { GameFinishPage } from '../game-finish/game-finish.page';
 import { NiveauService } from '../services/niveau/niveau.service';
@@ -11,7 +11,7 @@ import { NiveauService } from '../services/niveau/niveau.service';
   templateUrl: './play.page.html',
   styleUrls: ['./play.page.scss'],
 })
-export class PlayPage implements OnInit {
+export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave {
 
   //
   success:AnimationOptions={
@@ -59,6 +59,15 @@ export class PlayPage implements OnInit {
 
   quizValue:any=0;
   constructor(private router:Router, private niveauService:NiveauService,private modalCtrl: ModalController,) { }
+  ionViewDidLeave(): void {
+    this.counter=null
+  }
+  ionViewWillLeave(): void {
+    this.counter=null
+  }
+  ionViewWillEnter(): void {
+    this.ngOnInit()
+  }
 
   ngOnInit() {
     this.getNiveau()
@@ -272,6 +281,9 @@ export class PlayPage implements OnInit {
     }
   }
 
+  stopGame(){
+    this.counter=null
+  }
 
   SeeAnimation(nom:any){
     if(nom=='success'){
@@ -303,10 +315,12 @@ export class PlayPage implements OnInit {
 
     const { data, role } = await modal.onWillDismiss();
 
-    if (role === 'confirm') {
-      // this.boiteConfirmation();
-      //this.message = `Hello, ${data}!`;
-    }
+    this.ngOnInit()
+
+    // if (role === 'confirm') {
+    //   console.log('ddd')
+
+    //}
   }
 
   //pour changer la couleur de dla div ds la quelle on a les questions

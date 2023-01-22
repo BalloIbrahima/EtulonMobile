@@ -20,6 +20,11 @@ export class ProfilPage implements OnInit {
   }
 
   //
+  notifPage(){
+    this.router.navigate(['/notification'])
+  }
+
+  //
   Play(){
     console.log('dfgh')
     this.router.navigate(['../game1'])
