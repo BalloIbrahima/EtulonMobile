@@ -10,7 +10,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "resources": "capacitor-resources -p android,ios"
+    "resources": "capacitor-resources -p android,ios",
+    "balloAndroid":"cap sync && cap run android",
+    "balloiOS":"cap sync && cap run ios"
+
   },
   "private": true,
   "dependencies": {

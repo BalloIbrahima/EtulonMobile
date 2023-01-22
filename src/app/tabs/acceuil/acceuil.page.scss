@@ -3,7 +3,7 @@
   height: 100%;
   padding: 5%;
   background-color: #ffffff;
-  grid-template-rows: 45% 55%;
+  grid-template-rows:5% 45% 55%;
   color: #000;
   font-family : 'Itim', cursif !important;
 }
@@ -119,11 +119,11 @@
 }
 
 .new{
-  width: 200px;
+  //width: 200px;
   width: 80%;
-  height: 85%;
+  //height: 85%;
   background-color: rgb(255, 255, 255);
-  margin: 2% 5%;
+  margin: 1% 5%;
   display: grid;
   grid-template-columns: 50% 50%;
   border-radius: 10px;
@@ -133,23 +133,23 @@
   border-radius: 15px;
   padding: 5px;
   object-fit: cover;
-  height: 90%;
+  //height: 85%;
   width: 100%;
 }
 
 .new >.desc{
   display: grid;
   padding: 5px;
-  grid-template-rows: 20% 65% ;
+  grid-template-rows: 15% 70% 15% ;
 }
 
 .desc >#titleJeu{
-  font-size: 18px;
+  font-size: 5.5vw;
   justify-content: left;
 }
 
 .desc >#descJeu{
-  font-size: 10px;
+  font-size: 3.5vw;
   color: #0000005b;
   display: flex;
   flex-direction: column;
@@ -182,6 +182,7 @@
 }
 /////
 #bibli{
+  font-size: 5vw;
   margin-bottom: 5px;
   display: flex;
   justify-content: center;
@@ -231,10 +232,10 @@
 .listjeux >.jeu{
   display: grid;
   grid-template-rows: 20% 80%;
-  width: 120px;
-  height: 180px;
-
+  width: 45%;
+  height: 80%;
   margin-left: 10px;
+  font-size: 10vw;
 }
 
 .secaind{
@@ -265,7 +266,7 @@
 }
 
 #NomJeu{
-  font-size: 15px;
+  font-size: 7vw;
   display: flex;
   justify-content: center;
 }
@@ -275,5 +276,6 @@
   background:#008000;
   margin: 5px 5px;
   border-radius: 5px;
+  font-size: 6vw;
 }
 

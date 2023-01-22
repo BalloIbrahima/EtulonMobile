@@ -27,13 +27,16 @@
 }
 
 .infosProfil >div >i{
-  height: 30px;
-  width: 30px;
+  height: 15vw;
+  width: 15vw;
   border:1px solid black ;
   border-radius: 50%;
-  font-size: 20px;
+  font-size: 9vw;
   padding: 5px;
   color: #000;
+  display: flex;
+  margin: auto;
+  justify-content: center;
   background-color: #fff;
 }
 .tofName{
@@ -43,14 +46,14 @@
 }
 
 .tofName >.photo >img{
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-    object-fit: cover;
+  height: 30vw;
+  width: 30vw;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .username{
-  margin-top: 5px;
+  font-size: 4vw;
 }
 
 .username >label{
@@ -59,7 +62,7 @@
 }
 #nomComplet{
   margin: 0;
-  font-size: 15px;
+  font-size: 5vw;
   font-weight: bold;
 }
 #username{
@@ -101,7 +104,7 @@
 }
 
 .ptConseil >div >#nombre>#number,.nmbre>div >#nombre>#number{
-  font-size: 25px;
+  font-size: 10vw;
   font-weight: bold;
   margin: 0;
 }
@@ -113,6 +116,10 @@
 
 .ptConseil >div >#imgpt,.nmbre>div >#imgpt{
 
+}
+
+.nomGame{
+  font-size: 6vw;
 }
 
 
@@ -146,7 +153,7 @@ hr{
   margin: 10px 0px 0px 5px;
 }
 #labelLast{
-
+  font-size: 6vw;
   display: flex;
   justify-content: center;
 }
