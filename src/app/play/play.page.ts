@@ -61,9 +61,8 @@ export class PlayPage implements OnInit {
   constructor(private router:Router, private niveauService:NiveauService,private modalCtrl: ModalController,) { }
 
   ngOnInit() {
-    this.borderColor=this.mesCouleurs[this.randomIntFromInterval(0,5)].couleur
     this.getNiveau()
-
+    this.changeColor()
 
     //this.compte(this.quizList[this.currentQuiz].timer)
     ///
@@ -105,9 +104,10 @@ export class PlayPage implements OnInit {
   nextQuestion(){
     //this.compte(this.quizList[this.currentQuiz].timer)
     if(this.currentQuiz+1==this.quizList.length){
-
-      this.router.navigate(['/game-finish'])
+      this.counter=null
+      this.afficherModal()
     }else{
+      this.changeColor()
       this.currentQuiz++
       this.counter=this.quizList[this.currentQuiz].timer+1
       this.Promisee()
@@ -254,7 +254,10 @@ export class PlayPage implements OnInit {
     if(this.counter==0){
       this.nextQuestion()
       this.PlayFile('assets/son/timer.wav')
-    }else{
+    }else if(this.counter==null){
+
+    }
+    else{
       this.counter=this.counter-1;
       //this.quizValue=1 - this.counter/100
 
@@ -300,5 +303,10 @@ export class PlayPage implements OnInit {
       // this.boiteConfirmation();
       //this.message = `Hello, ${data}!`;
     }
+  }
+
+  //pour changer la couleur de dla div ds la quelle on a les questions
+  changeColor(){
+    this.borderColor=this.mesCouleurs[this.randomIntFromInterval(0,5)].couleur
   }
 }

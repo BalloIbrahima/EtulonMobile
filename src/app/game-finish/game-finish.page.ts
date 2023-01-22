@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
 
 @Component({
@@ -13,9 +14,17 @@ export class GameFinishPage implements OnInit {
   }
 
   PointValue:any=0.5
-  constructor() { }
+  constructor(private router:Router,) { }
 
   ngOnInit() {
+  }
+
+  replay(){
+    this.router.navigate(['/game-finish'])
+  }
+
+  finish(){
+    this.router.navigate(['/game-finish'])
   }
 
 }

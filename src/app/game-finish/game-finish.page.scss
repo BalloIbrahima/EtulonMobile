@@ -131,6 +131,14 @@
   display: flex;
   justify-content: center;
 }
+.likeDislike >.like >i{
+  color: #17660B;
+}
+
+.likeDislike >.dislike >i{
+  color: #FF0000;
+}
+
 ///
 
 
@@ -165,4 +173,5 @@
 
 .continues :hover{
   --background:none;
+  border-radius: 5px;
 }
