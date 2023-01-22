@@ -60,9 +60,9 @@
   color: #ffffff;
 }
 .news{
-  margin-top: 2%;
+  //margin-top: 2%;
   display: grid;
-  grid-template-rows: auto 85%;
+  grid-template-rows: 15% 85%;
 }
 
 .news label{
@@ -121,7 +121,7 @@
 .new{
   width: 200px;
   width: 80%;
-  //height: 70%;
+  height: 85%;
   background-color: rgb(255, 255, 255);
   margin: 2% 5%;
   display: grid;
@@ -140,16 +140,16 @@
 .new >.desc{
   display: grid;
   padding: 5px;
-  grid-template-rows: 30% 70% ;
+  grid-template-rows: 20% 65% ;
 }
 
 .desc >#titleJeu{
-  font-size: 14px;
+  font-size: 18px;
   justify-content: left;
 }
 
 .desc >#descJeu{
-  font-size: 9px;
+  font-size: 10px;
   color: #0000005b;
   display: flex;
   flex-direction: column;
@@ -200,6 +200,7 @@
   grid-template-rows: 50% 50%;
 }
 .listinte{
+  width: 100%;
   display: -webkit-inline-box;
   overflow-y: unset;
   overflow-x: scroll;
@@ -230,7 +231,9 @@
 .listjeux >.jeu{
   display: grid;
   grid-template-rows: 20% 80%;
-  width: 45%;
+  width: 120px;
+  height: 180px;
+
   margin-left: 10px;
 }
 
@@ -251,7 +254,7 @@
   margin-top: -35px;
   border-radius: 10px;
   object-fit: cover;
-  box-shadow: 0px -5px 10px 0px rgb(0 0 0 / 50%);
+  box-shadow: 0px -2px 6px 0px rgb(0 0 0 / 50%);
 
 }
 .infos >div{
