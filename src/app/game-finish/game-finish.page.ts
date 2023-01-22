@@ -31,7 +31,7 @@ export class GameFinishPage implements OnInit {
     this.launchCompte=true
 
     if(this.compteNumber==0){
-      this.close()
+      this.close('renew')
       this.router.navigate(['/play'])
     }else{
       setTimeout(() => {
@@ -51,12 +51,12 @@ export class GameFinishPage implements OnInit {
   }
 
   finish(){
-    this.close()
+    this.close(null)
     this.router.navigate(['/game1'])
   }
 
-  close() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+  close(message:any) {
+    return this.modalCtrl.dismiss(null, message);
   }
 
 }

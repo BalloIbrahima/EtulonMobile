@@ -315,12 +315,15 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
 
     const { data, role } = await modal.onWillDismiss();
 
-    this.ngOnInit()
 
-    // if (role === 'confirm') {
-    //   console.log('ddd')
 
-    //}
+    if (role === 'renew') {
+      this.ngOnInit()
+      console.log('ddd')
+
+    }else{
+      this.counter=null
+    }
   }
 
   //pour changer la couleur de dla div ds la quelle on a les questions
