@@ -11,8 +11,11 @@ import { ProblematiqueService } from '../services/problematique/problematique.se
 export class Home2Page implements OnInit {
 
   problematiques:any=[];
+  preferences:any=[];
   constructor(private router:Router,private problematiqueService:ProblematiqueService) {}
 
+  erreur=''
+  isError=false
   ngOnInit() {
     this.problematiqueService.getAll().subscribe(res=>{
       this.problematiques=res.data;
@@ -49,8 +52,26 @@ export class Home2Page implements OnInit {
 
   //
   goToNextPage(){
-    //console.log('gooooo')
-    this.router.navigate(['/login'])
+    console.log('i')
+
+    for(let i=0; i<this.problematiques.length;i++){
+      var checkbox= <HTMLIonCheckboxElement>document.querySelector('#card'+i)
+      if(checkbox.checked){
+        this.preferences.push(this.problematiques[i])
+      }
+    }
+
+    if(this.preferences.length==0){
+      this.isError=true
+      this.erreur='Veuillez selectionner au moins une problematique .'
+    }else{
+      localStorage.setItem('preferences',JSON.stringify(this.preferences))
+      this.router.navigate(['/login'])
+    }
+
+    var table=JSON.parse(localStorage.getItem('preferences')!) || []
+    console.log(table)
+
   }
 
 }

@@ -144,6 +144,12 @@
           </label>
         </p>
       </div>
+      <div>
+        <label for="" *ngIf="isError" id="error">{{erreur}}</label>
+
+      </div>
+
+
 
       <ion-button class="continues" (click)="goToNextPage()"  >
         Continuer

@@ -30,8 +30,8 @@ export class OtpComponent implements OnInit {
   ngOnInit() {}
 
   //close
-  close() {
-    return this.modalCtrl.dismiss(null, 'cancel');
+  close(message:any) {
+    return this.modalCtrl.dismiss(null, message);
   }
 
   onOtpChange($event:any){
@@ -48,7 +48,7 @@ export class OtpComponent implements OnInit {
 
 
   sendCode(){
-    this.close()
+    this.close('confirm')
     this.router.navigate(['/inscription'])
   }
 
@@ -81,6 +81,7 @@ export class OtpComponent implements OnInit {
       async userData => {
         //await this.dismiss_loader()
         this.presentAlert();
+        this.sendCode()
 
         // this.afAuth.authState.subscribe(auth => {
         //   //voir si l'utilisateur n'a pas deja un compte

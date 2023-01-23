@@ -1,10 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { InscriptionGuard } from './guards/inscription/inscription.guard';
+import { TabsGuard } from './guards/tabs/tabs.guard';
 
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule),
+    canActivate:[TabsGuard]
   },
   {
     path: 'home1',
@@ -20,7 +23,8 @@ const routes: Routes = [
   },
   {
     path: 'inscription',
-    loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule)
+    loadChildren: () => import('./inscription/inscription.module').then( m => m.InscriptionPageModule),
+    canActivate:[InscriptionGuard]
   },
   {
     path: 'notification',

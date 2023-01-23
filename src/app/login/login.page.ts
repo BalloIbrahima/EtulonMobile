@@ -107,6 +107,7 @@ export class LoginPage implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirm') {
+      //this.rou
       // this.boiteConfirmation();
       //this.message = `Hello, ${data}!`;
     }
