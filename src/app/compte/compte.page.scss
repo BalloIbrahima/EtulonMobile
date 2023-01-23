@@ -1,17 +1,21 @@
 .content{
-  display: grid;
-    background-color: white;
-    padding: 5%;
-    color: black;
-    margin-top: 0;
-    padding-top: 0;
+  background-color: white;
+  padding: 5%;
+  margin: auto;
+  color: black;
+  height: 100%;
+  margin-top: 0;
+  display: flex;
+  padding-top: 0;
+  flex-direction: column;
+  justify-content: center;
 }
 
 // .firstPart{
 //   //margin-top: 25%;
 // }
 .firstPart > #text{
-  font-size: 13px;
+  font-size: 4vw;
   font-family : 'Itim', cursif !important;
 
 }

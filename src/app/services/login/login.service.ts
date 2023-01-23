@@ -1,5 +1,8 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -7,8 +10,11 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 export class LoginService {
 
   confirmationResult: firebase.default.auth.ConfirmationResult;
-
-  constructor(private fireAuth: AngularFireAuth) { }
+  private env=environment;
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+  };
+  constructor(private fireAuth: AngularFireAuth,private http:HttpClient) { }
 
   public signInWithPhoneNumber(recaptchaVerifier:any, phoneNumber:any) {
     return new Promise<any>((resolve, reject) => {
@@ -34,5 +40,11 @@ export class LoginService {
       });
 
     });
+  }
+
+  login(username:String, password:any):Observable<any>{
+
+    const user={"password": password,"username": username}
+    return this.http.post(`${this.env.api}/user/login`,user,this.httpOptions);
   }
 }

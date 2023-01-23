@@ -70,3 +70,13 @@ ion-input{
 .continues :hover{
   --background:none;
 }
+
+#error{
+  color: #F75555;
+  font-size: 5vw;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+

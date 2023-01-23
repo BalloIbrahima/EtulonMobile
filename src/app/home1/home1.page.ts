@@ -20,7 +20,7 @@ export class Home1Page implements OnInit {
   }
 
   ngOnInit() {
-    localStorage.clear()
+    //localStorage.clear()
     this.presentLoadingWithOptions()
     this.verifie()
     setTimeout(() => {
@@ -93,7 +93,7 @@ export class Home1Page implements OnInit {
   async presentToast() {
     let toast = await this.toastCtrl.create({
       message: 'Verifier votre connexion internet !',
-      duration: 100000,
+      duration: 3000,
       position: 'top',
       cssClass: 'custom-toast',
       mode:'ios'

@@ -82,6 +82,7 @@ export class OtpComponent implements OnInit {
         //await this.dismiss_loader()
         this.presentAlert();
         this.sendCode()
+        localStorage.setItem('numero',this.data)
 
         // this.afAuth.authState.subscribe(auth => {
         //   //voir si l'utilisateur n'a pas deja un compte

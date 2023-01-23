@@ -43,10 +43,11 @@
           <ion-input  [(ngModel)]="email" name="email"  id="email" type="email"  placeholder="Email" ngModel ></ion-input>
         </div>
 
-        <div class="input">
+        <!--<div class="input">
           <i class="fa-solid fa-calendar-days"></i>
           <ion-input  [(ngModel)]="dateNaissance" name="dateNaissance"  id="date" type="date"  placeholder="date Naissance" ngModel ></ion-input>
-        </div>
+        </div>-->
+        <label for="" *ngIf="isErrorBack" id="error">{{erreurBack}}</label>
 
         <ion-button type="submit"  class="continues"  [disabled]="f2.form.invalid" (click)="singup($event)">Continuer</ion-button>
 

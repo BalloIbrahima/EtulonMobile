@@ -18,7 +18,7 @@ export class TabsGuard implements CanActivate {
 
       if(!citoyen){
 
-        this.router.navigate(['/home1'])
+        this.router.navigate(['/inscription'])
         return false;
       }else{
         return true;

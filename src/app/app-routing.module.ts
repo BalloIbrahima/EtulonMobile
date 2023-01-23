@@ -59,12 +59,12 @@ const routes: Routes = [
   //   redirectTo:'home1',
   //   pathMatch:'full'
   // },
-  // {
-  //   path: '**',
-  //   redirectTo:'home1',
-  //   pathMatch:'full'
+  {
+    path: '**',
+    redirectTo:'',
+    pathMatch:'full'
 
-  // },
+  },
 
 
 ];

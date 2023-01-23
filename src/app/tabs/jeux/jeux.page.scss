@@ -105,7 +105,7 @@
 }
 
 .listPreference{
-  height: 200px;
+  height: 32vh;
   margin-top: 5px;
   //display: flex;
   //flex-direction: column;
@@ -199,7 +199,7 @@
   display: grid;
   grid-template-rows: 70% 30%;
   background-color: #fff;
-  height: 190px;
+  height: 30vh;
   padding: 15px;
   border-radius: 20px;
   width: 90%;
@@ -226,8 +226,8 @@
 
 .game >.imageGame >img{
   border-radius: 20px;
-  height: 50px;
-  width: 65px;
+  height: 7.5vh;
+  width: 35vw;
   object-fit: cover;
 }
 

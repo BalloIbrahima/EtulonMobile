@@ -26,6 +26,10 @@ export class AcceuilPage implements OnInit {
   }
 
   change(libelle:any){
+    var div= <HTMLDivElement>document.querySelector('.'+libelle)
+    var divdja= <HTMLDivElement>document.querySelector('.select')
+    divdja.classList.remove('select')
+    div.classList.add('select')
     if(libelle=='all'){
 
     }else if(libelle==''){
