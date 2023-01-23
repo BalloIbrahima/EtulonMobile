@@ -31,7 +31,8 @@
   display: flex;
   justify-content: center;
   color: rgb(0, 0, 0);
-  font-size: 12px;
+  font-size: 4vw;
+  text-align: center;
   font-weight: bold;
   margin: 10px;
 
@@ -57,17 +58,20 @@
   border: 1px solid rgba(0, 0, 0, 0.161);
 
   i{
+    font-size: 6vw;
     margin: auto;
   }
 
   label{
+    font-size: 5vw;
     margin: auto;
     font-weight: 500;
   }
 
   img{
-    height: 20px;
-    width: 20px;
+    object-fit: cover;
+    height: 7vw;
+    width: 7vw;
     margin: 2px 5px;
     border-radius: 50%;
   }
