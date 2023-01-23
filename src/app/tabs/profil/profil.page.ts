@@ -29,4 +29,9 @@ export class ProfilPage implements OnInit {
     console.log('dfgh')
     this.router.navigate(['../game1'])
   }
+
+  logout(){
+    localStorage.clear()
+    this.router.navigate(['/home1'])
+  }
 }
