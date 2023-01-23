@@ -31,14 +31,15 @@
 
 .imgPart > .rounded >img{
   border: 2px solid green;
-    border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    object-fit: cover;
+  border-radius: 50%;
+  height: 40vw;
+  width: 40vw;
+  object-fit: cover;
 }
 #textChose{
   display: flex;
-    margin-top: 20px;
+  font-size: 6vw;
+  margin-top: 20px;
 }
 
 .input{

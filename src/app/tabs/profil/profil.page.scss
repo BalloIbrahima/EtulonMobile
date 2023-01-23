@@ -61,12 +61,15 @@
   justify-content: center;
 }
 #nomComplet{
-  margin: 0;
+  margin-top: 1vw;
+  margin-bottom: 0;
   font-size: 5vw;
   font-weight: bold;
 }
 #username{
-  margin: 0;
+  margin-top: 0;
+  margin-bottom: 1vw;
+
   font-size: 10px;
   color: rgba(0, 0, 0, 0.582);
 }
@@ -170,7 +173,7 @@ hr{
 }
 
 .game{
-  height: 70px;
+  //height: 70px;
   border-radius: 10px;
   margin: 5px 1%;
   background-color: #D9D9D9;

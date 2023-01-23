@@ -48,8 +48,8 @@
 }
 
 .niveau{
-  width: 200px;
-  height: 85px;
+  width: 75%;
+  height: 14vh;
   margin-left: 10px;
   padding: 2%;
   display: grid;
@@ -60,8 +60,9 @@
 
 .niveau >img{
   margin: auto;
-  width: 50px;
-  height: 50px;
+  width: 19vw;
+  height: 19vw;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -71,13 +72,13 @@
 }
 
 .descniveau >#text{
-  font-size: 9px;
+  font-size: 3.5vw;
   color: #00000091;
   display: flex;
   flex-direction: column;
 }
 
 .descniveau >#libelleNiveau{
-  font-size: 15xpx;
+  font-size: 5.5vw;
 
 }
