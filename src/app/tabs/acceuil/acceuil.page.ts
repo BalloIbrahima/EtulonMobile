@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProblematiqueService } from 'src/app/services/problematique/problematique.service';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-acceuil',
@@ -10,10 +11,12 @@ import { ProblematiqueService } from 'src/app/services/problematique/problematiq
 export class AcceuilPage implements OnInit {
 
   problematiques:any=[];
+  citoyen:any
 
-  constructor(private router:Router,private problematiqueService:ProblematiqueService) { }
+  constructor(private router:Router,private problematiqueService:ProblematiqueService, private tokenService:TokenService) { }
 
   ngOnInit() {
+    this.citoyen=this.tokenService.getUser().data
 
     this.problematiqueService.getAll().subscribe(res=>{
       this.problematiques=res.data;

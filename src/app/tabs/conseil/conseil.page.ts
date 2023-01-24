@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-conseil',
@@ -7,10 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./conseil.page.scss'],
 })
 export class ConseilPage implements OnInit {
-
-  constructor(private router:Router) { }
+  citoyen:any
+  constructor(private router:Router,private tokenService:TokenService) { }
 
   ngOnInit() {
+    this.citoyen=this.tokenService.getUser().data
+
   }
 
   Addconseil(){

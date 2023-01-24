@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-jeux',
@@ -8,6 +9,7 @@ import { Router } from '@angular/router';
 })
 export class JeuxPage implements OnInit {
 
+  citoyen:any
 
   options={
     slidesPerView:1,   // NOMBRE DE SLIDE PAR PAGE = 1
@@ -16,9 +18,11 @@ export class JeuxPage implements OnInit {
     spaceBetween:1,
     autoplay:true
   }
-  constructor(private router:Router) { }
+  constructor(private router:Router,private tokenService:TokenService) { }
 
   ngOnInit() {
+    this.citoyen=this.tokenService.getUser().data
+
   }
 
 

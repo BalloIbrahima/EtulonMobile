@@ -11,8 +11,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "resources": "capacitor-resources -p android,ios",
-    "balloAndroid": "cap sync && cap run android",
-    "balloiOS": "cap sync && cap run ios"
+    "balloAndroid": "cap add android && cap sync && cap run android",
+    "balloiOS": "cap add ios && cap sync && cap run ios"
   },
   "private": true,
   "dependencies": {
