@@ -10,7 +10,7 @@ export class FirebaseJoueurService {
   constructor(private ngFirestore: AngularFirestore){ }
 
   create(user: any) {
-    return this.ngFirestore.collection('User').doc(user.getUid()).set(Object.assign({}, user));
+    return this.ngFirestore.collection('User').doc(user.id).set(Object.assign({}, user));
   }
    get(id:any){
     return this.ngFirestore.collection('User').doc(id).get()
@@ -20,7 +20,12 @@ export class FirebaseJoueurService {
     return this.ngFirestore.collection('User').snapshotChanges();
   }
 
-  getTask(id:any) {
+  getTask(id:any){
     return this.ngFirestore.collection('User').doc(id).valueChanges();
+  }
+
+  // Update
+  update(id:any, user: any) {
+    this.ngFirestore.collection('User').doc(id).update(user)
   }
 }

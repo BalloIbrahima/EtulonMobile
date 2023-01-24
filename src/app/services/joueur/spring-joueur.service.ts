@@ -25,4 +25,14 @@ export class SpringJoueurService {
       // data.append('client', JSON.stringify(client).slice(1,JSON.stringify(client).lastIndexOf(']')));
   }
 
+  GetByTelephone(telephone:any):Observable<any>{
+    return this.http.get(`${this.env.api}/user/getuser/${telephone}`,this.httpOptions);
+  }
+
+  //Deconnexion
+  Deconnecter():Observable<any>{
+    return this.http.post(`${this.env.api}/logout`,null);
+  }
+
+
 }

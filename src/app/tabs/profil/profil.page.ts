@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SpringJoueurService } from 'src/app/services/joueur/spring-joueur.service';
 import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { TokenService } from 'src/app/services/token/token.service';
 })
 export class ProfilPage implements OnInit {
 
-  constructor(private router:Router,private tokenService:TokenService) { }
+  constructor(private router:Router,private tokenService:TokenService,private sbJoueurService:SpringJoueurService) { }
 
   citoyen:any
   ngOnInit() {
@@ -30,12 +31,14 @@ export class ProfilPage implements OnInit {
 
   //
   Play(){
-    console.log('dfgh')
+    //console.log('dfgh')
     this.router.navigate(['../game1'])
   }
 
   logout(){
     localStorage.clear()
+    this.tokenService.signOut()
+    this.sbJoueurService.Deconnecter().subscribe(res=>{},error => {});
     this.router.navigate(['/home1'])
   }
 }

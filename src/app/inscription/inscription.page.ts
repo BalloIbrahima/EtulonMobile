@@ -16,7 +16,7 @@ export class InscriptionPage implements OnInit {
   //user infos
   nomComplet:any;
   username:any;
-  email:any;
+  email:null;
   dateNaissance:any;
 
   ///
@@ -31,6 +31,7 @@ export class InscriptionPage implements OnInit {
   constructor(private router:Router,private fbJoueurService:FirebaseJoueurService,private sbJoueurService:SpringJoueurService,public afAuth: AngularFireAuth,private loginService:LoginService,private tokenStorage:TokenService) { }
 
   ngOnInit() {
+    //localStorage.clear()
 
     this.afAuth.authState.subscribe(auth => {
       console.log(auth?.uid)
@@ -73,13 +74,16 @@ export class InscriptionPage implements OnInit {
     this.isErrorBack=false
     this.afAuth.authState.subscribe(auth => {
       //console.log(auth?.uid)
-
+      //recuperation des preferences du user stoke ds le local stotege
+      var table=JSON.parse(localStorage.getItem('preferences')!) || []
+      //
       var citoyen=[{
         'nom':this.nomComplet,
         'username':this.username,
         'email':this.email,
         'telephone':auth?.phoneNumber,
-        'password':auth?.uid
+        'password':auth?.uid,
+        "preferences":table
         }]
 
         console.log(citoyen)
@@ -89,20 +93,54 @@ export class InscriptionPage implements OnInit {
           if(data.message=='ok'){
             this.loginService.login(this.username,auth?.uid).subscribe(res=>{
               console.log(res)
-              this.tokenStorage.saveToken(res.accessToken);
-              this.tokenStorage.saveUser(res);
-              //this.router.navigate(['/dashboard'])
-              this.router.navigate(['../tabs'])
-            },error=>{})
+              this.afAuth.authState.subscribe(auth => {
+                var user={
+                  'id':auth?.uid,
+                  'numero':auth?.phoneNumber,
+                  'username':res.username,
+                  "preferences":table
+                }
+                //voir si l'utilisateur n'a pas deja un compte
+                this.fbJoueurService.getTask(auth?.uid).subscribe((res2)=>{
+
+                  if(res2){
+                    this.fbJoueurService.update(auth?.uid,user)
+                  }else {
+
+
+
+                    //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
+                    this.fbJoueurService.create(user)
+                      .then(() => {
+
+
+                      }).catch((err:any) => {
+                        console.log(err)
+                        console.log('iciiii')
+                      });
+                  }
+
+                  this.tokenStorage.saveToken(res.accessToken);
+                  this.tokenStorage.saveUser(res);
+                  //this.router.navigate(['/dashboard'])
+                  this.router.navigate(['../tabs'])
+
+                })
+              });
+
+            },error=>{
+              console.log(error)
+            })
           }else{
+            //console.log(data)
             this.isErrorBack=true
             this.erreurBack=data.data
           }
 
         },error=>{
-          console.log(error)
+          console.log(error.error.data)
           this.isErrorBack=true
-          this.erreurBack=error.data
+          this.erreurBack=error.error.data
         })
 
         //private fbJoueurService:FirebaseJoueurService,

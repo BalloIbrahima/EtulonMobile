@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController, ModalController } from '@ionic/angular';
+import { getTimeGivenProgression, LoadingController, ModalController } from '@ionic/angular';
 import { LoginService } from '../services/login/login.service';
 import Swal from 'sweetalert2';
 import { FirebaseJoueurService } from '../services/joueur/firebase-joueur.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { SpringJoueurService } from '../services/joueur/spring-joueur.service';
 
 @Component({
   selector: 'app-otp',
@@ -24,8 +25,10 @@ export class OtpComponent implements OnInit {
 
   //donnee venant de la page parante
   data:any
+
+
   constructor(private modalCtrl: ModalController,private router:Router,private loadingController: LoadingController,
-    private loginService:LoginService,private fbJoueurService:FirebaseJoueurService,public afAuth: AngularFireAuth) { }
+    private loginService:LoginService,private fbJoueurService:FirebaseJoueurService,private sbJoueurService:SpringJoueurService,public afAuth: AngularFireAuth) { }
 
   ngOnInit() {}
 
@@ -49,7 +52,37 @@ export class OtpComponent implements OnInit {
 
   sendCode(){
     this.close('confirm')
-    this.router.navigate(['/inscription'])
+    //verification si le user possede daje un compte
+    this.sbJoueurService.GetByTelephone(this.data).subscribe(res=>{
+      if(res.data==null){
+        //sinon
+        this.router.navigate(['/inscription'])
+
+      }else{
+
+        //sil exite on l'authentifie
+        this.afAuth.authState.subscribe(auth => {
+          //voir si l'utilisateur n'a pas deja un compte
+          this.fbJoueurService.getTask(auth?.uid).subscribe((res2:any)=>{
+
+            if(res2){
+              console.log(res2)
+
+              this.loginService.login(res2.username,res2.id).subscribe(retour=>{
+
+              })
+            }else {
+
+            }
+
+          })
+        });
+      }
+    },error=>{
+
+    })
+
+
   }
 
   //chargeur
@@ -89,19 +122,20 @@ export class OtpComponent implements OnInit {
         //   this.fbJoueurService.getTask(auth?.uid).subscribe((res)=>{
 
         //     if(res){
-        //       //console.log(res)
+        //       console.log(res)
         //     }else {
 
         //       var user={
         //         'id':auth?.uid,
-        //         'numero':auth?.phoneNumber
+        //         'numero':auth?.phoneNumber,
+        //         'username':null
         //       }
         //       //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
         //       this.fbJoueurService.create(user)
         //         .then(() => {
-
+        //           console.log('uservfirebase created')
         //         }).catch((err:any) => {
-        //           //console.log(err)
+        //           console.log(err)
         //         });
         //     }
 
