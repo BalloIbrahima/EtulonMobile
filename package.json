@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "resources": "capacitor-resources -p android,ios",
+    "resources": "capacitor-resources -p android,ios  && node resources.js",
     "balloAndroid": "cap add android && cap sync && cap run android",
     "balloiOS": "cap add ios && cap sync && cap run ios"
   },
