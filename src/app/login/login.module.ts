@@ -9,6 +9,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { OtpComponent } from '../otp/otp.component';
 import { NgOtpInputModule } from 'ng-otp-input';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { NgOtpInputModule } from 'ng-otp-input';
     LoginPageRoutingModule,
     NgOtpInputModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [LoginPage, OtpComponent]
 })
 export class LoginPageModule {}

@@ -8,6 +8,7 @@ import { PlayPageRoutingModule } from './play-routing.module';
 
 import { PlayPage } from './play.page';
 import { LottieModule } from 'ngx-lottie';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -20,6 +21,7 @@ export function playerFactory() {
     PlayPageRoutingModule,
     LottieModule.forRoot({player:playerFactory})
   ],
+  providers: [httpInterceptorProviders],
   declarations: [PlayPage]
 })
 export class PlayPageModule {}

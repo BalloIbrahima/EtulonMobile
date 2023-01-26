@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { Home2PageRoutingModule } from './home2-routing.module';
 
 import { Home2Page } from './home2.page';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { Home2Page } from './home2.page';
     IonicModule,
     Home2PageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [Home2Page]
 })
 export class Home2PageModule {}

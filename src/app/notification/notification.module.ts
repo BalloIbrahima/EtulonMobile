@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NotificationPageRoutingModule } from './notification-routing.module';
 
 import { NotificationPage } from './notification.page';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { NotificationPage } from './notification.page';
     IonicModule,
     NotificationPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [NotificationPage]
 })
 export class NotificationPageModule {}

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { InscriptionPageRoutingModule } from './inscription-routing.module';
 
 import { InscriptionPage } from './inscription.page';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { InscriptionPage } from './inscription.page';
     IonicModule,
     InscriptionPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [InscriptionPage]
 })
 export class InscriptionPageModule {}

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { NewConseilPageRoutingModule } from './new-conseil-routing.module';
 
 import { NewConseilPage } from './new-conseil.page';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { NewConseilPage } from './new-conseil.page';
     IonicModule,
     NewConseilPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [NewConseilPage]
 })
 export class NewConseilPageModule {}

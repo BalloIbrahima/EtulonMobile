@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VocalPageRoutingModule } from './vocal-routing.module';
 
 import { VocalPage } from './vocal.page';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,8 @@ import { VocalPage } from './vocal.page';
     IonicModule,
     VocalPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
+
   declarations: [VocalPage]
 })
 export class VocalPageModule {}

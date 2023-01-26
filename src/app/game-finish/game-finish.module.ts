@@ -8,6 +8,7 @@ import { GameFinishPageRoutingModule } from './game-finish-routing.module';
 
 import { GameFinishPage } from './game-finish.page';
 import { LottieModule } from 'ngx-lottie';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 export function playerFactory() {
   return import('lottie-web');
 }
@@ -20,6 +21,8 @@ export function playerFactory() {
     LottieModule.forRoot({player:playerFactory})
 
   ],
+  providers: [httpInterceptorProviders],
+
   declarations: [GameFinishPage]
 })
 export class GameFinishPageModule {}

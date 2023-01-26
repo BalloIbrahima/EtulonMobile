@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { TextPageRoutingModule } from './text-routing.module';
 
 import { TextPage } from './text.page';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { TextPage } from './text.page';
     IonicModule,
     TextPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [TextPage]
 })
 export class TextPageModule {}

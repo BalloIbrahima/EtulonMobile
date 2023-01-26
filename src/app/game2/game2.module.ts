@@ -8,6 +8,7 @@ import { Game2PageRoutingModule } from './game2-routing.module';
 
 import { Game2Page } from './game2.page';
 import { LottieModule } from 'ngx-lottie';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 export function playerFactory() {
   return import('lottie-web');
 }
@@ -21,6 +22,7 @@ export function playerFactory() {
     LottieModule.forRoot({player:playerFactory})
 
   ],
+  providers: [httpInterceptorProviders],
   declarations: [Game2Page]
 })
 export class Game2PageModule {}

@@ -8,6 +8,7 @@ import { Home1PageRoutingModule } from './home1-routing.module';
 
 import { Home1Page } from './home1.page';
 import { LottieModule } from 'ngx-lottie';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -21,6 +22,7 @@ export function playerFactory() {
     Home1PageRoutingModule,
     LottieModule.forRoot({player:playerFactory})
   ],
+  providers: [httpInterceptorProviders],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [Home1Page]
 })

@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { VideoPageRoutingModule } from './video-routing.module';
 
 import { VideoPage } from './video.page';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { VideoPage } from './video.page';
     IonicModule,
     VideoPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [VideoPage]
 })
 export class VideoPageModule {}

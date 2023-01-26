@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { PhotoPageRoutingModule } from './photo-routing.module';
 
 import { PhotoPage } from './photo.page';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { PhotoPage } from './photo.page';
     IonicModule,
     PhotoPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [PhotoPage]
 })
 export class PhotoPageModule {}

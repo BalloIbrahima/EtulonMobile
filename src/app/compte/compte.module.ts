@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { ComptePageRoutingModule } from './compte-routing.module';
 
 import { ComptePage } from './compte.page';
+import { httpInterceptorProviders } from '../Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { ComptePage } from './compte.page';
     IonicModule,
     ComptePageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [ComptePage]
 })
 export class ComptePageModule {}

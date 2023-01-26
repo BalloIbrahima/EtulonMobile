@@ -66,6 +66,7 @@ export class AcceuilPage implements OnInit {
     if(id==null){
 
       this.jeuService.GetAll().subscribe(res=>{
+        console.log(res)
         this.listGame=res.data
       })
 
