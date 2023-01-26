@@ -1,9 +1,10 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { ModalController, ViewDidLeave, ViewWillEnter, ViewWillLeave } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
 import { GameFinishPage } from '../game-finish/game-finish.page';
+import { JeuService } from '../services/jeux/jeu.service';
 import { NiveauService } from '../services/niveau/niveau.service';
 
 @Component({
@@ -34,12 +35,15 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   is2=false
   //
 
+  idNiveau:any
+
   point:any=0;
+  duree:any=0
   counter:any=0
 
   quizList:any=[
     {"numero": 0,
-      "contenu": "Qu'est ce qui manque a cette poubelle ?",
+      "contenu": "",
       "timer": 0,
       "point": 0,
       "type": "",
@@ -58,7 +62,7 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   currentQuiz:number=0
 
   quizValue:any=0;
-  constructor(private router:Router, private niveauService:NiveauService,private modalCtrl: ModalController,) { }
+  constructor(private router:Router, private niveauService:NiveauService,private modalCtrl: ModalController,private route:ActivatedRoute,private jeuService:JeuService) { }
   ionViewDidLeave(): void {
     this.counter=null
   }
@@ -72,6 +76,7 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   ngOnInit() {
     this.getNiveau()
     this.changeColor()
+    this.idNiveau=this.route.snapshot.params['id']
 
     //this.compte(this.quizList[this.currentQuiz].timer)
     ///
@@ -97,10 +102,17 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
     numero--
     var reponse=this.quizList[this.currentQuiz].reponses[numero]
     //console.log(reponse)
+    this.duree+=this.counter
+
     if(reponse.isOk==true){
+      var pt=this.quizValue*this.quizList[this.currentQuiz].point
+      this.Pointgagne=Math.round(pt * 100) / 100
+      this.point+=this.Pointgagne
       this.PlayFile('assets/son/ok.wav')
       this.SeeAnimation('success')
       this.nextQuestion()
+
+
 
     }else{
       this.PlayFile('assets/son/false.wav')
@@ -114,6 +126,9 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
     //this.compte(this.quizList[this.currentQuiz].timer)
     if(this.currentQuiz+1==this.quizList.length){
       this.counter=null
+      this.point=Math.round(this.point * 100) / 100
+      console.log(this.point)
+      console.log(this.duree)
       setTimeout(() => {
         this.afficherModal()
       }, 1000);
@@ -307,7 +322,11 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
     const modal = await this.modalCtrl.create({
       component: GameFinishPage,
       componentProps: {
-        'data': {},
+        'data': {
+          'idNiveau':this.idNiveau,
+          'point':this.point,
+          'duree':this.duree
+        },
 
       },
     });
