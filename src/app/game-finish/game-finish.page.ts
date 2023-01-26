@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
+import { TokenService } from '../services/token/token.service';
 
 @Component({
   selector: 'app-game-finish',
@@ -9,6 +10,7 @@ import { AnimationOptions } from 'ngx-lottie';
   styleUrls: ['./game-finish.page.scss'],
 })
 export class GameFinishPage implements OnInit {
+
 
   url:AnimationOptions={
     path:'assets/json/1.json'
@@ -22,9 +24,20 @@ export class GameFinishPage implements OnInit {
 
   compteNumber=3
   PointValue:any=0.5
-  constructor(private router:Router,private modalCtrl: ModalController) { }
+
+  citoyen:any
+  data:any
+  score:any=0
+
+  isLiked:Boolean=false
+  constructor(private router:Router,private modalCtrl: ModalController,private tokenService:TokenService) { }
 
   ngOnInit() {
+    this.citoyen=this.tokenService.getUser()
+    this.PointValue=(this.data.point/(this.data.TotalPoint+1))
+
+    var sc=this.data.point/100
+    this.score= Math.round(sc * 100) / 100
   }
 
   replay(){
@@ -56,7 +69,36 @@ export class GameFinishPage implements OnInit {
   }
 
   close(message:any) {
+    var score={
+      'score':this.score,
+      'duree':this.data.duree,
+      'isLiked':this.isLiked,
+      'niveau':{
+        'id':this.data.idNiveau
+      },
+      'user':{
+        'id':this.citoyen.id,
+      }
+
+    }
     return this.modalCtrl.dismiss(null, message);
   }
 
+
+  reaction(arg0: number) {
+    //throw new Error('Method not implemented.');
+    var elementlike= <HTMLDivElement>document.querySelector('.like')
+    var elementdislike= <HTMLDivElement>document.querySelector('.dislike')
+
+    if(arg0==1){
+      this.isLiked=true
+      elementlike.classList.add('btnlikecliquer')
+      elementdislike.classList.remove('btndislikecliquer')
+
+    }else{
+      this.isLiked=false
+      elementlike.classList.remove('btnlikecliquer')
+      elementdislike.classList.add('btndislikecliquer')
+    }
+  }
 }

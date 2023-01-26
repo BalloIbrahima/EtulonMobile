@@ -37,6 +37,7 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
 
   idNiveau:any
 
+  TotalPoint:any=0;
   point:any=0;
   duree:any=0
   counter:any=0
@@ -74,6 +75,16 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   }
 
   ngOnInit() {
+    this.currentQuiz=0
+    this.TotalPoint=0
+    this.point=0
+    this.quizValue=0
+    this.duree=0
+    this.counter=0
+    this.Pointgagne=0
+
+
+
     this.getNiveau()
     this.changeColor()
     this.idNiveau=this.route.snapshot.params['id']
@@ -103,9 +114,10 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
     var reponse=this.quizList[this.currentQuiz].reponses[numero]
     //console.log(reponse)
     this.duree+=this.counter
+    this.TotalPoint+=this.quizList[this.currentQuiz].point
 
     if(reponse.isOk==true){
-      var pt=this.quizValue*this.quizList[this.currentQuiz].point
+      var pt=(1-this.quizValue)*this.quizList[this.currentQuiz].point
       this.Pointgagne=Math.round(pt * 100) / 100
       this.point+=this.Pointgagne
       this.PlayFile('assets/son/ok.wav')
@@ -325,7 +337,8 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
         'data': {
           'idNiveau':this.idNiveau,
           'point':this.point,
-          'duree':this.duree
+          'duree':this.duree,
+          'TotalPoint':this.TotalPoint
         },
 
       },
