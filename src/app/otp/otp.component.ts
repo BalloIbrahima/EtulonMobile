@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FirebaseJoueurService } from '../services/joueur/firebase-joueur.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { SpringJoueurService } from '../services/joueur/spring-joueur.service';
+import { TokenService } from '../services/token/token.service';
 
 @Component({
   selector: 'app-otp',
@@ -27,7 +28,7 @@ export class OtpComponent implements OnInit {
   data:any
 
 
-  constructor(private modalCtrl: ModalController,private router:Router,private loadingController: LoadingController,
+  constructor(private modalCtrl: ModalController,private router:Router,private loadingController: LoadingController,private tokenStorage:TokenService,
     private loginService:LoginService,private fbJoueurService:FirebaseJoueurService,private sbJoueurService:SpringJoueurService,public afAuth: AngularFireAuth) { }
 
   ngOnInit() {}
@@ -54,6 +55,7 @@ export class OtpComponent implements OnInit {
     this.close('confirm')
     //verification si le user possede daje un compte
     this.sbJoueurService.GetByTelephone(this.data).subscribe(res=>{
+      console.log(res)
       if(res.data==null){
         //sinon
         this.router.navigate(['/inscription'])
@@ -69,6 +71,11 @@ export class OtpComponent implements OnInit {
               console.log(res2)
 
               this.loginService.login(res2.username,res2.id).subscribe(retour=>{
+                console.log(retour)
+                this.tokenStorage.saveToken(retour.token);
+                this.tokenStorage.saveUser(retour);
+                this.router.navigate(['../tabs'])
+
 
               })
             }else {

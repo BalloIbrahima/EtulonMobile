@@ -12,7 +12,7 @@ export class ConseilPage implements OnInit {
   constructor(private router:Router,private tokenService:TokenService) { }
 
   ngOnInit() {
-    this.citoyen=this.tokenService.getUser().data
+    this.citoyen=this.tokenService.getUser()
 
   }
 

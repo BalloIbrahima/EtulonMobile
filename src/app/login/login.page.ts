@@ -98,7 +98,7 @@ export class LoginPage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: OtpComponent,
       componentProps: {
-        'data': this.CountryCode+' '+this.PhoneNo,
+        'data': this.CountryCode + this.PhoneNo,
 
       },
     });

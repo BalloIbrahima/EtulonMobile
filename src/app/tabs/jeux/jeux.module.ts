@@ -8,6 +8,7 @@ import { JeuxPageRoutingModule } from './jeux-routing.module';
 
 import { JeuxPage } from './jeux.page';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ExploreContainerComponentModule } from 'src/app/explore-container/explo
     ExploreContainerComponentModule,
     JeuxPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [JeuxPage]
 })
 export class JeuxPageModule {}

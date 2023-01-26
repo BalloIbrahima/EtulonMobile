@@ -8,6 +8,7 @@ import { AcceuilPageRoutingModule } from './acceuil-routing.module';
 
 import { AcceuilPage } from './acceuil.page';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ExploreContainerComponentModule } from 'src/app/explore-container/explo
     ExploreContainerComponentModule,
     AcceuilPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [AcceuilPage]
 })
 export class AcceuilPageModule {}

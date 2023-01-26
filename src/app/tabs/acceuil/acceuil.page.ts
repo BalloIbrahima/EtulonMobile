@@ -19,7 +19,7 @@ export class AcceuilPage implements OnInit {
     private tokenService:TokenService, private jeuService:JeuService) { }
 
   ngOnInit() {
-    this.citoyen=this.tokenService.getUser().data
+    this.citoyen=this.tokenService.getUser()
 
     ///
     this.chargeGames(null)

@@ -18,6 +18,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import player from 'lottie-web';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { httpInterceptorProviders } from './Helpers/http.interceptor';
 
 export function playerFactory() {
   return import('lottie-web');
@@ -37,7 +38,7 @@ export function playerFactory() {
     LottieModule.forRoot({player:playerFactory}),
     HttpClientModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [httpInterceptorProviders,{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

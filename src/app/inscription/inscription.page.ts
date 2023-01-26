@@ -92,41 +92,40 @@ export class InscriptionPage implements OnInit {
           console.log(data)
           if(data.message=='ok'){
             this.loginService.login(this.username,auth?.uid).subscribe(res=>{
-              console.log(res)
-              this.afAuth.authState.subscribe(auth => {
+              console.log(res.accessToken)
+              this.tokenStorage.saveToken(res.token);
+              this.tokenStorage.saveUser(res);
                 var user={
                   'id':auth?.uid,
                   'numero':auth?.phoneNumber,
                   'username':res.username,
                   "preferences":table
                 }
+
                 //voir si l'utilisateur n'a pas deja un compte
-                this.fbJoueurService.getTask(auth?.uid).subscribe((res2)=>{
+                this.fbJoueurService.get(auth?.uid).subscribe(res2=>{
+                  console.log(res2)
 
                   if(res2){
+
                     this.fbJoueurService.update(auth?.uid,user)
+                    console.log('hello')
                   }else {
-
-
 
                     //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
                     this.fbJoueurService.create(user)
                       .then(() => {
 
-
+                        console.log('after create')
                       }).catch((err:any) => {
                         console.log(err)
                         console.log('iciiii')
                       });
                   }
 
-                  this.tokenStorage.saveToken(res.accessToken);
-                  this.tokenStorage.saveUser(res);
-                  //this.router.navigate(['/dashboard'])
                   this.router.navigate(['../tabs'])
 
                 })
-              });
 
             },error=>{
               console.log(error)
@@ -143,6 +142,8 @@ export class InscriptionPage implements OnInit {
           this.erreurBack=error.error.data
         })
 
+
+        //this.router.navigate(['/dashboard'])
         //private fbJoueurService:FirebaseJoueurService,
 
       });

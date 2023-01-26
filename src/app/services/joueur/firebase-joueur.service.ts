@@ -27,5 +27,12 @@ export class FirebaseJoueurService {
   // Update
   update(id:any, user: any) {
     this.ngFirestore.collection('User').doc(id).update(user)
+    // .then(() => {
+    //   console.log('after edit')
+
+    // }).catch((err:any) => {
+    //   console.log(err)
+    //   console.log('iciiii')
+    // });
   }
 }

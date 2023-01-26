@@ -14,8 +14,8 @@ export class TabsGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
-      var citoyen=this.tokenService.getUser().data
-
+      var citoyen=this.tokenService.getUser()
+      console.log(citoyen)
       if(!citoyen){
 
         this.router.navigate(['/inscription'])

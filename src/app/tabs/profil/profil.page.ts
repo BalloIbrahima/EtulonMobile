@@ -14,7 +14,7 @@ export class ProfilPage implements OnInit {
 
   citoyen:any
   ngOnInit() {
-    this.citoyen=this.tokenService.getUser().data
+    this.citoyen=this.tokenService.getUser()
 
   }
 

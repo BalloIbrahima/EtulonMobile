@@ -1,17 +1,18 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+      import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { TokenService } from '../token/token.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class JeuService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private tokenService:TokenService) { }
   private env=environment;
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json',Authorization: `Bearer ${this.tokenService.getToken()}`})
   };
 
   GetByProb(id: any) :Observable<any>{
@@ -26,6 +27,8 @@ export class JeuService {
   }
 
   GetAll() :Observable<any>{
+        console.log(this.httpOptions)
+
     return this.http.get(`${this.env.api}/jeu/getall`,this.httpOptions);
   }
 

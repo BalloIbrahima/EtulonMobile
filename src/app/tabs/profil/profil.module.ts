@@ -8,6 +8,7 @@ import { ProfilPageRoutingModule } from './profil-routing.module';
 
 import { ProfilPage } from './profil.page';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
+import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { ExploreContainerComponentModule } from 'src/app/explore-container/explo
     ExploreContainerComponentModule,
     ProfilPageRoutingModule
   ],
+  providers: [httpInterceptorProviders],
   declarations: [ProfilPage]
 })
 export class ProfilPageModule {}

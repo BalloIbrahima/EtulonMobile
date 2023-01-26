@@ -1,7 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">E-Tulon</string>
-    <string name="title_activity_main">E-Tulon</string>
-    <string name="package_name">com.ib.etulon</string>
-    <string name="custom_url_scheme">com.ib.etulon</string>
-</resources>
