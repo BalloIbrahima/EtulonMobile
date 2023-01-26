@@ -19,6 +19,7 @@ export class Game2Page implements OnInit {
   descriptionNiveau:any=''
   nomJeu:any=''
 
+  id:any
   constructor(private router:Router, private route:ActivatedRoute,private jeuService:JeuService,private niveauService:NiveauService) { }
 
   compte:AnimationOptions={
@@ -39,6 +40,7 @@ export class Game2Page implements OnInit {
       this.imageNiveau=this.Niveau.image
       this.descriptionNiveau=this.Niveau.description
       this.nomJeu=this.Niveau.jeu.nom
+      this.id=this.Niveau.id
       ///recuperation des niveaux
       // this.niveauService.GetNiveauPourJeu(this.Jeu.id).subscribe(res=>{
       //   console.log(res)

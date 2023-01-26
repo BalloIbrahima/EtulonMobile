@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
+import { ScoreService } from '../services/score/score.service';
 import { TokenService } from '../services/token/token.service';
 
 @Component({
@@ -30,12 +31,13 @@ export class GameFinishPage implements OnInit {
   score:any=0
 
   isLiked:Boolean=false
-  constructor(private router:Router,private modalCtrl: ModalController,private tokenService:TokenService) { }
+  constructor(private router:Router,private modalCtrl: ModalController,private tokenService:TokenService,private scoreService:ScoreService) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
     this.PointValue=(this.data.point/(this.data.TotalPoint+1))
-
+    console.log(this.citoyen)
+    console.log(this.data)
     var sc=this.data.point/100
     this.score= Math.round(sc * 100) / 100
   }
@@ -69,7 +71,7 @@ export class GameFinishPage implements OnInit {
   }
 
   close(message:any) {
-    var score={
+    var score=[{
       'score':this.score,
       'duree':this.data.duree,
       'isLiked':this.isLiked,
@@ -80,7 +82,12 @@ export class GameFinishPage implements OnInit {
         'id':this.citoyen.id,
       }
 
-    }
+    }]
+
+    console.log(score)
+    this.scoreService.Add(score).subscribe(res=>{
+      console.log(res)
+    })
     return this.modalCtrl.dismiss(null, message);
   }
 
