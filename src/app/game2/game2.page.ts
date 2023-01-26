@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AnimationOptions } from 'ngx-lottie';
+import { JeuService } from '../services/jeux/jeu.service';
+import { NiveauService } from '../services/niveau/niveau.service';
 
 @Component({
   selector: 'app-game2',
@@ -9,7 +11,15 @@ import { AnimationOptions } from 'ngx-lottie';
 })
 export class Game2Page implements OnInit {
 
-  constructor(private router:Router) { }
+
+  idNiveau:any
+  Niveau:any
+  imageNiveau:any=''
+  libelleNiveau:any=''
+  descriptionNiveau:any=''
+  nomJeu:any=''
+
+  constructor(private router:Router, private route:ActivatedRoute,private jeuService:JeuService,private niveauService:NiveauService) { }
 
   compte:AnimationOptions={
     path:'assets/json/Comp 2.json'
@@ -20,6 +30,21 @@ export class Game2Page implements OnInit {
   compteNumber=3
 
   ngOnInit() {
+    this.idNiveau=this.route.snapshot.params['id']
+
+    this.niveauService.getNiveauById(this.idNiveau).subscribe(retour=>{
+      console.log(retour)
+      this.Niveau=retour.data
+      this.libelleNiveau=this.Niveau.libelle
+      this.imageNiveau=this.Niveau.image
+      this.descriptionNiveau=this.Niveau.description
+      this.nomJeu=this.Niveau.jeu.nom
+      ///recuperation des niveaux
+      // this.niveauService.GetNiveauPourJeu(this.Jeu.id).subscribe(res=>{
+      //   console.log(res)
+      //   this.ListNiveau=res.data
+      // })
+    })
   }
 
    //

@@ -11,12 +11,11 @@
 
   <div class="containt">
     <div class="first">
-      <img src="assets/images/moi.jpg" alt="">
+      <img src="{{imageJeu}}" alt="">
 
       <div class="desc">
         <label for="" id="descJeu">
-          lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululorem i
-          ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululor
+          {{descriptionJeu}}
         </label>
       </div>
     </div>
@@ -24,15 +23,16 @@
     <div class="secaind">
       <label for="">Liste des niveaux</label>
 
+       <!--[routerLink]="['/game1',jeu.id]"-->
       <div class="listNiveau">
-        <div class="niveau" (click)="goToNextPage()">
+        <div class="niveau" [routerLink]="['/game2',level.id]"   *ngFor="let level of ListNiveau">
           <img src="assets/images/moi.jpg" alt="">
           <div class="descniveau">
             <div></div>
             <label for="" id="text">
-              lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem
+              {{level.description}}
             </label>
-            <label for="" id="libelleNiveau">Niveau 1</label>
+            <label for="" id="libelleNiveau">{{level.libelle}}</label>
           </div>
         </div>
 

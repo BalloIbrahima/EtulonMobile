@@ -23,4 +23,9 @@ export class NiveauService {
 
     return this.http.get(`${this.env.api}/jeu/getNiveaux/${idJeu}`,this.httpOptions);
   }
+
+  getNiveauById(id:any):Observable<any>{
+    return this.http.get(`${this.env.api}/niveau/get/${id}`,this.httpOptions);
+
+  }
 }

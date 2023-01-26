@@ -12,6 +12,8 @@ export class Game1Page implements OnInit {
 
   idJeu:any
   Jeu:any
+  imageJeu:any=''
+  descriptionJeu:any=''
   ListNiveau:any=[]
   constructor(private router:Router, private route:ActivatedRoute,private jeuService:JeuService,private niveauService:NiveauService) { }
 
@@ -21,7 +23,8 @@ export class Game1Page implements OnInit {
     this.jeuService.GetJeu(this.idJeu).subscribe(retour=>{
       console.log(retour)
       this.Jeu=retour.data
-
+      this.imageJeu=this.Jeu.image
+      this.descriptionJeu=this.Jeu.description
       ///recuperation des niveaux
       this.niveauService.GetNiveauPourJeu(this.Jeu.id).subscribe(res=>{
         console.log(res)
