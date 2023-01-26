@@ -287,9 +287,12 @@
 }
 
 #NomJeu{
-  font-size: 7vw;
+  font-size: 6vw;
+  text-align: center;
   display: flex;
+  text-overflow: ellipsis;
   justify-content: center;
+  line-break: anywhere;
 }
 
 .play{

@@ -15,6 +15,9 @@ export class AcceuilPage implements OnInit {
   citoyen:any
 
   listGame:any=[]
+
+  listLike:any=[]
+  listPlay:any=[]
   constructor(private router:Router,private problematiqueService:ProblematiqueService,
     private tokenService:TokenService, private jeuService:JeuService) { }
 
@@ -23,6 +26,9 @@ export class AcceuilPage implements OnInit {
 
     ///
     this.chargeGames(null)
+    setTimeout(() => {
+      this.getNbre()
+    }, 1000);
     //
     this.problematiqueService.getAll().subscribe(res=>{
       this.problematiques=res.data;
@@ -46,7 +52,9 @@ export class AcceuilPage implements OnInit {
 
       this.problematiques.forEach((element: { libelle: any; id: number; }) => {
         if(element.libelle==libelle){
+
           id=element.id
+          console.log(id)
         }
 
       });
@@ -62,21 +70,68 @@ export class AcceuilPage implements OnInit {
   }
 
 
-  chargeGames(id:any){{
+  chargeGames(id:any){
     if(id==null){
 
       this.jeuService.GetAll().subscribe(res=>{
         console.log(res)
         this.listGame=res.data
+        //this.getNbre()
       })
 
     }else{
       this.jeuService.GetByProb(id).subscribe(res=>{
+        console.log(res)
         this.listGame=res.data
+        //this.getNbre()
       })
     }
-  }
 
   }
+
+
+  getNbre(){
+    this.listGame.forEach((element: { id: any; }) => {
+
+      this.jeuService.GetNombreDeLike(element.id).subscribe(res=>{
+        console.log(res.data)
+        this.listLike.push({
+          id:element.id,
+          nombre:res.data
+        })
+      })
+
+      this.jeuService.GetNombreFoisJoue(element.id).subscribe(res=>{
+        console.log(res.data)
+        this.listPlay.push({
+          id:element.id,
+          nombre:res.data
+        })
+      })
+    })
+  }
+
+  getNbreFoisJoue(id:any){
+    var nbre=30
+    this.listPlay.forEach((element: { id: any; nombre: number; }) => {
+      if(element.id=id){
+        nbre=element.nombre
+      }
+    });
+
+    return nbre;
+  }
+
+  getNbreLike(id:any){
+    var nbre=30
+    this.listLike.forEach((element: { id: any; nombre: number; }) => {
+      if(element.id=id){
+        nbre=element.nombre
+      }
+    });
+
+    return nbre;
+  }
+
 
 }

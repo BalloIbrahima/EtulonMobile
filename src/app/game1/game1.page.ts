@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JeuService } from '../services/jeux/jeu.service';
+import { NiveauService } from '../services/niveau/niveau.service';
 
 @Component({
   selector: 'app-game1',
@@ -8,9 +10,26 @@ import { Router } from '@angular/router';
 })
 export class Game1Page implements OnInit {
 
-  constructor(private router:Router) { }
+  idJeu:any
+  Jeu:any
+  ListNiveau:any=[]
+  constructor(private router:Router, private route:ActivatedRoute,private jeuService:JeuService,private niveauService:NiveauService) { }
 
   ngOnInit() {
+    this.idJeu=this.route.snapshot.params['id']
+
+    this.jeuService.GetJeu(this.idJeu).subscribe(retour=>{
+      console.log(retour)
+      this.Jeu=retour.data
+
+      ///recuperation des niveaux
+      this.niveauService.GetNiveauPourJeu(this.Jeu.id).subscribe(res=>{
+        console.log(res)
+        this.ListNiveau=res.data
+      })
+    })
+
+
   }
 
 

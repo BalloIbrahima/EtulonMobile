@@ -31,7 +31,7 @@ const routes: Routes = [
     loadChildren: () => import('./notification/notification.module').then( m => m.NotificationPageModule)
   },
   {
-    path: 'game1',
+    path: 'game1/:id',
     loadChildren: () => import('./game1/game1.module').then( m => m.Game1PageModule)
   },
   {

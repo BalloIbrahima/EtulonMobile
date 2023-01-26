@@ -118,26 +118,26 @@
         </div>
 
         <div class="listjeux">
-          <div class="jeu" *ngFor="let jeu of listGame">
+          <div class="jeu" *ngFor="let jeu of listGame" [routerLink]="['/game1',jeu.id]"  >
             <div>
             </div>
 
             <div class="secaind">
-              <img src="assets/images/moi.jpg" alt="">
+              <img src="{{jeu.image}}" alt="">
 
               <div class="infos">
                 <div>
                   <label for="" id="NomJeu">
-                    NomJeux
+                    {{jeu.nom}}
                   </label>
                   <div id="likePlay">
                     <button class="liked">
-                      2500
+                      {{getNbreLike(jeu.id)}}
                       <i class="fa-solid fa-thumbs-up"></i>
                     </button>
 
                     <button class="played">
-                      500
+                      {{getNbreFoisJoue(jeu.id)}}
                       <i class="fa-sharp fa-solid fa-circle-play"></i>
                     </button>
                   </div>

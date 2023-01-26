@@ -26,10 +26,23 @@ export class JeuService {
     // data.append('client', JSON.stringify(client).slice(1,JSON.stringify(client).lastIndexOf(']')));
   }
 
+  GetJeu(id: any) :Observable<any>{
+
+    return this.http.get(`${this.env.api}/jeu/get/${id}`,this.httpOptions);
+  }
+
   GetAll() :Observable<any>{
-        console.log(this.httpOptions)
+    console.log(this.httpOptions)
 
     return this.http.get(`${this.env.api}/jeu/getall`,this.httpOptions);
+  }
+
+  GetNombreDeLike(id:any):Observable<any>{
+    return this.http.get(`${this.env.api}/jeu/getNbreLike/${id}`,this.httpOptions);
+  }
+
+  GetNombreFoisJoue(id:any):Observable<any>{
+    return this.http.get(`${this.env.api}/jeu/getNbreFois/${id}`,this.httpOptions);
   }
 
 }
