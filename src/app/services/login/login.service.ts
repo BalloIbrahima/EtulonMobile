@@ -47,4 +47,10 @@ export class LoginService {
     const user={"password": password,"username": username}
     return this.http.post(`${this.env.api}/user/login`,user,this.httpOptions);
   }
+
+  refreshToken(token: string) {
+    return this.http.post(`${this.env.api}/user/refreshtoken`,{
+      refreshToken: token
+    }, this.httpOptions);
+  }
 }

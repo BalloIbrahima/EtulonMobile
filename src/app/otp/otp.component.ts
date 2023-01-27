@@ -73,6 +73,7 @@ export class OtpComponent implements OnInit {
               this.loginService.login(res2.username,res2.id).subscribe(retour=>{
                 console.log(retour)
                 this.tokenStorage.saveToken(retour.token);
+                this.tokenStorage.saveRefreshToken(retour.refreshToken)
                 this.tokenStorage.saveUser(retour);
                 this.router.navigate(['../tabs'])
 

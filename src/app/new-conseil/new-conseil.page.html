@@ -3,7 +3,7 @@
     <ion-title>
       <ion-list>
         <ion-item>
-          <ion-select placeholder="Choisir une problematique" interface="action-sheet" mode="ios" cancelText="Annuler" >
+          <ion-select placeholder="Choisir une problematique" interface="action-sheet" mode="ios" (ionChange)="changeProblematique($event)" cancelText="Annuler" >
             <ion-select-option value="apples">Mali</ion-select-option>
             <ion-select-option value="oranges">Senegal</ion-select-option>
             <ion-select-option value="bananas">Guinnee</ion-select-option>

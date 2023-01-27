@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataTranfererService } from 'src/app/services/dataTranferer/data-tranferer.service';
+import { NewConseilPage } from '../new-conseil.page';
 
 @Component({
   selector: 'app-text',
@@ -12,7 +14,11 @@ export class TextPage implements OnInit {
 
   length:any=150
 
-  constructor() { }
+  constructor(private newConseil: NewConseilPage,private dataTransferService:DataTranfererService) {
+    this.dataTransferService.getObservable().subscribe(res=>{
+      console.log(res)
+    })
+  }
 
   ngOnInit() {
     this.write()
@@ -26,8 +32,13 @@ export class TextPage implements OnInit {
   //publication
   Publie(){
 
+    var problematique=JSON.parse(localStorage.getItem('problematiquechose')!) || []
+
+    console.log(problematique)
+
     var conseil=[{
-      'contenu':this.description
+      'contenu':this.description,
+      'color':this.colorChosed
     }]
 
   }

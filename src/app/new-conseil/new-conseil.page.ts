@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActionSheetController } from '@ionic/angular';
+import { Subject } from 'rxjs';
 import { CameraService } from '../services/camera/camera.service';
+import { DataTranfererService } from '../services/dataTranferer/data-tranferer.service';
+import { ProblematiqueService } from '../services/problematique/problematique.service';
 
 @Component({
   selector: 'app-new-conseil',
@@ -9,9 +12,25 @@ import { CameraService } from '../services/camera/camera.service';
 })
 export class NewConseilPage implements OnInit {
 
-  constructor(private actionSheetCtrl:ActionSheetController, private photoService:CameraService) { }
+  private fooSubject = new Subject<any>();
 
+  problematiques:any=[]
+  constructor(private actionSheetCtrl:ActionSheetController, private photoService:CameraService,private problematiqueService:ProblematiqueService, private dataTransferService:DataTranfererService) { }
+
+  problematiquechose:any
   ngOnInit() {
+    this.getProblematiques()
+  }
+
+  changeProblematique(e:any){
+    this.problematiquechose=e.detail.value
+    console.log(this.problematiquechose)
+
+    var data= {
+      'id':'sdfdfdf'
+    }
+
+    localStorage.setItem('problematiquechose',JSON.stringify(data))
   }
 
 
@@ -41,4 +60,12 @@ export class NewConseilPage implements OnInit {
   }
 
   //getAll problrmatique
+  getProblematiques(){
+    this.problematiqueService.getAll().subscribe(res=>{
+      this.problematiques=res.data;
+      console.log(this.problematiques)
+    },error=>{
+      console.log(error)
+    })
+  }
 }

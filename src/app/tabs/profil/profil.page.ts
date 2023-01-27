@@ -39,6 +39,6 @@ export class ProfilPage implements OnInit {
     localStorage.clear()
     this.tokenService.signOut()
     this.sbJoueurService.Deconnecter().subscribe(res=>{},error => {});
-    this.router.navigate(['/home1'])
+    this.router.navigate(['/inscription'])
   }
 }
