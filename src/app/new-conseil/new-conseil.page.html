@@ -4,9 +4,8 @@
       <ion-list>
         <ion-item>
           <ion-select placeholder="Choisir une problematique" interface="action-sheet" mode="ios" (ionChange)="changeProblematique($event)" cancelText="Annuler" >
-            <ion-select-option value="apples">Mali</ion-select-option>
-            <ion-select-option value="oranges">Senegal</ion-select-option>
-            <ion-select-option value="bananas">Guinnee</ion-select-option>
+            <ion-select-option *ngFor="let item of problematiques" [value]="item.id">{{item.libelle}}</ion-select-option>
+
           </ion-select>
         </ion-item>
       </ion-list>
