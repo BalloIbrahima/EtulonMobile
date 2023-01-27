@@ -7,18 +7,18 @@
 <ion-content>
   <div class="containt">
 
-    <div class="first">
+    <form class="first">
 
-      <label for="" style="font-size: 6vw;">Contenu ...</label>
+      <label for="" style="font-size: 6vw;">Contenu ...  <span>{{length}}</span></label>
 
       <div class="bdyDesc">
-        <textarea [ngStyle]="{'background-color':colorChosed}" name="description" [(ngModel)]="description" id="" cols="30" rows="10"></textarea>
+        <textarea maxlength="150" [ngStyle]="{'background-color':colorChosed}" name="description" [(ngModel)]="description" id="" cols="30" rows="10" ></textarea>
       </div>
 
       <ion-button type="submit" [ngStyle]="{'--background':colorChosed}"  class="continues"   (click)="Publie()">Commencer</ion-button>
 
 
-    </div>
+    </form>
 
     <div class="secaind">
       <div class="listColor">

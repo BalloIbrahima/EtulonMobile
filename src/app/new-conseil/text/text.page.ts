@@ -7,11 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TextPage implements OnInit {
 
-  description:any;
+  description:any='';
   colorChosed:any='#008000'
+
+  length:any=150
+
   constructor() { }
 
   ngOnInit() {
+    this.write()
   }
 
   //changement de couleur
@@ -22,6 +26,19 @@ export class TextPage implements OnInit {
   //publication
   Publie(){
 
+    var conseil=[{
+      'contenu':this.description
+    }]
+
+  }
+
+  write(){
+    this.length=150-this.description.length
+    //console.log(this.length)
+
+    setTimeout(() => {
+      this.write()
+    }, 1000);
   }
 
   ///la liste des couleur disponible

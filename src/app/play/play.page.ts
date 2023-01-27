@@ -116,6 +116,8 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
     this.duree+=this.counter
     this.TotalPoint+=this.quizList[this.currentQuiz].point
 
+
+
     if(reponse.isOk==true){
       var pt=(1-this.quizValue)*this.quizList[this.currentQuiz].point
       this.Pointgagne=Math.round(pt * 100) / 100
@@ -135,6 +137,8 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   }
 
   nextQuestion(){
+
+    this.CadresCouleurs=this.randomize(this.CadresCouleurs);
     //this.compte(this.quizList[this.currentQuiz].timer)
     if(this.currentQuiz+1==this.quizList.length){
       this.counter=null
@@ -362,4 +366,34 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   changeColor(){
     this.borderColor=this.mesCouleurs[this.randomIntFromInterval(0,5)].couleur
   }
+
+  //changement couleur des cadres de reponse l;ors du jeu
+  randomize(tab:any) {
+    var i, j, tmp;
+    for (i = tab.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        tmp = tab[i];
+        tab[i] = tab[j];
+        tab[j] = tmp;
+    }
+    return tab;
+  }
+
+  //couleurspour les cadres seulement
+  ///la liste des couleur disponible
+  CadresCouleurs=[
+    {
+      'couleur':'#008000'
+    },
+    {
+      'couleur':'#F75555'
+    }
+    ,
+    {
+      'couleur':'#FF981F'
+    },
+    {
+      'couleur':'#3779FF'
+    }
+  ]
 }

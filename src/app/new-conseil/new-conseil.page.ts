@@ -39,4 +39,6 @@ export class NewConseilPage implements OnInit {
     });
     await actionSheet.present();
   }
+
+  //getAll problrmatique
 }
