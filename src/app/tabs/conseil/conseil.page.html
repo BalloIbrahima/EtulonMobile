@@ -46,13 +46,15 @@
 
     <div class="listConseils">
 
-      <div class="conseil">
+      <div class="conseil" *ngFor="let conseil of conseils">
           <div class="tete">
-            <div id="circle" [ngStyle]="{'background-color':'green'}"></div>
+            <div id="circle" [ngStyle]="{'background-color':conseil.problematique.couleur}"></div>
             <label for="">Entrepreneuriat</label>
           </div>
 
-          <div class="tronc" [ngStyle]="{'background-color':'green'}">
+          <div class="tronc" [ngStyle]="{'background-color':conseil.color,'display':'flex'}">
+
+            <label for="" id="contenuLabel">{{conseil.contenu}}</label>
 
           </div>
 
@@ -63,15 +65,15 @@
               </div>
 
               <div class="infosProfil">
-                <label for="" id="nomComplet">Ballo Ibrahima</label>
-                <label for="" id="username">@lloba</label>
+                <label for="" id="nomComplet">{{conseil.user.nom}}</label>
+                <label for="" id="username">@{{conseil.user.username}}</label>
               </div>
             </div>
 
             <div class="likePart">
               <div class="bdy">
                 <i class="fa-solid fa-thumbs-up"></i>
-                <label for="">1000</label>
+                <label for="">{{conseil.nbreLike}}</label>
               </div>
 
             </div>

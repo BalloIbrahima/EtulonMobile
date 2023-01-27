@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ConseilService } from 'src/app/services/conseil/conseil.service';
 import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
@@ -9,16 +10,31 @@ import { TokenService } from 'src/app/services/token/token.service';
 })
 export class ConseilPage implements OnInit {
   citoyen:any
-  constructor(private router:Router,private tokenService:TokenService) { }
+  conseils:any=[]
+  constructor(private router:Router,private tokenService:TokenService, private conseilService:ConseilService) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
-
+    this.GetConseilsParInrterets()
   }
 
   Addconseil(){
     console.log('dddd')
     this.router.navigate(['/new-conseil'])
+  }
+
+
+  GetConseilsAll(){
+    this.conseilService.getAll().subscribe(res=>{
+      this.conseils=res.data
+    })
+  }
+
+  GetConseilsParInrterets(){
+    this.conseilService.GetParInteret(this.citoyen.id).subscribe(res=>{
+      console.log(res)
+      this.conseils=res.data
+    })
   }
 
 }

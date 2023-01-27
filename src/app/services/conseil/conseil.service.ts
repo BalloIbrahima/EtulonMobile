@@ -25,4 +25,11 @@ export class ConseilService {
     //const data=JSON.stringify(conseil).slice(1,JSON.stringify(conseil).lastIndexOf(']'))
     return this.http.get(`${this.env.api}/conseil/getall`, this.httpOptions);
   }
+
+  GetParInteret(idUser:any):Observable<any>{
+    //const data=JSON.stringify(conseil).slice(1,JSON.stringify(conseil).lastIndexOf(']'))
+    return this.http.get(`${this.env.api}/conseil/getbyinterets/${idUser}`, this.httpOptions);
+  }
+
+
 }
