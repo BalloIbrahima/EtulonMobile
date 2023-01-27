@@ -35,7 +35,7 @@
 
         <div class="nbreContenu">
 
-          <label for="" id="textConseil" >20 conseils</label>
+          <label for="" id="textConseil" >{{nombreComseil}} conseils</label>
 
         </div>
         <div></div>
@@ -71,7 +71,7 @@
             </div>
 
             <div class="likePart">
-              <div class="bdy">
+              <div class="bdy" (click)="like()">
                 <i class="fa-solid fa-thumbs-up"></i>
                 <label for="">{{conseil.nbreLike}}</label>
               </div>
@@ -178,3 +178,4 @@
     </div>
   </div>
 </ion-content>
+

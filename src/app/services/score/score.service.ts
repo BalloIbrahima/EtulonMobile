@@ -21,4 +21,12 @@ export class ScoreService {
     return this.http.post(`${this.env.api}/score/add`,data, this.httpOptions);
   }
 
+  getUserScore(id:any):Observable<any>{
+    return this.http.get(`${this.env.api}/score/getscore/${id}`,this.httpOptions);
+  }
+
+
+  getUserTime(id:any):Observable<any>{
+    return this.http.get(`${this.env.api}/score/getminute/${id}`,this.httpOptions);
+  }
 }

@@ -31,5 +31,16 @@ export class ConseilService {
     return this.http.get(`${this.env.api}/conseil/getbyinterets/${idUser}`, this.httpOptions);
   }
 
+  GetConseilForUser(idUser:any):Observable<any>{
+    //const data=JSON.stringify(conseil).slice(1,JSON.stringify(conseil).lastIndexOf(']'))
+    return this.http.get(`${this.env.api}/conseil/getAllConseil/${idUser}`, this.httpOptions);
+  }
+
+
+  GetNombreConseilForUser(idUser:any):Observable<any>{
+    //const data=JSON.stringify(conseil).slice(1,JSON.stringify(conseil).lastIndexOf(']'))
+    return this.http.get(`${this.env.api}/conseil/getnombre/${idUser}`, this.httpOptions);
+  }
+
 
 }

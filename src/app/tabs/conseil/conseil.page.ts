@@ -11,11 +11,18 @@ import { TokenService } from 'src/app/services/token/token.service';
 export class ConseilPage implements OnInit {
   citoyen:any
   conseils:any=[]
+
+  nombreComseil:any=0
   constructor(private router:Router,private tokenService:TokenService, private conseilService:ConseilService) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
     this.GetConseilsParInrterets()
+    this.GetNombreConseil()
+  }
+
+  like(){
+
   }
 
   Addconseil(){
@@ -34,6 +41,12 @@ export class ConseilPage implements OnInit {
     this.conseilService.GetParInteret(this.citoyen.id).subscribe(res=>{
       console.log(res)
       this.conseils=res.data
+    })
+  }
+
+  GetNombreConseil(){
+    this.conseilService.GetNombreConseilForUser(this.citoyen.id).subscribe(res=>{
+      this.nombreComseil=res.data
     })
   }
 
