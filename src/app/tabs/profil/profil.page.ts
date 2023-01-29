@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConseilService } from 'src/app/services/conseil/conseil.service';
+import { JeuService } from 'src/app/services/jeux/jeu.service';
 import { SpringJoueurService } from 'src/app/services/joueur/spring-joueur.service';
 import { ScoreService } from 'src/app/services/score/score.service';
 import { TokenService } from 'src/app/services/token/token.service';
@@ -14,7 +15,8 @@ export class ProfilPage implements OnInit {
   nombreComseil: any=0;
   score: any=0;
   time: any=0;
-  constructor(private router:Router,private tokenService:TokenService,private sbJoueurService:SpringJoueurService,private conseilService:ConseilService,private scoreService:ScoreService) { }
+  nbreFoiJoue: any=0;
+  constructor(private router:Router,private tokenService:TokenService,private sbJoueurService:SpringJoueurService,private conseilService:ConseilService,private scoreService:ScoreService,private jeuService:JeuService) { }
 
 
   citoyen:any
@@ -23,6 +25,8 @@ export class ProfilPage implements OnInit {
     this.GetScore()
     this.GetTime()
     this.GetNombreConseil()
+
+    this.GetNombreJeuJoue()
 
   }
 
@@ -62,6 +66,15 @@ export class ProfilPage implements OnInit {
 
     })
   }
+
+  GetNombreJeuJoue(){
+    this.jeuService.GetNombreJeuJoue(this.citoyen.id).subscribe(res=>{
+      this.nbreFoiJoue=res.data
+
+
+    })
+  }
+
 
   logout(){
     localStorage.clear()

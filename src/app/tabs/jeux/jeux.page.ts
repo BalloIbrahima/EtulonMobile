@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JeuService } from 'src/app/services/jeux/jeu.service';
 import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
@@ -11,6 +12,7 @@ export class JeuxPage implements OnInit {
 
   citoyen:any
 
+  nbreFoiJoue:any=0
   options={
     slidesPerView:1,   // NOMBRE DE SLIDE PAR PAGE = 1
     centeredSlider:true,
@@ -18,11 +20,20 @@ export class JeuxPage implements OnInit {
     spaceBetween:1,
     autoplay:true
   }
-  constructor(private router:Router,private tokenService:TokenService) { }
+  constructor(private router:Router,private tokenService:TokenService,private jeuService:JeuService) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
+    this.GetNombreJeuJoue()
 
+  }
+
+  GetNombreJeuJoue(){
+    this.jeuService.GetNombreJeuJoue(this.citoyen.id).subscribe(res=>{
+      this.nbreFoiJoue=res.data
+
+
+    })
   }
 
 
@@ -31,4 +42,5 @@ export class JeuxPage implements OnInit {
     //console.log('dfgh')
     this.router.navigate(['../game1'])
   }
+
 }

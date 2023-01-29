@@ -45,4 +45,11 @@ export class JeuService {
     return this.http.get(`${this.env.api}/jeu/getNbreFois/${id}`,this.httpOptions);
   }
 
+  GetNombreJeuJoue(idUser:any):Observable<any>{
+    return this.http.get(`${this.env.api}/jeu/getNbreJeu/${idUser}`,this.httpOptions);
+  }
+
+
+
+
 }
