@@ -35,6 +35,7 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
   is2=false
   //
 
+  Niveau:any;
   idNiveau:any
 
   TotalPoint:any=0;
@@ -83,6 +84,8 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
     this.counter=0
     this.Pointgagne=0
 
+    //changement des couleurs des choices
+    this.CadresCouleurs=this.randomize(this.CadresCouleurs);
 
 
     this.getNiveau()
@@ -138,7 +141,6 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
 
   nextQuestion(){
 
-    this.CadresCouleurs=this.randomize(this.CadresCouleurs);
     //this.compte(this.quizList[this.currentQuiz].timer)
     if(this.currentQuiz+1==this.quizList.length){
       this.counter=null
@@ -163,6 +165,14 @@ export class PlayPage implements OnInit,ViewWillEnter,ViewWillLeave,ViewDidLeave
       console.log(res.questions);
       this.quizList=res.questions
     })
+
+    // this.niveauService.getNiveauById(this.idNiveau).subscribe(retour=>{
+    //   console.log(retour)
+    //   this.Niveau=retour.data
+
+    //   this.quizList=this.Niveau.questions
+
+    // })
   }
 
 

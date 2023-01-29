@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ViewDidEnter, ViewWillEnter } from '@ionic/angular';
 import { EventBusService } from '../Helpers/EventBusService';
 import { EventData } from '../Helpers/EventData';
 import { CameraService } from '../services/camera/camera.service';
@@ -12,7 +12,7 @@ import { ProblematiqueService } from '../services/problematique/problematique.se
   templateUrl: 'tabs.page.html',
   styleUrls: ['tabs.page.scss']
 })
-export class TabsPage implements OnInit {
+export class TabsPage implements OnInit,ViewWillEnter,ViewDidEnter {
 
   constructor(private eventBusService: EventBusService,private actionSheetCtrl:ActionSheetController, private photoService:CameraService,private problematiqueService:ProblematiqueService, private dataTransferService:DataTranfererService, private jeuService:JeuService) { }
   ngOnInit(): void {
@@ -27,6 +27,14 @@ export class TabsPage implements OnInit {
           this.eventBusService.emit(new EventData('logout', null));
       }
     );
+  }
+
+  ionViewDidEnter(): void {
+    this.ngOnInit()
+  }
+
+  ionViewWillEnter(): void {
+    this.ngOnInit()
   }
 
 

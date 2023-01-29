@@ -8,8 +8,8 @@
   <div class="containt">
 
     <ion-list>
-      <ion-item *ngFor="let audio of audios" (click)="PlayFile(audio)">
-        {{audio}}
+      <ion-item *ngFor="let audio of audios" (click)="PlayFile(audio.name)">
+        {{audio.name}}
       </ion-item>
     </ion-list>
 
@@ -23,7 +23,7 @@
         Cliquez sur le bouton pour stoper l'enregistrement.
       </label>
 
-      <div class="iconSaver " #recordbtn >
+      <div class="iconSaver " #recordbtn (click)="StopRecord()" >
         <i class="fa-sharp fa-solid fa-microphone"></i>
       </div>
 

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angula
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { GestureController } from '@ionic/angular';
-import { RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
+import { GenericResponse, RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
 import { read } from 'fs';
 
 @Component({
@@ -20,31 +20,36 @@ export class VocalPage implements OnInit, AfterViewInit{
   recording=false;
   @ViewChild('recordbtn',{ read:ElementRef}) recordbtn:ElementRef
 
-  constructor(private gestureCtrl:GestureController) { }
+  constructor(private gestureCtrl:GestureController  ) { }
 
   ngOnInit() {
+    VoiceRecorder.canDeviceVoiceRecord().then((result: GenericResponse) => console.log(result.value))
+
     this.loadFile();
     //demande dautorisation
-    VoiceRecorder.requestAudioRecordingPermission()
+    VoiceRecorder.requestAudioRecordingPermission().then((result: GenericResponse) => console.log(result.value))
+    VoiceRecorder.hasAudioRecordingPermission().then((result: GenericResponse) => console.log(result.value))
+
+    //VoiceRecorder.requestAudioRecordingPermission()
   }
 
   ngAfterViewInit(): void {
-    const longPress=this.gestureCtrl.create({
-      el:this.recordbtn.nativeElement,
-      threshold:0,
-      gestureName:'long-press',
-      onStart: ev=>{
-        Haptics.impact({style:ImpactStyle.Light})
-        this.Record();
-        this.CalculDuree();
-      },
-      onEnd: ev=>{
-        this.StopRecord();
-        Haptics.impact({style:ImpactStyle.Light})
-      }
-    },true)
+    // const longPress=this.gestureCtrl.create({
+    //   el:this.recordbtn.nativeElement,
+    //   threshold:0,
+    //   gestureName:'long-press',
+    //   onStart: ev=>{
+    //     Haptics.impact({style:ImpactStyle.Light})
+    //     this.Record();
+    //     this.CalculDuree();
+    //   },
+    //   onEnd: ev=>{
+    //     this.StopRecord();
+    //     Haptics.impact({style:ImpactStyle.Light})
+    //   }
+    // },true)
 
-    longPress.enable();
+    // longPress.enable();
   }
 
 
@@ -58,37 +63,43 @@ export class VocalPage implements OnInit, AfterViewInit{
     //
     this.recording=true
     VoiceRecorder.startRecording()
+    .then((result: GenericResponse) => console.log(result.value))
+    .catch(error => console.log(error))
+
+   //VoiceRecorder.startRecording()
 
   }
 
   ///stop de l'enregistrement
   StopRecord() {
     if(!this.recording){
-      return
+      this.Record()
+    }else{
+      VoiceRecorder.stopRecording().then(async (result:RecordingData) =>{
+        //change btn style
+        var btn= <HTMLDivElement>document.querySelector('.iconSaver')
+        btn.classList.add('recording')
+        //
+        this.recording=false
+        if(result.value && result.value.recordDataBase64){
+          const recordData=result.value.recordDataBase64;
+
+          const fileName='audio'+'.wav';
+
+          await Filesystem.writeFile({
+            path:fileName,
+            directory:Directory.Data,
+            data:recordData
+
+          })
+
+          this.loadFile()
+        }
+
+      })
     }
 
-    VoiceRecorder.stopRecording().then(async (result:RecordingData) =>{
-      //change btn style
-      var btn= <HTMLDivElement>document.querySelector('.iconSaver')
-      btn.classList.add('recording')
-      //
-      this.recording=false
-      if(result.value && result.value.recordDataBase64){
-        const recordData=result.value.recordDataBase64;
 
-        const fileName='audio'+'.wav';
-
-        await Filesystem.writeFile({
-          path:fileName,
-          directory:Directory.Data,
-          data:recordData
-
-        })
-
-        this.loadFile()
-      }
-
-    })
   }
 
 
@@ -114,6 +125,7 @@ export class VocalPage implements OnInit, AfterViewInit{
   //lecture du fichier enregistre
   async PlayFile(fileName:any) {
 
+    console.log(fileName)
     const audioFile=await Filesystem.readFile({
       path:fileName,
       directory:Directory.Data
@@ -132,6 +144,7 @@ export class VocalPage implements OnInit, AfterViewInit{
       path:'',
       directory:Directory.Data
     }).then(result =>{
+      console.log(result.files)
       this.audios=result.files;
     })
   }

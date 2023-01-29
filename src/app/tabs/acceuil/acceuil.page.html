@@ -44,23 +44,23 @@
 
             <div class="listNews">
 
-              <div class="new">
-                <img src="assets/images/moi.jpg" alt="">
+              <div class="new" *ngFor="let last of lastGames">
+                <img src="{{last.image}}" alt="">
                 <div class="desc">
-                  <label for="" id="titleJeu">Game Nom</label>
+                  <label for="" id="titleJeu">{{last.nom}}</label>
                   <label for="" id="descJeu">
-                    lorem ipsu lorem ipsu lorem ipsulorem ipsulorem ipsulorem ipsulorem ipsulorem ipsululorem i
+                    {{ last.description | slice:0:70 }}...
 
                   </label>
 
                   <div id="likePlay">
                     <button class="liked">
-                      2500
+                      {{getNbreLike(last.id)}}
                       <i class="fa-solid fa-thumbs-up"></i>
                     </button>
 
                     <button class="played">
-                      500
+                      {{getNbreFoisJoue(last.id)}}
                       <i class="fa-sharp fa-solid fa-circle-play"></i>
                     </button>
                   </div>

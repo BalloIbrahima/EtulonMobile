@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AnimationOptions } from 'ngx-lottie';
+import { NiveauService } from '../services/niveau/niveau.service';
 import { ScoreService } from '../services/score/score.service';
 import { TokenService } from '../services/token/token.service';
 
@@ -30,8 +31,9 @@ export class GameFinishPage implements OnInit {
   data:any
   score:any=0
 
+  Niveau:any
   isLiked:Boolean=false
-  constructor(private router:Router,private modalCtrl: ModalController,private tokenService:TokenService,private scoreService:ScoreService) { }
+  constructor(private router:Router,private modalCtrl: ModalController,private tokenService:TokenService,private scoreService:ScoreService,private niveauService:NiveauService) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
@@ -40,6 +42,15 @@ export class GameFinishPage implements OnInit {
     console.log(this.data)
     var sc=this.data.point/100
     this.score= Math.round(sc * 100) / 100
+
+    //recuperation du niveau
+    this.niveauService.getNiveauById(this.data.idNiveau).subscribe(retour=>{
+      console.log(retour)
+      this.Niveau=retour.data
+
+      //this.quizList=this.Niveau.questions
+
+    })
   }
 
   replay(){
@@ -67,7 +78,7 @@ export class GameFinishPage implements OnInit {
 
   finish(){
     this.close(null)
-    this.router.navigate(['/game1'])
+    this.router.navigate(['/game1',this.Niveau.jeu.id])
   }
 
   close(message:any) {

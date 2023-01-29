@@ -75,6 +75,10 @@ export class OtpComponent implements OnInit {
                 this.tokenStorage.saveToken(retour.token);
                 this.tokenStorage.saveRefreshToken(retour.refreshToken)
                 this.tokenStorage.saveUser(retour);
+
+                setTimeout(() => {
+                  this.router.navigate(['../tabs'])
+                }, 1000);
                 this.router.navigate(['../tabs'])
 
 

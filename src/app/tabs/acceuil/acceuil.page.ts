@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ViewDidEnter, ViewWillEnter } from '@ionic/angular';
 import { JeuService } from 'src/app/services/jeux/jeu.service';
 import { ProblematiqueService } from 'src/app/services/problematique/problematique.service';
 import { TokenService } from 'src/app/services/token/token.service';
@@ -9,23 +10,31 @@ import { TokenService } from 'src/app/services/token/token.service';
   templateUrl: './acceuil.page.html',
   styleUrls: ['./acceuil.page.scss'],
 })
-export class AcceuilPage implements OnInit {
+export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
 
   problematiques:any=[];
   citoyen:any
-
+  lastGames:any=[]
   listGame:any=[]
 
   listLike:any=[]
   listPlay:any=[]
   constructor(private router:Router,private problematiqueService:ProblematiqueService,
     private tokenService:TokenService, private jeuService:JeuService) { }
+  ionViewDidEnter(): void {
+    this.ngOnInit()
+  }
+
+  ionViewWillEnter(): void {
+    this.ngOnInit()
+  }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
 
     ///
     this.chargeGames(null)
+    this.get20last()
     setTimeout(() => {
       this.getNbre()
     }, 1000);
@@ -39,6 +48,8 @@ export class AcceuilPage implements OnInit {
       this.problematiques= JSON.parse(localStorage.getItem('listProblematique') || '')
     })
   }
+
+
 
   change(libelle:any){
     var div= <HTMLDivElement>document.querySelector('.'+libelle)
@@ -131,6 +142,15 @@ export class AcceuilPage implements OnInit {
     });
 
     return nbre;
+  }
+
+  //recuperation des derniers jeu
+  get20last(){
+    this.jeuService.Get20().subscribe(res=>{
+      console.log(res)
+      this.lastGames=res.data
+      //this.getNbre()
+    })
   }
 
 

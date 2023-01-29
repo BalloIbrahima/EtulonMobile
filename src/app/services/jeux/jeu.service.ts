@@ -37,6 +37,12 @@ export class JeuService {
     return this.http.get(`${this.env.api}/jeu/getall`,this.httpOptions);
   }
 
+  Get20() :Observable<any>{
+    console.log(this.httpOptions)
+
+    return this.http.get(`${this.env.api}/jeu/getlast`,this.httpOptions);
+  }
+
   GetNombreDeLike(id:any):Observable<any>{
     return this.http.get(`${this.env.api}/jeu/getNbreLike/${id}`,this.httpOptions);
   }
