@@ -45,6 +45,7 @@ export class TextPage implements OnInit {
       var conseil=[{
         'contenu':this.description,
         'color':this.colorChosed,
+        'type':'TEXT',
         'problematique':{
           'id':problematique
         },

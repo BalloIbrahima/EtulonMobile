@@ -28,12 +28,16 @@
       </div>
 
 
-      <label *ngIf="!recording" >
+      <label *ngIf="recording" >
         {{PlayDuration}}
       </label>
+      <ion-button *ngIf="!recording" type="submit"   class="continues"   (click)="Publie()">Publier</ion-button>
+
     </div>
 
+    <!--
 
+    -->
 
   </div>
 </ion-content>

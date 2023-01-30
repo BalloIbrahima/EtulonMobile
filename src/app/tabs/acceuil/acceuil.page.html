@@ -128,7 +128,7 @@
               <div class="infos">
                 <div>
                   <label for="" id="NomJeu">
-                    {{jeu.nom}}
+                    {{jeu.nom| slice:0:18 }}...
                   </label>
                   <div id="likePlay">
                     <button class="liked">

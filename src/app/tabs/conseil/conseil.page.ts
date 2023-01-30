@@ -50,4 +50,44 @@ export class ConseilPage implements OnInit {
     })
   }
 
+
+
+  mesCouleurs=[
+    {
+      'couleur':'#008000'
+    },
+    {
+      'couleur':'#3779FF'
+    },
+    {
+      'couleur':'#BB7676'
+    },
+    {
+      'couleur':'#FF981F'
+    },
+    {
+      'couleur':'#F75555'
+    },
+    {
+      'couleur':'#000000'
+    }
+  ]
+
+  randomize(tab:any) {
+    var i, j, tmp;
+    for (i = tab.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        tmp = tab[i];
+        tab[i] = tab[j];
+        tab[j] = tmp;
+    }
+    return tab;
+  }
+
+  getRandomArbitrary(min:number, max:number):number {
+    console.log(Math.round(Math.random() * (max - min) + min))
+    var number=Math.round(Math.random() * (max - min) + min)
+    return number;
+  }
+
 }

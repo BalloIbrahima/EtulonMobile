@@ -46,19 +46,42 @@
 
     <div class="listConseils">
 
-      <div class="conseil" *ngFor="let conseil of conseils">
+      <div class="conseil" *ngFor="let conseil of conseils" >
           <div class="tete">
             <div id="circle" [ngStyle]="{'background-color':conseil.problematique.couleur}"></div>
             <label for="">Entrepreneuriat</label>
           </div>
 
-          <div class="tronc" [ngStyle]="{'background-color':conseil.color,'display':'flex'}">
+           <!--pour text-->
+          <div class="tronc" [ngStyle]="{'background-color':conseil.color,'display':'flex'}"  *ngIf="conseil.type==='TEXT'">
 
             <label for="" id="contenuLabel">{{conseil.contenu}}</label>
 
           </div>
 
-          <div class="membre">
+          <!--Pour audio-->
+          <div class="tronc" [ngStyle]="{'background-color':conseil.color,'display':'flex'}"  *ngIf="conseil.type==='AUDIO'">
+
+            <div class="audioContent">
+              <div class="btn">
+
+              </div>
+
+              <div class="lbltime">
+
+              </div>
+
+              <div class="counter">
+
+              </div>
+
+              <div class="volumePart">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="membre" >
             <div class="profilContenu2">
               <div class="image">
                 <img src="assets/images/moi.jpg" alt="">
@@ -72,7 +95,7 @@
 
             <div class="likePart">
               <div class="bdy liked" (click)="like()">
-                <i class="fa-thin fa-thumbs-up"></i>
+                <i class="fa-solid fa-thumbs-up"></i>
                 <label for="">{{conseil.nbreLike}}</label>
               </div>
 
@@ -80,7 +103,7 @@
           </div>
       </div>
 
-      <div class="conseil">
+      <!--<div class="conseil">
         <div class="tete">
           <div id="circle" [ngStyle]="{'background-color':'green'}"></div>
           <label for="">Entrepreneuriat</label>
@@ -174,7 +197,7 @@
 
           </div>
         </div>
-    </div>
+      </div>-->
     </div>
   </div>
 </ion-content>

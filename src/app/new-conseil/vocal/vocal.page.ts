@@ -1,9 +1,17 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
-import { GestureController } from '@ionic/angular';
+import { GestureController, ToastController } from '@ionic/angular';
 import { GenericResponse, RecordingData, VoiceRecorder } from 'capacitor-voice-recorder';
 import { read } from 'fs';
+import { Observable, finalize } from 'rxjs';
+import { ConseilService } from 'src/app/services/conseil/conseil.service';
+import { Fichier } from 'src/app/services/file/file';
+import { FileUphloadService } from 'src/app/services/file/file-uphload.service';
+import { TokenService } from 'src/app/services/token/token.service';
+import { NewConseilPage } from '../new-conseil.page';
 
 @Component({
   selector: 'app-vocal',
@@ -18,11 +26,18 @@ export class VocalPage implements OnInit, AfterViewInit{
   durre:any=0
   audios: any=[];
   recording=false;
+
+  Vocal:any=null
   @ViewChild('recordbtn',{ read:ElementRef}) recordbtn:ElementRef
 
-  constructor(private gestureCtrl:GestureController  ) { }
+  citoyen:any
+
+  constructor(private gestureCtrl:GestureController ,private toastCtrl: ToastController,private tokenService:TokenService, private newConseil: NewConseilPage
+    ,private fileUphload:FileUphloadService,private db: AngularFireDatabase, private storage: AngularFireStorage,private conseilService:ConseilService ) { }
 
   ngOnInit() {
+    this.citoyen=this.tokenService.getUser()
+
     VoiceRecorder.canDeviceVoiceRecord().then((result: GenericResponse) => console.log(result.value))
 
     this.loadFile();
@@ -65,7 +80,6 @@ export class VocalPage implements OnInit, AfterViewInit{
     VoiceRecorder.startRecording()
     .then((result: GenericResponse) => console.log(result.value))
     .catch(error => console.log(error))
-
    //VoiceRecorder.startRecording()
 
   }
@@ -74,6 +88,7 @@ export class VocalPage implements OnInit, AfterViewInit{
   StopRecord() {
     if(!this.recording){
       this.Record()
+      this.CalculDuree();
     }else{
       VoiceRecorder.stopRecording().then(async (result:RecordingData) =>{
         //change btn style
@@ -84,7 +99,24 @@ export class VocalPage implements OnInit, AfterViewInit{
         if(result.value && result.value.recordDataBase64){
           const recordData=result.value.recordDataBase64;
 
+
+
           const fileName='audio'+'.wav';
+
+          //creationndu fichier pour la back
+          const audioFile=await Filesystem.readFile({
+            path:fileName,
+            directory:Directory.Data
+          })
+
+          const base64Sound=audioFile.data;
+
+          const audioRef=new Audio(`data:audio/aac;base64,${base64Sound}`)
+
+          const Name='audio'+new Date()+'.wav';
+
+          this.Vocal=new Fichier(new File([audioFile.data],Name))
+
 
           await Filesystem.writeFile({
             path:fileName,
@@ -105,7 +137,7 @@ export class VocalPage implements OnInit, AfterViewInit{
 
   //calcul de la durree du vocal
   CalculDuree() {
-    if(this.recording){
+    if(!this.recording){
       this.durre=0;
       this.PlayDuration='';
       return
@@ -149,4 +181,160 @@ export class VocalPage implements OnInit, AfterViewInit{
     })
   }
 
+
+
+  //save vocal to back
+
+  //publication
+  Publie(){
+
+    var problematique=JSON.parse(localStorage.getItem('problematiquechose')!) || []
+
+    console.log(problematique)
+
+    if(problematique.length!=0){
+      if(this.Vocal!=null){
+        var conseil=[{
+          'lien':'',
+          'type':'AUDIO',
+          //'contenu':this.description,
+          'color':this.mesCouleurs[this.getRandomArbitrary(1,7)].couleur,
+          'problematique':{
+            'id':problematique
+          },
+          'user':{
+            'id':this.citoyen.id
+          },
+          'nbreLike':0
+        }]
+
+        this.pushFileToStorageAudio(this.Vocal,conseil).subscribe(res=>{
+
+        })
+
+      // this.conseilService.Add(conseil).subscribe(data=>{
+      //   console.log(data)
+      // })
+//       Prenons  soin de notre environnement en jetant nos ordures dans les poubelles appropriées .
+// Merci 🤩 ☺️ 😊 !
+
+
+      }else{
+        this.presentToastVocal()
+      }
+
+    }else{
+      this.presentToast()
+    }
+
+
+
+
+  }
+
+  //
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Veuillez selectionner une problematique !',
+      duration: 2000,
+      position: 'top',
+      cssClass: 'custom-toast',
+      mode:'ios'
+    });
+
+    toast.onDidDismiss();
+
+    toast.present();
+  }
+
+  async presentToastVocal() {
+    let toast = await this.toastCtrl.create({
+      message: 'Veuillez enregistrer un vocal !',
+      duration: 2000,
+      position: 'top',
+      cssClass: 'custom-toast',
+      mode:'ios'
+    });
+
+    toast.onDidDismiss();
+
+    toast.present();
+  }
+
+
+
+
+  //upload de fichier
+  pushFileToStorageAudio(fileUpload: Fichier, conseil:any): Observable<any> {
+    const filePath = `Fichiers/audio/${fileUpload.file.name}`;
+    const storageRef = this.storage.ref(filePath);
+    const uploadTask = this.storage.upload(filePath, fileUpload.file);
+
+    uploadTask.snapshotChanges().pipe(
+      finalize(() => {
+        storageRef.getDownloadURL().subscribe(downloadURL => {
+          console.log(downloadURL)
+          // fileUpload.url = downloadURL;
+          // fileUpload.name = fileUpload.file.name;
+          // this.saveFileData(fileUpload);
+          //this.url= downloadURL
+          conseil.lien=downloadURL
+          console.log(conseil)
+
+          this.conseilService.Add(conseil).subscribe(res=>{
+            console.log(res)
+          },error=>{
+
+          })
+
+
+        });
+      })
+    ).subscribe();
+
+    return uploadTask.percentageChanges();
+  }
+
+
+
+
+  mesCouleurs=[
+    {
+      'couleur':'#008000'
+    },
+    {
+      'couleur':'#3779FF'
+    },
+    {
+      'couleur':'#BB7676'
+    },
+    {
+      'couleur':'#FF981F'
+    },
+    {
+      'couleur':'#F75555'
+    },
+    {
+      'couleur':'#000000'
+    }
+  ]
+
+  randomize(tab:any) {
+    var i, j, tmp;
+    for (i = tab.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        tmp = tab[i];
+        tab[i] = tab[j];
+        tab[j] = tmp;
+    }
+    return tab;
+  }
+
+  getRandomArbitrary(min:number, max:number):number {
+    console.log(Math.round(Math.random() * (max - min) + min))
+    var number=Math.round(Math.random() * (max - min) + min)
+    return number;
+  }
 }
+
+

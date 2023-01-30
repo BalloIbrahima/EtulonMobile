@@ -22,6 +22,7 @@ export class NewConseilPage implements OnInit {
 
   problematiquechose:any
   ngOnInit() {
+    localStorage.removeItem('problematiquechose')
     this.getProblematiques()
 
     this.jeuService.GetAll().subscribe(
