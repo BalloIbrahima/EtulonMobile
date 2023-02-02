@@ -39,23 +39,24 @@ export class ConseilPage implements OnInit {
     if(element.classList.contains('cliked')){
       element.classList.remove('cliked')
       this.likeService.delete(this.citoyen.id,idConseil).subscribe(retour=>{
-
+        this.ngOnInit()
       })
     }else{
       var like=[{
-        'conseil':{
-          'id':idConseil
-        },
         'user':{
           'id':this.citoyen.id
         }
       }]
-      this.likeService.create(like).subscribe(res=>{
-
+      console.log(like)
+      this.likeService.create(like,idConseil).subscribe(res=>{
+        console.log(res)
+        this.ngOnInit()
       })
       this.PlayFile('assets/son/pick-92276.mp3',null)
       element.classList.add('cliked')
     }
+
+
 
 
   }
@@ -77,12 +78,24 @@ export class ConseilPage implements OnInit {
       console.log(res)
       this.conseils=res.data
 
-      for(let i=1;i<=this.conseils.length;i++){
-        for(let j=0;j<this.mesJaimes.length;j++){
-          if(this.conseils[i]==this.mesLikes[i].conseil){
+      for(let i=0;i<this.conseils.length;i++){
+        console.log(this.conseils[i].id)
+        this.likeService.isLiked(this.citoyen.id,this.conseils[i].id).subscribe(res=>{
+          console.log(res)
+          if(res.data==true){
             this.addJaime(i)
           }
-        }
+        })
+        // for(let j=0;j<this.mesJaimes.length;j++){
+        //   console.log(this.conseils[i].likes + '    '+j)
+        //   for(let k=0;k<this.conseils[i].likes.length;k++){
+        //     if(this.conseils[i].likes[k]==this.mesLikes[j]){
+
+          //   }
+          // }
+
+
+        // }
 
       }
     })
@@ -299,7 +312,7 @@ export class ConseilPage implements OnInit {
 
   mesJaimes(){
     this.likeService.getUsersLikes(this.citoyen.id).subscribe(res=>{
-      this.mesJaimes=res.data
+      this.mesLikes=res.data
     })
   }
 

@@ -15,9 +15,9 @@ export class LikeService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json',Authorization: `Bearer ${this.tokenService.getToken()}`})
   };
 
-  create(like:any):Observable<any>{
+  create(like:any,idConseil:any):Observable<any>{
     const data=JSON.stringify(like).slice(1,JSON.stringify(like).lastIndexOf(']'))
-    return this.http.post(`${this.env.api}/jaime/add`,data,this.httpOptions);
+    return this.http.post(`${this.env.api}/jaime/addConseil/${idConseil}`,data,this.httpOptions);
   }
 
 
@@ -26,6 +26,10 @@ export class LikeService {
   }
 
   delete(idUser:any,idConseil:any):Observable<any>{
-    return this.http.get(`${this.env.api}/jaime/delete/${idUser}/${idConseil}`,this.httpOptions);
+    return this.http.delete(`${this.env.api}/jaime/delete/${idUser}/${idConseil}`,this.httpOptions);
+  }
+
+  isLiked(idUser:any,idConseil:any):Observable<any>{
+    return this.http.get(`${this.env.api}/jaime/isliked/${idUser}/${idConseil}`,this.httpOptions);
   }
 }
