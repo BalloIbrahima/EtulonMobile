@@ -106,9 +106,16 @@
             </div>
 
             <div class="likePart likedPart(i)">
-              <div class="bdy liked liked{{i}}" (click)="like(i)">
+              <div class="bdy bdy{{i}} liked liked{{i}}" (click)="like(i,conseil.id)">
                 <i class="fa-solid fa-thumbs-up"></i>
-                <label for="">{{conseil.nbreLike}}</label>
+                <label for="" *ngIf="conseil.likes.length <= 1000">{{conseil.likes.length}}</label>
+
+                <label for="" *ngIf="conseil.likes.length > 1000 && conseil.likes.length <= 1000000 ">{{conseil.likes.length-1000}}k</label>
+
+
+                <label for="" *ngIf="conseil.likes.length > 1000000 && conseil.likes.length < 1000000000 " >{{conseil.likes.length-1000000}}k</label>
+
+
               </div>
 
             </div>

@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { ConseilService } from 'src/app/services/conseil/conseil.service';
+import { LikeService } from 'src/app/services/like/like.service';
 import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
@@ -16,9 +17,10 @@ export class ConseilPage implements OnInit {
 
   counter:any
 
+  mesLikes:any=[]
   nombreComseil:any=0
   constructor(private router:Router,private tokenService:TokenService, private conseilService:ConseilService,
-    public platform: Platform) {
+    public platform: Platform, private likeService:LikeService) {
 
     }
 
@@ -27,14 +29,30 @@ export class ConseilPage implements OnInit {
     this.citoyen=this.tokenService.getUser()
     this.GetConseilsParInrterets()
     this.GetNombreConseil()
+
+    this.mesJaimes()
   }
 
-  like(i:number){
+  like(i:number,idConseil:any){
 
     var element=<HTMLDivElement>document.querySelector('.liked'+i)
     if(element.classList.contains('cliked')){
       element.classList.remove('cliked')
+      this.likeService.delete(this.citoyen.id,idConseil).subscribe(retour=>{
+
+      })
     }else{
+      var like=[{
+        'conseil':{
+          'id':idConseil
+        },
+        'user':{
+          'id':this.citoyen.id
+        }
+      }]
+      this.likeService.create(like).subscribe(res=>{
+
+      })
       this.PlayFile('assets/son/pick-92276.mp3',null)
       element.classList.add('cliked')
     }
@@ -58,6 +76,15 @@ export class ConseilPage implements OnInit {
     this.conseilService.GetParInteret(this.citoyen.id).subscribe(res=>{
       console.log(res)
       this.conseils=res.data
+
+      for(let i=1;i<=this.conseils.length;i++){
+        for(let j=0;j<this.mesJaimes.length;j++){
+          if(this.conseils[i]==this.mesLikes[i].conseil){
+            this.addJaime(i)
+          }
+        }
+
+      }
     })
   }
 
@@ -270,5 +297,15 @@ export class ConseilPage implements OnInit {
   //   }, 1000);
   // }
 
+  mesJaimes(){
+    this.likeService.getUsersLikes(this.citoyen.id).subscribe(res=>{
+      this.mesJaimes=res.data
+    })
+  }
+
+  addJaime(i:any){
+    var element=<HTMLDivElement>document.querySelector('.bdy'+i)
+    element.classList.add('cliked')
+  }
 
 }
