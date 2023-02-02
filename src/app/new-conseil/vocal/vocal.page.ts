@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Router } from '@angular/router';
 import { Directory, Filesystem } from '@capacitor/filesystem';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { GestureController, ToastController } from '@ionic/angular';
@@ -32,7 +33,8 @@ export class VocalPage implements OnInit, AfterViewInit{
 
   citoyen:any
 
-  constructor(private gestureCtrl:GestureController ,private toastCtrl: ToastController,private tokenService:TokenService, private newConseil: NewConseilPage
+  constructor(private gestureCtrl:GestureController ,private toastCtrl: ToastController,private tokenService:TokenService,private router:Router,
+     private newConseil: NewConseilPage
     ,private fileUphload:FileUphloadService,private db: AngularFireDatabase, private storage: AngularFireStorage,private conseilService:ConseilService ) { }
 
   ngOnInit() {
@@ -99,24 +101,18 @@ export class VocalPage implements OnInit, AfterViewInit{
         if(result.value && result.value.recordDataBase64){
           const recordData=result.value.recordDataBase64;
 
-
+          console.log(recordData)
 
           const fileName='audio'+'.wav';
 
-          //creationndu fichier pour la back
-          const audioFile=await Filesystem.readFile({
-            path:fileName,
-            directory:Directory.Data
-          })
 
-          const base64Sound=audioFile.data;
+          //const base64Sound=audioFile.data;
 
-          const audioRef=new Audio(`data:audio/aac;base64,${base64Sound}`)
+          // const audioRef=new Audio(`data:audio/aac;base64,${base64Sound}`)
 
           const Name='audio'+new Date()+'.wav';
 
-          this.Vocal=new Fichier(new File([audioFile.data],Name))
-
+          this.Vocal=new Fichier(this.dataURLtoFile(`data:audio/aac;base64,${recordData}`,Name))
 
           await Filesystem.writeFile({
             path:fileName,
@@ -194,21 +190,8 @@ export class VocalPage implements OnInit, AfterViewInit{
 
     if(problematique.length!=0){
       if(this.Vocal!=null){
-        var conseil=[{
-          'lien':'',
-          'type':'AUDIO',
-          //'contenu':this.description,
-          'color':this.mesCouleurs[this.getRandomArbitrary(1,7)].couleur,
-          'problematique':{
-            'id':problematique
-          },
-          'user':{
-            'id':this.citoyen.id
-          },
-          'nbreLike':0
-        }]
 
-        this.pushFileToStorageAudio(this.Vocal,conseil).subscribe(res=>{
+        this.pushFileToStorageAudio(this.Vocal, problematique).subscribe(res=>{
 
         })
 
@@ -265,7 +248,7 @@ export class VocalPage implements OnInit, AfterViewInit{
 
 
   //upload de fichier
-  pushFileToStorageAudio(fileUpload: Fichier, conseil:any): Observable<any> {
+  pushFileToStorageAudio(fileUpload: Fichier, problematique:any): Observable<any> {
     const filePath = `Fichiers/audio/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
@@ -278,11 +261,27 @@ export class VocalPage implements OnInit, AfterViewInit{
           // fileUpload.name = fileUpload.file.name;
           // this.saveFileData(fileUpload);
           //this.url= downloadURL
-          conseil.lien=downloadURL
-          console.log(conseil)
+          var conseil=[{
+            'lien':downloadURL,
+            'type':'AUDIO',
+            //'contenu':this.description,
+            'color':this.mesCouleurs[this.getRandomArbitrary(1,5)].couleur,
+            'problematique':{
+              'id':problematique
+            },
+            'user':{
+              'id':this.citoyen.id
+            },
+            'nbreLike':0
+          }]
+
+          // conseil.lien=downloadURL
+          // console.log(conseil)
 
           this.conseilService.Add(conseil).subscribe(res=>{
             console.log(res)
+            this.router.navigate(['/tabs/conseil'])
+
           },error=>{
 
           })
@@ -335,6 +334,23 @@ export class VocalPage implements OnInit, AfterViewInit{
     var number=Math.round(Math.random() * (max - min) + min)
     return number;
   }
+
+
+  dataURLtoFile(dataurl:any, filename:any) {
+
+    var arr = dataurl.split(','),
+        mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]),
+        n = bstr.length,
+        u8arr = new Uint8Array(n);
+
+    while(n--){
+        u8arr[n] = bstr.charCodeAt(n);
+    }
+
+    return new File([u8arr], filename, {type:mime});
+}
+
 }
 
 

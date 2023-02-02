@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { ConseilService } from 'src/app/services/conseil/conseil.service';
 import { DataTranfererService } from 'src/app/services/dataTranferer/data-tranferer.service';
 import { TokenService } from 'src/app/services/token/token.service';
@@ -18,7 +19,7 @@ export class TextPage implements OnInit {
   length:any=150
 
   citoyen:any
-  constructor(private tokenService:TokenService, private newConseil: NewConseilPage,private dataTransferService:DataTranfererService, private conseilService:ConseilService,private toastCtrl: ToastController) {
+  constructor(private tokenService:TokenService, private newConseil: NewConseilPage,private dataTransferService:DataTranfererService, private conseilService:ConseilService,private toastCtrl: ToastController,private router:Router,private loadingController: LoadingController) {
     this.dataTransferService.getObservable().subscribe(res=>{
       console.log(res)
     })
@@ -42,6 +43,8 @@ export class TextPage implements OnInit {
     console.log(problematique)
 
     if(problematique.length!=0){
+      this.presentLoadingWithOptions()
+
       var conseil=[{
         'contenu':this.description,
         'color':this.colorChosed,
@@ -57,11 +60,17 @@ export class TextPage implements OnInit {
 
       this.conseilService.Add(conseil).subscribe(data=>{
         console.log(data)
+        this.dismiss_loader()
+
+        this.router.navigate(['/tabs/conseil'])
+      },error=>{
+        this.dismiss_loader()
       })
 //       Prenons  soin de notre environnement en jetant nos ordures dans les poubelles appropriées .
 // Merci 🤩 ☺️ 😊 !
     }else{
       this.presentToast()
+
     }
 
 
@@ -116,4 +125,24 @@ export class TextPage implements OnInit {
     toast.present();
   }
 
+
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      id:"loader",
+      spinner: "bubbles",
+
+      message: 'Veuillez patientez...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+    }).then((a: { present: () => Promise<any>; }) => {
+      a.present().then(() => {
+
+      });
+    })
+
+  }
+
+  async dismiss_loader() {
+    return await this.loadingController.dismiss();
+  }
 }

@@ -76,7 +76,7 @@ export class Game2Page implements OnInit {
 
   back(){
     //console.log('dfgh')
-    this.router.navigate([''])
+    this.router.navigate(['../tabs'])
   }
 
 }

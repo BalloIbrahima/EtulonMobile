@@ -114,22 +114,25 @@
   display: grid;
   height: 60vh;
   margin: 15px auto;
-
   width: 80vw;
-
   background-color: #fff;
   border-radius: 30px;
-  grid-template-rows: 12% 76% 12%;
+  grid-template-rows: 10% 80% 10%;
 }
 
 .conseil >.tete{
+
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   margin: auto;
-
 }
-.tete > #circle{
+
+.tete >div{
+  display: flex;
+  flex-direction: row;
+}
+.tete >div> #circle{
   height: 20px;
   width: 20px;
   display: flex;
@@ -139,7 +142,15 @@
 
 }
 
-.tete > label{
+.tete >#date{
+  display: inline-flex;
+  text-align: center;
+  font-size: 3vw;
+  margin: auto;
+  justify-content: center;
+}
+
+.tete > div>label{
   margin: auto;
   margin-left: 5px;
 }
@@ -223,12 +234,34 @@
   justify-content: center;
   margin: auto;
 }
+
+// .bdybleu{
+//   background-color: #3779FF;
+// }
+
+// .bdyblanc{
+//   background-color: #ffffff;
+// }
+
+.cliked{
+  background-color: #3779FF !important;
+  color: #ffffff !important;
+  i{
+    color: #ffffff !important;
+  }
+}
+
 .liked{
-  color: #3779FF;
+  background-color: #ffffff ;
+  color: #3779FF ;
+  border: none;
+  i{
+    color: #3779FF ;
+  }
 
 }
 .liked >i{
-  font-size: 20px;
+  font-size: 8vw;
 }
 
 .bdy >label{
@@ -238,17 +271,48 @@
 #contenuLabel{
   color: #D9D9D9;
   text-align: center;
+  font-size: 5.5vw;
   margin: auto;
 }
+
+///for audio
+///
 
 .audioContent{
   background-color: #fff;
   border-radius: 30px;
-  height: 5vh;
+  width: 95%;
+  margin: auto;
+  height: 8vh;
   display: grid;
-  grid-template-columns: 5% 10% 80% 5%;
+  grid-template-columns: 10% 80% 10%;
 }
 
+.counter{
+  margin: auto;
+  width: 85%;
+}
+
+ion-progress-bar{
+  height: 10px;
+  display: flex;
+  margin: auto;
+  width: 100%;
+
+  border-radius: 10px;
+}
+#lbl{
+  position: relative;
+  margin: auto;
+  font-size: 4vw;
+  display: flex;
+  justify-content: center;
+}
+
+.audioContent .btn,  .volumePart{
+  margin: auto;
+  font-size: 7vw;
+}
 
 // .like-container{filter: url('#filter');
 //   position: absolute;

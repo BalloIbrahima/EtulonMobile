@@ -16,7 +16,7 @@ export class NiveauService {
   };
 
   getNiveau(id:any){
-    return this.http.get<any>(`assets/json/test.json`)
+    return this.http.get<any>(`assets/json/test 2.json`)
   }
 
   GetNiveauPourJeu(idJeu: any) :Observable<any>{

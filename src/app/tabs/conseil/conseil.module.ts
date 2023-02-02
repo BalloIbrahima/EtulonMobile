@@ -9,6 +9,7 @@ import { ConseilPageRoutingModule } from './conseil-routing.module';
 import { ConseilPage } from './conseil.page';
 import { ExploreContainerComponentModule } from 'src/app/explore-container/explore-container.module';
 import { httpInterceptorProviders } from 'src/app/Helpers/http.interceptor';
+import { Media } from '@ionic-native/media/ngx';
 
 @NgModule({
   imports: [

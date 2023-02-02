@@ -131,13 +131,14 @@
 .listjeux{
   max-height: 50vh;
   width: 90%;
-  justify-content: center;
+  justify-content: space-between;
   margin: auto;
   flex-wrap: wrap;
   display: flex;
   overflow-y: scroll;
   overflow-x:hidden ;
   scroll-behavior: smooth;
+
 }
 .listjeux >.jeu{
   display: grid;

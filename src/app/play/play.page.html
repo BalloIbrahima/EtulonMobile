@@ -97,20 +97,17 @@
       <div class="reponse reponse4" (click)="giveAwnswer(4)" [ngStyle]="{'background-color':CadresCouleurs[3].couleur}">
         <label *ngIf="quizList[currentQuiz].reponses[2].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[3].contenu}}</label>
         <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
-
       </div>
     </div>
 
     <div *ngIf="quizList[currentQuiz].reponses.length===2" class="answer2 answerList">
-      <div class="reponse reponse1" (click)="giveAwnswer(1)">
+      <div class="reponse reponse1" (click)="giveAwnswer(1)" [ngStyle]="{'background-color':CadresCouleurs[0].couleur}">
         <label *ngIf="quizList[currentQuiz].reponses[0].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[0].contenu}}</label>
         <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
-
       </div>
-      <div class="reponse reponse3" (click)="giveAwnswer(2)">
-        <label *ngIf="quizList[currentQuiz].reponses[1].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[1].contenu}}</label>
-        <img *ngIf="quizList[currentQuiz].reponses[0].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
-
+      <div class="reponse reponse2" (click)="giveAwnswer(2)" [ngStyle]="{'background-color':CadresCouleurs[1].couleur}">
+        <label *ngIf="quizList[currentQuiz].reponses[0].type==='TEXT'" for="">{{quizList[currentQuiz].reponses[1].contenu}}</label>
+        <img *ngIf="quizList[currentQuiz].reponses[1].type==='PHOTO'" src="assets/images/moi.jpg" alt="">
       </div>
     </div>
 

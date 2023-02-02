@@ -58,7 +58,7 @@ export class GameFinishPage implements OnInit {
 
     if(this.compteNumber==0){
       this.close('renew')
-      this.router.navigate(['/play'])
+      this.router.navigate(['/play',this.data.idNiveau])
     }else{
       setTimeout(() => {
         this.compteNumber-=1

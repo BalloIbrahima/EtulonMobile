@@ -52,12 +52,15 @@ export class OtpComponent implements OnInit {
 
 
   sendCode(){
+
     this.close('confirm')
+    this.presentLoadingWithOptions()
     //verification si le user possede daje un compte
     this.sbJoueurService.GetByTelephone(this.data).subscribe(res=>{
       console.log(res)
       if(res.data==null){
         //sinon
+        this.dismiss_loader()
         this.router.navigate(['/inscription'])
 
       }else{
@@ -76,10 +79,15 @@ export class OtpComponent implements OnInit {
                 this.tokenStorage.saveRefreshToken(retour.refreshToken)
                 this.tokenStorage.saveUser(retour);
 
-                setTimeout(() => {
+                if(retour.token){
+                  //setTimeout(() => {
+                  this.dismiss_loader()
                   this.router.navigate(['../tabs'])
-                }, 1000);
-                this.router.navigate(['../tabs'])
+
+                  //}, 1000);
+                  //this.router.navigate(['../tabs'])
+                }
+
 
 
               })
