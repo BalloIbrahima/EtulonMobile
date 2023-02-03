@@ -16,6 +16,11 @@ export class ProfilPage implements OnInit {
   score: any=0;
   time: any=0;
   nbreFoiJoue: any=0;
+  lastgames:any=[]
+  listLike:any=[]
+  listPlay:any=[]
+
+
   constructor(private router:Router,private tokenService:TokenService,private sbJoueurService:SpringJoueurService,private conseilService:ConseilService,private scoreService:ScoreService,private jeuService:JeuService) { }
 
 
@@ -28,7 +33,14 @@ export class ProfilPage implements OnInit {
 
     this.GetNombreJeuJoue()
 
+    this.GetLastGameList(this.citoyen.id,10)
+
+    setTimeout(() => {
+      this.getNbre()
+    }, 1000);
+
   }
+
 
 
   goEdit(){
@@ -42,9 +54,9 @@ export class ProfilPage implements OnInit {
   }
 
   //
-  Play(){
+  Play(idJeu:any){
     //console.log('dfgh')
-    this.router.navigate(['../game1'])
+    this.router.navigate(['../game1',idJeu])
   }
 
   GetNombreConseil(){
@@ -70,9 +82,15 @@ export class ProfilPage implements OnInit {
   GetNombreJeuJoue(){
     this.jeuService.GetNombreJeuJoue(this.citoyen.id).subscribe(res=>{
       this.nbreFoiJoue=res.data
-
-
     })
+  }
+
+  GetLastGameList(id: any, arg1: number) {
+    this.jeuService.UserLastGameLikst(id,arg1).subscribe(res=>{
+      console.log(res)
+      this.lastgames=res.data
+    })
+
   }
 
 
@@ -81,5 +99,51 @@ export class ProfilPage implements OnInit {
     this.tokenService.signOut()
     this.sbJoueurService.Deconnecter().subscribe(res=>{},error => {});
     this.router.navigate(['/inscription'])
+  }
+
+
+  ///like
+
+  getNbre(){
+    this.lastgames.forEach((element: { id: any; }) => {
+
+      this.jeuService.GetNombreDeLike(element.id).subscribe(res=>{
+        console.log(res.data)
+        this.listLike.push({
+          id:element.id,
+          nombre:res.data
+        })
+      })
+
+      this.jeuService.GetNombreFoisJoue(element.id).subscribe(res=>{
+        console.log(res.data)
+        this.listPlay.push({
+          id:element.id,
+          nombre:res.data
+        })
+      })
+    })
+  }
+
+  getNbreFoisJoue(id:any){
+    var nbre=30
+    this.listPlay.forEach((element: { id: any; nombre: number; }) => {
+      if(element.id=id){
+        nbre=element.nombre
+      }
+    });
+
+    return nbre;
+  }
+
+  getNbreLike(id:any){
+    var nbre=30
+    this.listLike.forEach((element: { id: any; nombre: number; }) => {
+      if(element.id=id){
+        nbre=element.nombre
+      }
+    });
+
+    return nbre;
   }
 }

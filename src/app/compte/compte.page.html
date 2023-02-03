@@ -32,17 +32,17 @@
       <form action="" method="post" #f2="ngForm">
         <div class="input">
           <i class="fa-solid fa-user"></i>
-          <ion-input  [(ngModel)]="nomComplet" name="nomComplet"  id="nomComplet" type="text"  placeholder="Nom complet" ngModel required  ></ion-input>
+          <ion-input  [(ngModel)]="nomComplet" name="nomComplet"  id="nomComplet" type="text"  placeholder="Nom complet"  [(ngModel)]="citoyen.nom" required  ></ion-input>
         </div>
 
         <div class="input">
           <i class="fa-regular fa-pen-to-square"></i>
-          <ion-input  [(ngModel)]="username" name="username"  id="username" type="text"  placeholder="Username" ngModel required  ></ion-input>
+          <ion-input  [(ngModel)]="username" name="username"  id="username" type="text"  placeholder="Username" [(ngModel)]="citoyen.username" required  ></ion-input>
         </div>
 
         <div class="input">
           <i class="fa-solid fa-envelope"></i>
-          <ion-input  [(ngModel)]="email" name="email"  id="email" type="email"  placeholder="Email" ngModel ></ion-input>
+          <ion-input  [(ngModel)]="email" name="email"  id="email" type="email"  placeholder="Email" [(ngModel)]="citoyen.email" ></ion-input>
         </div>
 
         <!--<div class="input">
@@ -72,7 +72,7 @@
           </ion-list>
         </div>
 
-        <ion-button type="submit"  class="continues"  [disabled]="f2.form.invalid" (click)="singup($event)">Continuer</ion-button>
+        <ion-button type="submit"  class="continues"  [disabled]="f2.form.invalid" (click)="update($event)">Continuer</ion-button>
 
       </form>
     </div>

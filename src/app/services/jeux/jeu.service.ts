@@ -55,6 +55,10 @@ export class JeuService {
     return this.http.get(`${this.env.api}/jeu/getNbreJeu/${idUser}`,this.httpOptions);
   }
 
+  UserLastGameLikst(idUser:any,nombre:any):Observable<any>{
+    return this.http.get(`${this.env.api}/user/mesderniersjeux/${idUser}/${nombre}`,this.httpOptions);
+  }
+
 
 
 
