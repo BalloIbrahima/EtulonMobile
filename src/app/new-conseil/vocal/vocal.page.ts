@@ -349,7 +349,7 @@ export class VocalPage implements OnInit, AfterViewInit{
     }
 
     return new File([u8arr], filename, {type:mime});
-}
+  }
 
 }
 

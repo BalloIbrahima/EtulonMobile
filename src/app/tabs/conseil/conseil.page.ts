@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { ConseilService } from 'src/app/services/conseil/conseil.service';
 import { LikeService } from 'src/app/services/like/like.service';
 import { TokenService } from 'src/app/services/token/token.service';
@@ -20,7 +20,7 @@ export class ConseilPage implements OnInit {
   mesLikes:any=[]
   nombreComseil:any=0
   constructor(private router:Router,private tokenService:TokenService, private conseilService:ConseilService,
-    public platform: Platform, private likeService:LikeService) {
+    public platform: Platform, private likeService:LikeService,private loadingController: LoadingController) {
 
     }
 
@@ -31,6 +31,8 @@ export class ConseilPage implements OnInit {
     this.GetNombreConseil()
 
     this.mesJaimes()
+    this.dismiss_loader()
+
   }
 
   like(i:number,idConseil:any){
@@ -320,5 +322,10 @@ export class ConseilPage implements OnInit {
     var element=<HTMLDivElement>document.querySelector('.bdy'+i)
     element.classList.add('cliked')
   }
+
+  async dismiss_loader() {
+    return await this.loadingController.dismiss();
+  }
+
 
 }

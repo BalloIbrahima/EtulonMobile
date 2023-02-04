@@ -34,7 +34,7 @@ export class InscriptionPage implements OnInit {
   isErrorBack=false
 
   constructor(private router:Router,private fbJoueurService:FirebaseJoueurService,private sbJoueurService:SpringJoueurService,public afAuth: AngularFireAuth,private loginService:LoginService,
-    private tokenStorage:TokenService,private db: AngularFireDatabase, private storage: AngularFireStorage,private loadingController: LoadingController,) { }
+    private tokenStorage:TokenService,private db: AngularFireDatabase, private storage: AngularFireStorage,private loadingController: LoadingController) { }
 
   ngOnInit() {
     //localStorage.clear()
@@ -92,10 +92,10 @@ export class InscriptionPage implements OnInit {
 
 
   //upload de fichier
-  pushFileToStorageAudio(fileUpload: Fichier): Observable<any> {
-    const filePath = `Fichiers/audio/${fileUpload.file.name}`;
+  pushFileToStorageAudio(fileUpload: File): Observable<any> {
+    const filePath = `Fichiers/audio/${fileUpload.name}`;
     const storageRef = this.storage.ref(filePath);
-    const uploadTask = this.storage.upload(filePath, fileUpload.file);
+    const uploadTask = this.storage.upload(filePath, fileUpload);
 
     uploadTask.snapshotChanges().pipe(
       finalize(() => {
@@ -154,20 +154,21 @@ export class InscriptionPage implements OnInit {
 
                     this.fbJoueurService.update(auth?.uid,user)
                     console.log('hello')
+
+                    this.router.navigate(['../tabs'])
                   }else {
 
                     //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
                     this.fbJoueurService.create(user)
                       .then(() => {
-
-                        console.log('after create')
+                        this.router.navigate(['../tabs'])
                       }).catch((err:any) => {
                         console.log(err)
                         console.log('iciiii')
                       });
                   }
 
-                  this.router.navigate(['../tabs'])
+
 
                 })
 

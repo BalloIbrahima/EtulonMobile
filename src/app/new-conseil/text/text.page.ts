@@ -61,7 +61,6 @@ export class TextPage implements OnInit {
       this.conseilService.Add(conseil).subscribe(data=>{
         console.log(data)
         this.dismiss_loader()
-
         this.router.navigate(['/tabs/conseil'])
       },error=>{
         this.dismiss_loader()
