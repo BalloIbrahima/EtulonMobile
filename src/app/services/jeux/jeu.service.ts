@@ -61,5 +61,15 @@ export class JeuService {
 
 
 
+  GetBestPlayed() :Observable<any>{
+    console.log(this.httpOptions)
+    return this.http.get(`${this.env.api}/jeu/getBestPlayed`,this.httpOptions);
+  }
+
+  getPreferences(idUser:Number):Observable<any>{
+    return this.http.get(`${this.env.api}/user/preferences/${idUser}`,this.httpOptions);
+  }
+
+
 
 }

@@ -20,19 +20,30 @@ export class JeuxPage implements OnInit {
     spaceBetween:1,
     autoplay:true
   }
+
+  JeuBestPlayed:any=[]
+  preferences:any=[]
+
   constructor(private router:Router,private tokenService:TokenService,private jeuService:JeuService) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
-    this.GetNombreJeuJoue()
+    this.Launch()
 
   }
 
-  GetNombreJeuJoue(){
+  Launch(){
     this.jeuService.GetNombreJeuJoue(this.citoyen.id).subscribe(res=>{
       this.nbreFoiJoue=res.data
+    })
+
+    this.jeuService.GetBestPlayed().subscribe(res=>{
+      this.JeuBestPlayed=res.data
+    })
 
 
+    this.jeuService.getPreferences(this.citoyen.id).subscribe(res=>{
+      this.preferences=res.data
     })
   }
 

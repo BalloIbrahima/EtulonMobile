@@ -45,41 +45,41 @@
 
       <ion-slides [options]="options">
 
-        <ion-slide class="slidee">
+        <ion-slide class="slidee" *ngFor="let pref of preferences">
           <div class="preference">
             <div class="imageEntete">
-              <img src="assets/images/moi.jpg" alt="">
+              <img src="{{pref.image}}" alt="">
             </div>
 
             <div class="foot">
 
               <div class="game" (click)="Play()">
                 <div class="imageGame">
-                  <img src="assets/images/moi.jpg" alt="">
+                  <img src="{{pref.image}}" alt="">
                 </div>
 
                 <div class="infosPlay">
                   <div></div>
 
                   <div class="nomGame">
-                    <label for="">Game Name</label>
+                    <label for="">{{pref.nom}}</label>
 
                   </div>
 
                   <div id="likePlay">
                     <button class="liked">
-                      2500
+                      {{pref.nbreLike}}
                       <i class="fa-solid fa-thumbs-up"></i>
                     </button>
 
                     <button class="played">
-                      500
+                      {{pref.nbreJoues}}
                       <i class="fa-sharp fa-solid fa-circle-play"></i>
                     </button>
                   </div>
                 </div>
 
-                <div class="btnPlay">
+                <div class="btnPlay" [routerLink]="['/game1',pref.id]" routerLinkActive="router-link-active" >
                   <button id="goPlay">
                     Jouer
                   </button>
@@ -186,32 +186,32 @@
     <div class="list">
       <label for="" id="labelListPreference1">Les + Populaires</label>
 
-      <div class="listjeux">
+      <div class="listjeux" *ngFor="let jeu of JeuBestPlayed">
         <div class="jeu animated">
           <div>
           </div>
 
           <div class="secaind">
-            <img src="assets/images/moi.jpg" alt="">
+            <img src="{{jeu.image}}" alt="">
 
             <div class="infos">
               <div>
                 <label for="" id="NomJeu">
-                  NomJeu
+                  {{jeu.nom}}
                 </label>
                 <div id="likePlay">
                   <button class="liked">
-                    2500
+                    {{jeu.nbreLike}}
                     <i class="fa-solid fa-thumbs-up"></i>
                   </button>
 
                   <button class="played">
-                    500
+                    {{jeu.nbreJoues}}
                     <i class="fa-sharp fa-solid fa-circle-play"></i>
                   </button>
                 </div>
 
-                <button class="play"  >
+                <button class="play" [routerLink]="['/game1',jeu.id]">
                   Jouer
                 </button>
               </div>

@@ -122,27 +122,27 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
     })
   }
 
-  getNbreFoisJoue(id:any){
-    var nbre=30
-    this.listPlay.forEach((element: { id: any; nombre: number; }) => {
-      if(element.id=id){
-        nbre=element.nombre
-      }
-    });
+    getNbreFoisJoue(id:any){
+      var nbre=30
+      this.listPlay.forEach((element: { id: any; nombre: number; }) => {
+        if(element.id=id){
+          nbre=element.nombre
+        }
+      });
 
-    return nbre;
-  }
+      return nbre;
+    }
 
-  getNbreLike(id:any){
-    var nbre=30
-    this.listLike.forEach((element: { id: any; nombre: number; }) => {
-      if(element.id=id){
-        nbre=element.nombre
-      }
-    });
+    getNbreLike(id:any){
+      var nbre=30
+      this.listLike.forEach((element: { id: any; nombre: number; }) => {
+        if(element.id=id){
+          nbre=element.nombre
+        }
+      });
 
-    return nbre;
-  }
+      return nbre;
+    }
 
   //recuperation des derniers jeu
   get20last(){
