@@ -178,9 +178,13 @@
 }
 
 #NomJeu{
-  font-size: 6vw;
+  font-size: 4vw;
+  text-align: center;
   display: flex;
+  text-overflow: ellipsis;
   justify-content: center;
+  line-break: anywhere;
+  margin-top: 5px;
 }
 
 .play{
@@ -267,7 +271,7 @@
 }
 
 .nomGame >label{
-  font-size: 5.5vw;
+  font-size: 4vw;
   margin: 0;
 }
 /////

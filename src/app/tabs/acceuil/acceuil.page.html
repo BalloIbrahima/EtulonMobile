@@ -44,7 +44,7 @@
 
             <div class="listNews">
 
-              <div class="new" *ngFor="let last of lastGames">
+              <div class="new" *ngFor="let last of lastGames" [routerLink]="['/game1',last.id]" >
                 <img src="{{last.image}}" alt="">
                 <div class="desc">
                   <label for="" id="titleJeu">{{last.nom}}</label>
@@ -104,11 +104,11 @@
           <label for="" id="bibli">Bibliotheque des jeux</label>
 
           <div class="listinte">
-            <div class="elemt all select" (click)="change('all')" [ngStyle]="{'background-color':'#BB7676'}" >
+            <div class="elemt all select" (click)="change('all',null)" [ngStyle]="{'background-color':'#BB7676'}" >
               <label for=""  ><i style="color: aliceblue;" class="fa-solid fa-shop"></i></label>
             </div>
 
-            <div class="elemt {{p.libelle}}"  *ngFor="let p of problematiques" [ngStyle]="{'background-color':p.couleur}" (click)="change(p.libelle)">
+            <div class="elemt cl{{p.id}}"  *ngFor="let p of problematiques" [ngStyle]="{'background-color':p.couleur}" (click)="change(p.libelle,p.id)">
               <label for=""  >{{p.libelle}}</label>
             </div>
 

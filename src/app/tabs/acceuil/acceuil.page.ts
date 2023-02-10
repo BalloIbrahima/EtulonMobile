@@ -51,8 +51,8 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
 
 
 
-  change(libelle:any){
-    var div= <HTMLDivElement>document.querySelector('.'+libelle)
+  change(libelle:any,idP:any){
+    var div= <HTMLDivElement>document.querySelector('.cl'+idP)
     var divdja= <HTMLDivElement>document.querySelector('.select')
     divdja.classList.remove('select')
     div.classList.add('select')

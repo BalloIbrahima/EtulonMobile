@@ -45,7 +45,7 @@
 
       <ion-slides [options]="options">
 
-        <ion-slide class="slidee" *ngFor="let pref of preferences">
+        <ion-slide class="slidee" *ngFor="let pref of preferences" [routerLink]="['/game1',pref.id]">
           <div class="preference">
             <div class="imageEntete">
               <img src="{{pref.image}}" alt="">
@@ -62,7 +62,7 @@
                   <div></div>
 
                   <div class="nomGame">
-                    <label for="">{{pref.nom}}</label>
+                    <label for="">{{pref.nom| slice:0:14 }}...</label>
 
                   </div>
 
@@ -79,7 +79,7 @@
                   </div>
                 </div>
 
-                <div class="btnPlay" [routerLink]="['/game1',pref.id]" routerLinkActive="router-link-active" >
+                <div class="btnPlay"  >
                   <button id="goPlay">
                     Jouer
                   </button>
@@ -197,7 +197,7 @@
             <div class="infos">
               <div>
                 <label for="" id="NomJeu">
-                  {{jeu.nom}}
+                  {{jeu.nom| slice:0:15 }}...
                 </label>
                 <div id="likePlay">
                   <button class="liked">
