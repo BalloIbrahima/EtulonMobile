@@ -16,7 +16,7 @@ export class TabsGuard implements CanActivate {
 
       var citoyen=this.tokenService.getUser()
       console.log(citoyen)
-      if(!citoyen){
+      if(!citoyen.id){
 
         this.router.navigate(['/inscription'])
         return false;

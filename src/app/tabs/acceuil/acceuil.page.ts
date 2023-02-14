@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ViewDidEnter, ViewWillEnter } from '@ionic/angular';
+import { LoadingController, ViewDidEnter, ViewWillEnter } from '@ionic/angular';
 import { JeuService } from 'src/app/services/jeux/jeu.service';
 import { ProblematiqueService } from 'src/app/services/problematique/problematique.service';
 import { TokenService } from 'src/app/services/token/token.service';
@@ -20,16 +20,17 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
   listLike:any=[]
   listPlay:any=[]
   constructor(private router:Router,private problematiqueService:ProblematiqueService,
-    private tokenService:TokenService, private jeuService:JeuService) { }
+    public loadingController: LoadingController,private tokenService:TokenService, private jeuService:JeuService) { }
   ionViewDidEnter(): void {
-    this.ngOnInit()
+    // this.ngOnInit()
   }
 
   ionViewWillEnter(): void {
-    this.ngOnInit()
+    // this.ngOnInit()
   }
 
   ngOnInit() {
+    this.presentLoadingWithOptions()
     this.citoyen=this.tokenService.getUser()
 
     ///
@@ -102,6 +103,7 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
 
 
   getNbre(){
+
     this.listGame.forEach((element: { id: any; }) => {
 
       this.jeuService.GetNombreDeLike(element.id).subscribe(res=>{
@@ -119,22 +121,29 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
           nombre:res.data
         })
       })
+      this.dismiss_loader()
+    },(error: any) => {
+      console.log(error)
+      setTimeout(() => {
+        this.getNbre()
+      }, 1000);
     })
   }
 
     getNbreFoisJoue(id:any){
-      var nbre=30
+      var nbre=0
       this.listPlay.forEach((element: { id: any; nombre: number; }) => {
         if(element.id=id){
           nbre=element.nombre
         }
+
       });
 
       return nbre;
     }
 
     getNbreLike(id:any){
-      var nbre=30
+      var nbre=0
       this.listLike.forEach((element: { id: any; nombre: number; }) => {
         if(element.id=id){
           nbre=element.nombre
@@ -151,6 +160,30 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
       this.lastGames=res.data
       //this.getNbre()
     })
+  }
+
+
+  //chargeur
+  async presentLoadingWithOptions() {
+    const loading = await this.loadingController.create({
+      id:"loader",
+      spinner: "bubbles",
+
+      message: 'Veuillez patientez...',
+      translucent: true,
+      cssClass: 'custom-class custom-loading'
+   }).then(a => {
+    a.present().then(() => {
+
+    });
+  })
+
+    // return await loading.present();
+  }
+
+  async dismiss_loader() {
+    console.log('hello')
+    return await this.loadingController.dismiss();
   }
 
 

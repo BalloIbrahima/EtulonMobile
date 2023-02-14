@@ -20,7 +20,7 @@
         <ion-card (click)="check(i)" class="card{{i}}" *ngFor="let prob of problematiques ;let i =index;">
           <i class="fa-solid fa-plus " id="iok{{i}}"></i>
           <i class="fa-solid fa-check d-none" id="ino{{i}}"></i>
-          <img src="assets/images/moi.jpg" id="img{{i}}" alt="">
+          <div class="colorPlace" [ngStyle]="{'background-color':prob.couleur}" id="img{{i}}" alt=""></div>
           <label for="">{{prob.libelle}}</label>
 
 

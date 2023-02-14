@@ -143,7 +143,6 @@ export class ProfilPage implements OnInit {
         nbre=element.nombre
       }
     });
-
     return nbre;
   }
 }

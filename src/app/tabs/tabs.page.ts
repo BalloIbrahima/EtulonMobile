@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ActionSheetController, ViewDidEnter, ViewWillEnter } from '@ionic/angular';
+import { ActionSheetController, LoadingController, ViewDidEnter, ViewWillEnter } from '@ionic/angular';
 import { EventBusService } from '../Helpers/EventBusService';
 import { EventData } from '../Helpers/EventData';
 import { CameraService } from '../services/camera/camera.service';
@@ -16,7 +16,8 @@ import { TokenService } from '../services/token/token.service';
 })
 export class TabsPage implements OnInit,ViewWillEnter,ViewDidEnter {
 
-  constructor(private router:Router, private eventBusService: EventBusService,private actionSheetCtrl:ActionSheetController, private photoService:CameraService,private problematiqueService:ProblematiqueService, private tokenService:TokenService, private jeuService:JeuService) { }
+  constructor(private router:Router, private eventBusService: EventBusService,private actionSheetCtrl:ActionSheetController, private photoService:CameraService,private problematiqueService:ProblematiqueService,
+    private tokenService:TokenService, private jeuService:JeuService) { }
   citoyen:any
   ngOnInit(): void {
 
@@ -47,6 +48,7 @@ export class TabsPage implements OnInit,ViewWillEnter,ViewDidEnter {
   ionViewWillEnter(): void {
     this.ngOnInit()
   }
+
 
 
 }
