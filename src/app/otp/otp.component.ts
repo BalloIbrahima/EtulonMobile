@@ -80,11 +80,10 @@ export class OtpComponent implements OnInit {
                 this.tokenStorage.saveUser(retour);
 
                 if(retour.token){
-                  //setTimeout(() => {
-                  this.dismiss_loader()
-                  this.router.navigate(['../tabs'])
-
-                  //}, 1000);
+                  setTimeout(() => {
+                    this.dismiss_loader()
+                    this.router.navigate(['../tabs'])
+                  }, 1000);
                   //this.router.navigate(['../tabs'])
                 }
 

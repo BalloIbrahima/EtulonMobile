@@ -93,7 +93,7 @@ export class InscriptionPage implements OnInit {
 
   //upload de fichier
   pushFileToStorageAudio(fileUpload: File): Observable<any> {
-    const filePath = `Fichiers/audio/${fileUpload.name}`;
+    const filePath = `Fichiers/Profil/${fileUpload.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload);
 
@@ -161,7 +161,11 @@ export class InscriptionPage implements OnInit {
                     //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
                     this.fbJoueurService.create(user)
                       .then(() => {
-                        this.router.navigate(['../tabs'])
+                        setTimeout(() => {
+
+                          this.router.navigate(['../tabs'])
+                        }, 1000);
+
                       }).catch((err:any) => {
                         console.log(err)
                         console.log('iciiii')

@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ToastController } from '@ionic/angular';
 import { Observable, finalize } from 'rxjs';
 import { Fichier } from '../services/file/file';
 import { FirebaseJoueurService } from '../services/joueur/firebase-joueur.service';
@@ -34,13 +34,24 @@ export class ComptePage implements OnInit {
   isErrorBack:any=false
   erreurBack:any=''
 
+  user:any;
+
   constructor(private router:Router,private fbJoueurService:FirebaseJoueurService,private sbJoueurService:SpringJoueurService,public afAuth: AngularFireAuth,private loginService:LoginService,
-    private tokenService:TokenService,private db: AngularFireDatabase, private storage: AngularFireStorage,private loadingController: LoadingController,) { }
+    private tokenService:TokenService,private db: AngularFireDatabase, private storage: AngularFireStorage,private loadingController: LoadingController,private toastCtrl:ToastController) { }
 
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
     this.imgChosed=this.citoyen.photo
 
+    this.getUser()
+
+  }
+
+  getUser(){
+    this.sbJoueurService.GetByTelephone(this.citoyen.telephone).subscribe(res=>{
+      this.user=res.data
+      console.log(this.user)
+    })
   }
 
 
@@ -76,19 +87,24 @@ export class ComptePage implements OnInit {
   ///creation de compte
   update($event:any){
     //this.router.navigate(['/tabs'])
-    var url=''
-    if(this.fichier==null){
-      url=this.citoyen.photo
-      this.MiseAJour(url)
+    if(this.user.nom==this.citoyen.nom && this.user.username==this.citoyen.username&& this.user.email==this.citoyen.email && this.citoyen.photo==this.citoyen.photo){
+      this.presentToastError()
     }else{
-      this.pushFileToStorageAudio(this.fichier)
+      var url=''
+      if(this.fichier==null){
+        url=this.user.photo
+        this.MiseAJour(url)
+      }else{
+        this.pushFileToStorageAudio(this.fichier)
+      }
     }
+
   }
 
   //
    //upload de fichier
    pushFileToStorageAudio(fileUpload: Fichier): Observable<any> {
-    const filePath = `Fichiers/audio/${fileUpload.file.name}`;
+    const filePath = `Fichiers/Profil/${fileUpload.file.name}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
 
@@ -114,25 +130,24 @@ export class ComptePage implements OnInit {
       //recuperation des preferences du user stoke ds le local stotege
       var table=JSON.parse(localStorage.getItem('preferences')!) || []
       //
-      var citoyen=[{
-        'id':this.citoyen.id,
-        'nom':this.citoyen.nom,
-        'username':this.citoyen.username,
-        'email':this.citoyen.telephone,
-        'telephone':this.citoyen.telephone,
-        'password':auth?.uid,
-        "preferences":table,
-        'photo':url
-        }]
+      this.user.nom=this.citoyen.nom
+      this.user.username=this.citoyen.username
+      this.user.email=this.citoyen.email
+
+      var citoyen=[this.user]
+
+
 
         console.log(citoyen)
 
-        this.sbJoueurService.create(citoyen).subscribe(data=>{
+        this.sbJoueurService.update(citoyen).subscribe(data=>{
           console.log(data)
           if(data.message=='ok'){
             this.loginService.login(this.username,auth?.uid).subscribe(res=>{
               console.log(res.accessToken)
+              this.tokenService.signOut()
               this.tokenService.saveToken(res.token);
+              this.tokenService.saveRefreshToken(res.refreshToken)
               this.tokenService.saveUser(res);
                 var user={
                   'id':auth?.uid,
@@ -146,11 +161,11 @@ export class ComptePage implements OnInit {
                   console.log(res2)
 
                   if(res2){
-
                     this.fbJoueurService.update(auth?.uid,user)
                     console.log('hello')
                   }
-                  this.router.navigate(['../tabs'])
+                  //this.router.navigate(['../tabs'])
+                  this.presentToast()
 
                 })
 
@@ -164,12 +179,42 @@ export class ComptePage implements OnInit {
           }
 
         },error=>{
-          console.log(error.error.data)
+          console.log(error.error)
           this.isErrorBack=true
           this.erreurBack=error.error.data
         })
       });
 
+  }
+
+
+  //
+  async presentToast() {
+    let toast = await this.toastCtrl.create({
+      message: 'Modification effectuée avec success !',
+      duration: 2000,
+      position: 'top',
+      cssClass: 'custom-toast',
+      mode:'ios'
+    });
+
+    toast.onDidDismiss();
+
+    toast.present();
+  }
+
+  async presentToastError() {
+    let toast = await this.toastCtrl.create({
+      message: 'Veuillez modifier des champs avant de cliquer sur le bouton !',
+      duration: 2000,
+      position: 'top',
+      cssClass: 'custom-toast',
+      mode:'ios'
+    });
+
+    toast.onDidDismiss();
+
+    toast.present();
   }
 
 
