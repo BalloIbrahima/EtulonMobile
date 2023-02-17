@@ -15,7 +15,6 @@ export class InscriptionGuard implements CanActivate {
       var numero=localStorage.getItem('numero')
 
       if(!numero){
-
         this.router.navigate(['/home1'])
         return false;
       }else{

@@ -40,7 +40,7 @@
 
         <div class="input">
           <i class="fa-solid fa-envelope"></i>
-          <ion-input  [(ngModel)]="email" name="email"  id="email" type="email"  placeholder="Email" ngModel ></ion-input>
+          <ion-input  [(ngModel)]="email" pattern="/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email"  id="email" type="email"  placeholder="Email" ngModel ></ion-input>
         </div>
 
         <!--<div class="input">

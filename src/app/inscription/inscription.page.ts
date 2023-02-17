@@ -77,7 +77,7 @@ export class InscriptionPage implements OnInit {
 
   ///creation de compte
   singup($event:any){
-
+    this.presentLoadingWithOptions()
     if(this.fichier==null){
       this.randomize(this.photosDefault)
       var url=this.photosDefault[0]
@@ -136,8 +136,9 @@ export class InscriptionPage implements OnInit {
           console.log(data)
           if(data.message=='ok'){
             this.loginService.login(this.username,auth?.uid).subscribe(res=>{
-              console.log(res.accessToken)
+              console.log(res.token)
               this.tokenStorage.saveToken(res.token);
+              this.tokenStorage.saveRefreshToken(res.refreshToken)
               this.tokenStorage.saveUser(res);
                 var user={
                   'id':auth?.uid,
@@ -150,25 +151,26 @@ export class InscriptionPage implements OnInit {
                 this.fbJoueurService.get(auth?.uid).subscribe(res2=>{
                   console.log(res2)
 
-                  if(res2){
+                  if(res2.exists){
 
                     this.fbJoueurService.update(auth?.uid,user)
                     console.log('hello')
-
+                    this.dismiss_loader()
                     this.router.navigate(['../tabs'])
                   }else {
 
                     //this.user=new User(auth.uid,null,null,null,auth.phoneNumber,null,null,null,null,null)
                     this.fbJoueurService.create(user)
                       .then(() => {
-                        setTimeout(() => {
-
-                          this.router.navigate(['../tabs'])
-                        }, 1000);
+                        this.dismiss_loader()
+                        //setTimeout(() => {
+                        this.router.navigate(['../tabs'])
+                        //}, 1000);
 
                       }).catch((err:any) => {
                         console.log(err)
                         console.log('iciiii')
+                        this.dismiss_loader()
                       });
                   }
 
@@ -178,17 +180,21 @@ export class InscriptionPage implements OnInit {
 
             },error=>{
               console.log(error)
+              this.dismiss_loader()
             })
           }else{
             //console.log(data)
             this.isErrorBack=true
             this.erreurBack=data.data
+            this.dismiss_loader()
           }
 
         },error=>{
           console.log(error.error.data)
           this.isErrorBack=true
           this.erreurBack=error.error.data
+
+          this.dismiss_loader()
         })
 
 

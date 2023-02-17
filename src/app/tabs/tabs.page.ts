@@ -20,7 +20,7 @@ export class TabsPage implements OnInit,ViewWillEnter,ViewDidEnter {
     private tokenService:TokenService, private jeuService:JeuService) { }
   citoyen:any
   ngOnInit(): void {
-
+    localStorage.removeItem('numero')
     this.citoyen=this.tokenService.getUser()
     if(!this.citoyen){
       console.log(this.citoyen)
@@ -28,17 +28,17 @@ export class TabsPage implements OnInit,ViewWillEnter,ViewDidEnter {
     }
 
 
-    this.jeuService.GetAll().subscribe(
-      data => {
-        console.log('ertyui')
-       },
-      err => {
-        //this.content = err.error.message || err.error || err.message;
+    // this.jeuService.GetAll().subscribe(
+    //   data => {
+    //     console.log('ertyui')
+    //    },
+    //   err => {
+    //     //this.content = err.error.message || err.error || err.message;
 
-        if (err.status === 403)
-          this.eventBusService.emit(new EventData('logout', null));
-      }
-    );
+    //     if (err.status === 403)
+    //       this.eventBusService.emit(new EventData('logout', null));
+    //   }
+    // );
   }
 
   ionViewDidEnter(): void {

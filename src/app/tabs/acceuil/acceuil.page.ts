@@ -106,12 +106,20 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
 
     this.listGame.forEach((element: { id: any; }) => {
 
-      this.jeuService.GetNombreDeLike(element.id).subscribe(res=>{
-        console.log(res.data)
-        this.listLike.push({
-          id:element.id,
-          nombre:res.data
-        })
+      this.jeuService.GetNombreDeLike(element.id).subscribe({
+        next:res=>{
+          console.log(res.data)
+          this.listLike.push({
+            id:element.id,
+            nombre:res.data
+          })
+        },
+        error: err => {
+          console.log(err)
+          setTimeout(() => {
+            this.ngOnInit()
+          }, 1000);
+        }
       })
 
       this.jeuService.GetNombreFoisJoue(element.id).subscribe(res=>{
@@ -122,11 +130,6 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
         })
       })
       this.dismiss_loader()
-    },(error: any) => {
-      console.log(error)
-      setTimeout(() => {
-        this.getNbre()
-      }, 1000);
     })
   }
 

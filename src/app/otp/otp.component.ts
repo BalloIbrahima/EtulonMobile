@@ -53,7 +53,7 @@ export class OtpComponent implements OnInit {
 
   sendCode(){
 
-    this.close('confirm')
+
     this.presentLoadingWithOptions()
     //verification si le user possede daje un compte
     this.sbJoueurService.GetByTelephone(this.data).subscribe(res=>{
@@ -61,15 +61,18 @@ export class OtpComponent implements OnInit {
       if(res.data==null){
         //sinon
         this.dismiss_loader()
+        this.close('confirm')
         this.router.navigate(['/inscription'])
 
       }else{
 
         //sil exite on l'authentifie
         this.afAuth.authState.subscribe(auth => {
+          console.log('authentifie')
+          console.log(auth?.uid)
           //voir si l'utilisateur n'a pas deja un compte
           this.fbJoueurService.getTask(auth?.uid).subscribe((res2:any)=>{
-
+            console.log(res2)
             if(res2){
               console.log(res2)
 
@@ -82,6 +85,8 @@ export class OtpComponent implements OnInit {
                 if(retour.token){
                   setTimeout(() => {
                     this.dismiss_loader()
+
+                    this.close('confirm')
                     this.router.navigate(['../tabs'])
                   }, 1000);
                   //this.router.navigate(['../tabs'])
