@@ -32,7 +32,7 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
   ngOnInit() {
     this.presentLoadingWithOptions()
     this.citoyen=this.tokenService.getUser()
-
+    console.log('rapelle')
     ///
     this.chargeGames(null)
     this.get20last()
@@ -40,14 +40,23 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
       this.getNbre()
     }, 1000);
     //
-    this.problematiqueService.getAll().subscribe(res=>{
-      this.problematiques=res.data;
-      localStorage.setItem('listProblematique',JSON.stringify(res.data))
-      //console.log(this.problematiques)
-    },error=>{
-      //console.log(JSON.parse(localStorage.getItem('listProblematique') || '') )
-      this.problematiques= JSON.parse(localStorage.getItem('listProblematique') || '')
-    })
+    this.problematiqueService.getAll().subscribe({
+      next:res=>{
+        this.problematiques=res.data;
+        localStorage.setItem('listProblematique',JSON.stringify(res.data))
+        setTimeout(() => {
+          this.dismiss_loader()
+        }, 1000);
+
+        //console.log(this.problematiques)
+      },error:error=>{
+        //console.log(JSON.parse(localStorage.getItem('listProblematique') || '') )
+        this.problematiques= JSON.parse(localStorage.getItem('listProblematique') || '')
+        console.log(error)
+          setTimeout(() => {
+            this.ngOnInit()
+          }, 1000);
+      }})
   }
 
 
@@ -122,10 +131,7 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
           })
         },
         error: err => {
-          console.log(err)
-          setTimeout(() => {
-            this.ngOnInit()
-          }, 1000);
+
         }
       })
 
@@ -136,7 +142,7 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
           nombre:res.data
         })
       })
-      this.dismiss_loader()
+
     })
   }
 
