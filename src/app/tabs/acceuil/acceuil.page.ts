@@ -53,13 +53,20 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
 
 
   change(libelle:any,idP:any){
-    var div= <HTMLDivElement>document.querySelector('.cl'+idP)
-    var divdja= <HTMLDivElement>document.querySelector('.select')
-    divdja.classList.remove('select')
-    div.classList.add('select')
+
     if(libelle=='all'){
+      var div= <HTMLDivElement>document.querySelector('.cl')
+      var divdja= <HTMLDivElement>document.querySelector('.select')
+      divdja.classList.remove('select')
+      div.classList.add('select')
+
       this.chargeGames(null)
     }else {
+      var div= <HTMLDivElement>document.querySelector('.cl'+idP)
+      var divdja= <HTMLDivElement>document.querySelector('.select')
+      divdja.classList.remove('select')
+      div.classList.add('select')
+
       var id=0
 
       this.problematiques.forEach((element: { libelle: any; id: number; }) => {

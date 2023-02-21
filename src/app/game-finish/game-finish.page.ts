@@ -38,6 +38,7 @@ export class GameFinishPage implements OnInit {
   ngOnInit() {
     this.citoyen=this.tokenService.getUser()
     this.PointValue=(this.data.point/(this.data.TotalPoint+1))
+    this.PointValue=Math.round(this.PointValue * 100) / 100
     console.log(this.citoyen)
     console.log(this.data)
     var sc=this.data.point/100
