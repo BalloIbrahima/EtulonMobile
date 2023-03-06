@@ -22,11 +22,11 @@ export class AcceuilPage implements OnInit , ViewWillEnter,ViewDidEnter{
   constructor(private router:Router,private problematiqueService:ProblematiqueService,
     public loadingController: LoadingController,private tokenService:TokenService, private jeuService:JeuService) { }
   ionViewDidEnter(): void {
-    // this.ngOnInit()
+    //this.ngOnInit()
   }
 
   ionViewWillEnter(): void {
-    // this.ngOnInit()
+    //this.ngOnInit()
   }
 
   ngOnInit() {

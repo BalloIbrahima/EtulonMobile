@@ -47,6 +47,15 @@ export class ComptePage implements OnInit {
 
   }
 
+  ionViewDidEnter(): void {
+    //this.ngOnInit()
+    this.getUser()
+  }
+
+  ionViewWillEnter(): void {
+    //this.ngOnInit()
+    this.getUser()
+  }
   getUser(){
     this.sbJoueurService.GetByTelephone(this.citoyen.telephone).subscribe(res=>{
       this.user=res.data

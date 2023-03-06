@@ -35,6 +35,14 @@ export class ConseilPage implements OnInit {
 
   }
 
+  ionViewDidEnter(): void {
+    //this.ngOnInit()
+  }
+
+  ionViewWillEnter(): void {
+    //this.ngOnInit()
+  }
+
   like(i:number,idConseil:any){
 
     var element=<HTMLDivElement>document.querySelector('.liked'+i)
