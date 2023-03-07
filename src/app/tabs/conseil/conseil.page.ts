@@ -297,8 +297,8 @@ export class ConseilPage implements OnInit {
 
     }else{
       if(diff.day>30){
-        // return "Il y'a "+ date1
-        return date1
+        //return "Il y'a "+ date1
+        return "Il y'a "+ diff.day +' jours'
       }else if(diff.day>1){
         return "Il y'a "+ diff.day +' jours'
       }
